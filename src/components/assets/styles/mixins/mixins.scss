@@ -1,0 +1,14 @@
+@import "../fonts/fonts";
+
+$mobile: 320px;
+$desktop: 1152px;
+
+@mixin media($size) {
+    @media (min-width: $size) {
+        @content;
+    }
+}
+
+//@mixin authTitle {
+//    font: 400 36px/49px 'Avenir 300', sans-serif;
+//}
