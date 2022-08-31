@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { setupStore } from "./components/core/store";
 import { App } from "./components/modules/app/components/App/App";
 
+import 'antd/dist/antd.css';
 import "./components/assets/styles/index.scss";
 
 const store = setupStore();

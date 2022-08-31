@@ -7,6 +7,10 @@
     height: 10vh;
     padding: 20px 24px;
     text-align: right;
+
+    .registrationLink {
+      padding: 0;
+    }
   }
 
   .authContentWrapper {
@@ -18,7 +22,22 @@
     height: 90vh;
 
     .authContent {
+      width: 464px;
       padding: 24px;
+
+      .title {
+        margin-bottom: 24px;
+        font: 400 30px/38px 'SF Pro Display', sans-serif;
+      }
+
+      .formWrapper > input {
+        width: 100%;
+      }
+      .formWrapper {
+        .label {
+          font: 400 14px/22px 'SF Pro Display', sans-serif;
+        }
+      }
     }
   }
 }
