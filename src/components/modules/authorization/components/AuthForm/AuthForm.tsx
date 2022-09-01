@@ -6,6 +6,7 @@ import { searchUser } from '../../halpers/halpers';
 import { authorizationSlice } from '../../AuthorizationSlice';
 
 import s from './AuthForm.module.scss';
+import { Link } from 'react-router-dom';
 
 const { setIsAuth } = authorizationSlice.actions;
 
@@ -18,8 +19,8 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
     const [numberAttempts, setNumberAttempts] = useState(0);
     const [isDisabled, setDisabled] = useState(false);
 
-    const { arrayUsers } = useAppSelector(state => state.authorizationReducer);
-    
+    const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
+
     const redirect = () => {
         dispatch(setIsAuth(true));
     };
@@ -36,7 +37,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
     useEffect(() => {
         if (numberAttempts > 3) {
             setDisabled(true);
-            const handler =  setTimeout(() => {
+            const handler = setTimeout(() => {
                 setErrorMessage('');
                 setDisabled(false);
                 setNumberAttempts(0);
@@ -45,7 +46,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
 
             return () => clearTimeout(handler);
         }
-    }, [numberAttempts])
+    }, [numberAttempts]);
 
     return (
         <Form
@@ -58,11 +59,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
             layout="vertical"
             requiredMark={false}
         >
-            <Form.Item
-                label="Эл. адрес"
-                name="login"
-                rules={[{ required: true,  message: 'Please input your login!' },]}
-            >
+            <Form.Item label="Эл. адрес" name="login" rules={[{ required: true, message: 'Please input your login!' }]}>
                 <Input />
             </Form.Item>
 
@@ -83,10 +80,14 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                     <Checkbox>Запомнить меня</Checkbox>
                 </Form.Item>
 
-                <Button type="link" className={s.linkBtn}>Забыли пароль?</Button>
+                <Link to="/forgotPassword" className={s.linkBtn}>
+                    Забыли пароль?
+                </Link>
             </div>
 
-            <Button type="primary" htmlType="submit" disabled={isDisabled} >Войти</Button>
+            <Button type="primary" htmlType="submit" disabled={isDisabled}>
+                Войти
+            </Button>
         </Form>
-    )
-}
+    );
+};
