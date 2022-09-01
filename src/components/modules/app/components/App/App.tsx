@@ -35,7 +35,6 @@ export const App = () => {
         }
         return;
     }, [login, password, arrayUsers])
-    console.log(isAuth);
 
     return (
         <div className={s.App}>

@@ -12,7 +12,6 @@
     padding: 20px 24px;
     text-align: right;
   }
-
   .authContentWrapper {
     display: flex;
     flex-direction: column;
@@ -28,13 +27,6 @@
       .title {
         margin-bottom: 24px;
         font: 600 30px/38px 'SF Pro Display', sans-serif;
-      }
-
-      .formWrapper {
-        .rememberMeWrapper {
-          display: flex;
-          justify-content: space-between;
-        }
       }
     }
   }
