@@ -1,10 +1,10 @@
 import React from 'react';
-import { Auth } from '../../modules/authorization/components/Auth/Auth';
-import authImage from '../../assets/images/Vector.png';
+import authImage from '../../../../assets/images/Vector.png';
+import { Auth } from '../Auth/Auth';
 
-import s from './AuthPage.module.scss';
+import s from './LoginPage.module.scss';
 
-export const AuthPage = () => {
+export const LoginPage = () => {
     return (
         <div className={s.AuthPage}>
             <div className={s.leftZone}>

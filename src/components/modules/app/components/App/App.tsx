@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
-import { AuthPage } from '../../../../pages/AuthPage/AuthPage';
-import { HomePage } from '../../../../pages/HomePage/HomePage';
+import { UnprotectedPages } from '../../../../pages/UnprotectedPages/UnprotectedPages';
+import { ProtectedPages } from '../../../../pages/ProtectedPages/ProtectedPages';
 
 import s from './App.module.scss';
 
@@ -38,7 +38,7 @@ export const App = () => {
 
     return (
         <div className={s.App}>
-            {isAuth ? <HomePage /> : <AuthPage />}
+            {isAuth ? <ProtectedPages /> : <UnprotectedPages />}
         </div>
     );
 };

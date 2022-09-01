@@ -1,0 +1,90 @@
+.RegistrationPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #E8E8E8;
+  padding: 24px 12px;
+  min-height: 100vh;
+
+  .pageTitle {
+    font: 400 56px/64px 'SF Pro Display', sans-serif;
+    color: #000000;
+    margin-bottom: 16px;
+  }
+
+
+
+  .registrationCard {
+    max-width: 648px;
+    padding: 24px;
+    background: #FFFFFF;
+    border-radius: 2px;
+
+    .cardTitle {
+      text-align: center;
+      font: 600 20px/28px 'SF Pro Display', sans-serif;
+      margin-bottom: 24px;
+    }
+
+    .AuthForm {
+      .groupFields {
+        display: flex;
+        justify-content: space-between;
+      }
+      .groupFields > div {
+        flex: 1 1;
+      }
+      .groupFields > div:first-child {
+        margin-right: 24px;
+      }
+
+      .birthday {
+        .birthdayTitle {
+          font: 400 14px/22px 'SF Pro Display', sans-serif;
+        }
+
+        .topWrapper {
+          display: flex;
+          justify-content: space-between;
+        }
+        .topWrapper > div {
+          flex: 1 1;
+        }
+        .topWrapper > div:nth-child(-n+2) {
+          margin-right: 24px;
+        }
+        .month {
+          flex: 1.5 !important;
+        }
+
+        .bottomWrapper {
+          display: flex;
+          justify-content: space-between;
+        }
+        .bottomWrapper > div {
+          flex: 1 1;
+        }
+        .bottomWrapper > div:first-child {
+          margin-right: 24px;
+        }
+      }
+
+      .checkBox {
+        font: 400 14px/22px 'SF Pro Display', sans-serif;
+        color: #595959;
+
+        .linkBtn {
+          padding: 0 4px;
+        }
+      }
+    }
+
+    .haveAccount {
+      text-align: center;
+      font: 400 14px/22px 'SF Pro Display', sans-serif;
+      color: #595959;
+      margin-top: 24px;
+    }
+  }
+}

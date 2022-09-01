@@ -71,7 +71,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 name="password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
             >
-                <Input.Password />
+                <Input.Password style={{ padding: '0 12px' }} />
             </Form.Item>
 
             <div className={s.rememberMeWrapper}>

@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Alert } from 'antd';
 import { AuthForm } from '../AuthForm/AuthForm';
 
 import s from './Auth.module.scss';
 
 export const Auth = () => {
+    const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
-    
+
+    const goToRegistration = () => {
+        navigate('registration');
+    };
+
     return (
         <div className={s.Auth}>
             {errorMessage && (
@@ -22,7 +28,7 @@ export const Auth = () => {
             <div className={s.authHeader}>
                 <span className={s.headerContent}>
                     Нет аккаунта?
-                    <Button type="link" className={s.linkBtn}>Зарегистрироваться</Button>
+                    <Button type="link" className={s.linkBtn} onClick={goToRegistration}>Зарегистрироваться</Button>
                 </span>
             </div>
 

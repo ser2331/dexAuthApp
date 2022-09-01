@@ -4,11 +4,11 @@ import type { MenuProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { HomeRoutes } from '../../modules/homeTables/components/HomeRoutes/HomeRoutes';
 import { items } from '../../modules/homeTables/halpers/halpers';
-import s from './HomePage.module.scss';
+import s from './ProtectedPages.module.scss';
 
 const { Content, Sider } = Layout;
 
-export const HomePage = () => {
+export const ProtectedPages = () => {
     const navigate = useNavigate();
 
 
