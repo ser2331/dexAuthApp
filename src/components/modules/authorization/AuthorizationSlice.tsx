@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAuth } from './interfaces/authorizationInterface';
+import { IAuth, IRegistration } from './interfaces/authorizationInterface';
 
 export interface AuthorizationState {
     arrayUsers: IAuth[];
@@ -23,8 +23,10 @@ export const authorizationSlice = createSlice({
         setIsAuth(state, action: PayloadAction<boolean>) {
             state.isAuth = action.payload;
         },
-    }
-
+        setNewUser(state, action: PayloadAction<IRegistration>) {
+            state.arrayUsers = [...state.arrayUsers, action.payload];
+        },
+    },
 });
 
 export default authorizationSlice.reducer;
