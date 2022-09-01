@@ -1,19 +1,19 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface AppState {
-    showMobileMenu: boolean;
+    show: boolean;
 }
 
 const initialState: AppState = {
-    showMobileMenu: false,
+    show: false,
 };
 
 export const appSlice = createSlice({
-    name: "app",
+    name: 'app',
     initialState,
     reducers: {
-        // setShowMobileMenu(state, action: PayloadAction<boolean>) {
-        //     state.showMobileMenu = action.payload;
+        // setIsAuth(state, action: PayloadAction<boolean>) {
+        //     state.isAuth = action.payload;
         // },
     }
 

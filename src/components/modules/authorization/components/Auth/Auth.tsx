@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { Button, Checkbox, Form, Input, Alert } from "antd";
-import { IAuth } from "../../interfaces/authorizationInterface";
-import { useAppSelector } from "../../../../core/redux";
-import { searchUser } from "../../halpers/halpers";
+import React, { useEffect, useState } from 'react';
+import { Button, Checkbox, Form, Input, Alert } from 'antd';
+import { IAuth } from '../../interfaces/authorizationInterface';
+import { useAppDispatch, useAppSelector } from '../../../../core/redux';
+import { searchUser } from '../../halpers/halpers';
+import { authorizationSlice } from '../../AuthorizationSlice';
 
-import s from "./Auth.module.scss";
+import s from './Auth.module.scss';
+
+const { setIsAuth } = authorizationSlice.actions;
 
 export const Auth = () => {
+    const dispatch = useAppDispatch();
     const [errorMessage, setErrorMessage] = useState('');
     const [numberAttempts, setNumberAttempts] = useState(0);
     const [isDisabled, setDisabled] = useState(false);
@@ -14,7 +18,7 @@ export const Auth = () => {
     const { arrayUsers } = useAppSelector(state => state.authorizationReducer);
     
     const redirect = () => {
-        console.log("redirect");
+        dispatch(setIsAuth(true));
     };
 
     const onFinish = (values: IAuth) => {
@@ -30,41 +34,25 @@ export const Auth = () => {
         if (numberAttempts > 3) {
             setDisabled(true);
             const handler =  setTimeout(() => {
-                setErrorMessage("");
+                setErrorMessage('');
                 setDisabled(false);
                 setNumberAttempts(0);
             }, 3000);
-            setErrorMessage("Превышено количество попыток входа, попробуйте позже");
+            setErrorMessage('Превышено количество попыток входа, попробуйте позже');
 
             return () => clearTimeout(handler);
         }
     }, [numberAttempts])
 
-    useEffect(() => {
-        let login;
-        let password;
-        const loginJson = window.localStorage && window.localStorage.getItem("LOGIN");
-        const passwordJson = window.localStorage && window.localStorage.getItem("PASSWORD");
-        if (typeof loginJson === "string" && typeof passwordJson === "string") {
-            try {
-                login = JSON.parse(loginJson);
-                password = JSON.parse(passwordJson);
-                // eslint-disable-next-line no-empty
-            } catch (e) {
-            }
-        }
-        return console.log(`login:${login}; password:${password}`);
-    }, [])
-
     return (
         <div className={s.Auth}>
             {errorMessage && (
                 <Alert
-                    style={{ position: "absolute", right: 24, top: "10vh" }}
+                    style={{ position: 'absolute', right: 24, top: '10vh' }}
                     message={errorMessage}
                     type="error"
                     closable
-                    onClose={() => setErrorMessage("")}
+                    onClose={() => setErrorMessage('')}
                 />
             )}
 

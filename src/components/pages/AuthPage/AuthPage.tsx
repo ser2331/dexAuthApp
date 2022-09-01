@@ -1,8 +1,8 @@
-import React from "react";
-import { Auth } from "../../modules/authorization/components/Auth/Auth";
-import authImage from "../../assets/images/Vector.png";
+import React from 'react';
+import { Auth } from '../../modules/authorization/components/Auth/Auth';
+import authImage from '../../assets/images/Vector.png';
 
-import s from "./AuthPage.module.scss";
+import s from './AuthPage.module.scss';
 
 export const AuthPage = () => {
     return (
