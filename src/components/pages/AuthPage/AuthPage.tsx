@@ -19,7 +19,7 @@ export const AuthPage = () => {
                     </div>
                 </div>
 
-            <div className={s.imageWrapper}>
+                <div className={s.imageWrapper}>
                     <img alt="auth" src={authImage} />
                 </div>
             </div>

@@ -1,22 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IAuth } from "./interfaces/authorizationInterface";
 
 export interface AuthorizationState {
-    showMobileMenu: boolean;
+    arrayUsers: IAuth[];
+    rememberMe: boolean;
 }
 
 const initialState: AuthorizationState = {
-    showMobileMenu: false,
+    arrayUsers: [
+        { login: "admin", password: "admin", isAdmin: true },
+        { login: "test", password: "test", isAdmin: false },
+    ],
+    rememberMe: false,
 };
 
-export const AuthorizationSlice = createSlice({
+export const authorizationSlice = createSlice({
     name: "authorization",
     initialState,
     reducers: {
-        // setShowMobileMenu(state, action: PayloadAction<boolean>) {
-        //     state.showMobileMenu = action.payload;
-        // },
+        // setLogin(state, action: PayloadAction<string>) {
+        //     state.login = action.payload;
+        // }
     }
 
 });
 
-export default AuthorizationSlice.reducer;
+export default authorizationSlice.reducer;

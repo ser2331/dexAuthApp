@@ -2,15 +2,15 @@
   width: 100%;
   height: 100vh;
 
+  .linkBtn {
+    padding: 0;
+  }
+
   .authHeader {
     width: 100%;
     height: 10vh;
     padding: 20px 24px;
     text-align: right;
-
-    .registrationLink {
-      padding: 0;
-    }
   }
 
   .authContentWrapper {
@@ -27,15 +27,13 @@
 
       .title {
         margin-bottom: 24px;
-        font: 400 30px/38px 'SF Pro Display', sans-serif;
+        font: 600 30px/38px 'SF Pro Display', sans-serif;
       }
 
-      .formWrapper > input {
-        width: 100%;
-      }
       .formWrapper {
-        .label {
-          font: 400 14px/22px 'SF Pro Display', sans-serif;
+        .rememberMeWrapper {
+          display: flex;
+          justify-content: space-between;
         }
       }
     }
