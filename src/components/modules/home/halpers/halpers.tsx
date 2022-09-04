@@ -26,9 +26,9 @@ function getItem(
 }
 
 export const items: MenuItem[] = [
-    getItem('Dashboard', '/', <PieChartOutlined  />),
+    getItem('Dashboard', 'dashboard', <PieChartOutlined  />),
     getItem('Reports', 'reports', <RiseOutlined  />),
-    getItem('Documents', 'documents', <FileDoneOutlined  />, [
+    getItem('Invoices', 'documents', <FileDoneOutlined  />, [
         getItem('Invoices', 'invoices'),
         getItem('Drafts', 'drafts'),
         getItem('Templates', 'templates'),

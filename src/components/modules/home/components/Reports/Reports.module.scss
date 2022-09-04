@@ -1,0 +1,18 @@
+.Reports {
+  width: 100%;
+  min-height: 100vh;
+
+  .header {
+    background: white;
+    margin: 0 4px 24px 4px;
+    padding: 1px 24px 56px;
+
+    .title {
+      font: 600 20px/28px 'SF Pro Display', sans-serif;
+    }
+  }
+
+  .tableWrapper {
+    margin: 0 24px;
+  }
+}

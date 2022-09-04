@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { UnprotectedPages } from '../../../../pages/UnprotectedPages/UnprotectedPages';
@@ -11,7 +10,6 @@ const { setIsAuth } = authorizationSlice.actions;
 
 export const App = () => {
     const dispatch = useAppDispatch();
-    const navigate = useNavigate();
 
     const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
     const { isAuth } = useAppSelector((state) => state.authorizationReducer);
@@ -29,14 +27,14 @@ export const App = () => {
     }
 
     useEffect(() => {
-        if (login && password) {
+        if (!isAuth && (login && password)) {
             const userAdmin = arrayUsers.find((el) => el.login === login && el.password === password);
             if (userAdmin) {
                 dispatch(setIsAuth(true));
             }
-        } else navigate('/');
+        }
         return;
-    }, [login, password, arrayUsers]);
+    }, [login, password, arrayUsers, isAuth]);
 
     return <div className={s.App}>{isAuth ? <ProtectedPages /> : <UnprotectedPages />}</div>;
 };
