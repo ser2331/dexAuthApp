@@ -65,6 +65,7 @@ export const ChangePassword = () => {
                     </Form.Item>
                     <Form.Item
                         name="confirmPassword"
+                        dependencies={['password']}
                         rules={[
                             { required: true, message: 'Обязательное поле' },
                             ({ getFieldValue }) => ({
