@@ -63,14 +63,25 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
             layout="vertical"
             requiredMark={false}
         >
-            <Form.Item label="Эл. адрес" name="login" rules={[{ required: true, message: 'Обязательное поле' }]}>
+            <Form.Item
+                label="Эл. адрес"
+                name="login"
+                rules={[
+                    { required: true, message: 'Обязательное поле' },
+                    { min: 4, message: 'Логин должен содержать от 4 до 64 символов' },
+                    { max: 64, message: 'Пароль должен содержать от 4 до 64 символов' },
+                ]}>
                 <Input />
             </Form.Item>
 
             <Form.Item
                 label="Пароль"
                 name="password"
-                rules={[{ required: true, message: 'Обязательное поле' }]}
+                rules={[
+                    { required: true, message: 'Обязательное поле' },
+                    { min: 8, message: 'Пароль должен содержать от 8 до 64 символов' },
+                    { max: 64, message: 'Пароль должен содержать от 8 до 64 символов' },
+                ]}
             >
                 <Input.Password style={{ padding: '0 12px' }} />
             </Form.Item>
