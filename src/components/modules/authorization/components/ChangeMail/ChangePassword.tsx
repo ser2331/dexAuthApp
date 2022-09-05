@@ -57,6 +57,8 @@ export const ChangePassword = () => {
                         name="password"
                         rules={[
                             { required: true, message: 'Обязательное поле' },
+                            { min: 8, message: 'Пароль должен содержать от 8 до 64 символов' },
+                            { max: 64, message: 'Пароль должен содержать от 8 до 64 символов' },
                         ]}
                     >
                         <Input.Password placeholder="password" />
@@ -65,6 +67,14 @@ export const ChangePassword = () => {
                         name="confirmPassword"
                         rules={[
                             { required: true, message: 'Обязательное поле' },
+                            ({ getFieldValue }) => ({
+                                validator(_, value) {
+                                    if (!value || getFieldValue('password') === value) {
+                                        return Promise.resolve();
+                                    }
+                                    return Promise.reject(new Error('Пароли не совпадают'));
+                                },
+                            }),
                         ]}
                     >
                         <Input.Password placeholder="confirmPassword" />
