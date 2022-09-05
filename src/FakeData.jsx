@@ -97,4 +97,37 @@ export default class FakeData {
             key: 13616
         },
     ];
+
+    static users = [
+        {
+            login: 'admin@mail.ru',
+            password: 'admin',
+            isAdmin: true,
+            sureName: 'Дуков',
+            name: 'Сергей',
+            lastName: 'Сергеевич',
+            confirmPassword: 'admin',
+            day: '19',
+            month: '03',
+            year: '1995',
+            phone: '77589599',
+            gender: 'mail',
+            readOut: false,
+        },
+        {
+            login: 'test@mail.ru',
+            password: 'test',
+            isAdmin: true,
+            sureName: 'Дуков',
+            name: 'Сергей',
+            lastName: 'Сергеевич',
+            confirmPassword: 'test',
+            day: '19',
+            month: '03',
+            year: '1995',
+            phone: '77589599',
+            gender: 'mail',
+            readOut: false,
+        },
+    ]
 }
