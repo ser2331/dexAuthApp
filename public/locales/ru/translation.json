@@ -1,3 +1,11 @@
 {
-  "hr_processes": "HR-процессы автоматизированы, с возвращением!"
+  "hr_processes": "HR-процессы автоматизированы, с возвращением!",
+  "no_account": "Нет аккаунта?",
+  "register": "Зарегистрироваться",
+  "login_to_staff_pro": "Войти в Staff Pro",
+  "email_address": "Эл. адрес",
+  "password": "Пароль",
+  "to_remember_me": "Запомнить меня",
+  "forgot_your_password": "Забыли пароль?",
+  "to_come_in": "Войти"
 }

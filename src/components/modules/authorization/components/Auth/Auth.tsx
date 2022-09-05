@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button, Alert } from 'antd';
 import { AuthForm } from '../AuthForm/AuthForm';
 import { routes } from '../../../../types';
@@ -8,6 +9,8 @@ import s from './Auth.module.scss';
 
 export const Auth = () => {
     const navigate = useNavigate();
+    
+    const { t } = useTranslation();
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -29,15 +32,15 @@ export const Auth = () => {
 
             <div className={s.authHeader}>
                 <span className={s.headerContent}>
-                    Нет аккаунта?
-                    <Button type="link" className={s.linkBtn} onClick={goToRegistration}>Зарегистрироваться</Button>
+                    {t('no_account')}
+                    <Button type="link" className={s.linkBtn} onClick={goToRegistration}>{t('register')}</Button>
                 </span>
             </div>
 
             <div className={s.authContentWrapper}>
                 <div className={s.authContent}>
                     <div className={s.title}>
-                        Войти в Staff Pro
+                        {t('login_to_staff_pro')}
                     </div>
 
                     <AuthForm setErrorMessage={setErrorMessage} />

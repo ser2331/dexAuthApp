@@ -1,3 +1,11 @@
 {
-  "hr_processes": "HR processes are automated, welcome back!"
+  "hr_processes": "HR processes are automated, welcome back!",
+  "no_account": "No account?",
+  "register": "Register",
+  "login_to_staff_pro": "Login to Staff Pro",
+  "email_address": "Email address",
+  "password": "Password",
+  "to_remember_me": "To remember me",
+  "forgot_your_password": "Forgot your password?",
+  "to_come_in": "To come in"
 }

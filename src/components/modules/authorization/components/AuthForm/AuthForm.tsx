@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { useTranslation } from 'react-i18next';
 import { IAuth } from '../../interfaces/authorizationInterface';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { searchUser } from '../../halpers/halpers';
@@ -17,6 +18,7 @@ interface IAuthForm {
 
 export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
     const dispatch = useAppDispatch();
+    const { t } = useTranslation();
 
     const [numberAttempts, setNumberAttempts] = useState(0);
     const [isDisabled, setDisabled] = useState(false);
@@ -62,7 +64,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
             requiredMark={false}
         >
             <Form.Item
-                label="Эл. адрес"
+                label={t('email_address')}
                 name="login"
                 rules={[
                     { required: true, message: 'Обязательное поле' },
@@ -73,7 +75,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
             </Form.Item>
 
             <Form.Item
-                label="Пароль"
+                label={t('password')}
                 name="password"
                 rules={[
                     { required: true, message: 'Обязательное поле' },
@@ -89,16 +91,16 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                     name="remember"
                     valuePropName="checked"
                 >
-                    <Checkbox>Запомнить меня</Checkbox>
+                    <Checkbox>{t('to_remember_me')}</Checkbox>
                 </Form.Item>
 
                 <Link to={routes.forgotPassword} className={s.linkBtn}>
-                    Забыли пароль?
+                    {t('forgot_your_password')}
                 </Link>
             </div>
 
             <Button type="primary" htmlType="submit" disabled={isDisabled}>
-                Войти
+                {t('to_come_in')}
             </Button>
         </Form>
     );
