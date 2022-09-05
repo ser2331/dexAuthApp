@@ -63,14 +63,14 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
             layout="vertical"
             requiredMark={false}
         >
-            <Form.Item label="Эл. адрес" name="login" rules={[{ required: true, message: 'Please input your login!' }]}>
+            <Form.Item label="Эл. адрес" name="login" rules={[{ required: true, message: 'Обязательное поле' }]}>
                 <Input />
             </Form.Item>
 
             <Form.Item
                 label="Пароль"
                 name="password"
-                rules={[{ required: true, message: 'Please input your password!' }]}
+                rules={[{ required: true, message: 'Обязательное поле' }]}
             >
                 <Input.Password style={{ padding: '0 12px' }} />
             </Form.Item>
@@ -79,7 +79,6 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 <Form.Item
                     name="remember"
                     valuePropName="checked"
-                    rules={[{ required: true, message: 'Please checked!' }]}
                 >
                     <Checkbox>Запомнить меня</Checkbox>
                 </Form.Item>
