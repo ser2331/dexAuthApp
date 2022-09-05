@@ -13,7 +13,7 @@ const { routingMap } = Types;
 export const HomeRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<Outlet />}>
+            <Route path={routingMap.get('login').value} element={<Outlet />}>
                 <Route path={routingMap.get('dashboard').value} element={<Dashboard />} />
             </Route>
             <Route path={routingMap.get('reports').value} element={<Reports />} />

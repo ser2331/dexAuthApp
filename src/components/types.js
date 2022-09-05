@@ -1,6 +1,7 @@
 
 export default class Types {
     static routing = [
+        { id: 9, key: 'login', value: '/' },
         { id: 0, key: 'dashboard', value: '/dashboard' },
         { id: 1, key: 'reports', value: '/reports' },
         { id: 2, key: 'invoices', value: '/documents/invoices' },

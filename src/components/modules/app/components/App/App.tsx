@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { UnprotectedPages } from '../../../../pages/UnprotectedPages/UnprotectedPages';
 import { ProtectedPages } from '../../../../pages/ProtectedPages/ProtectedPages';
+import Types from '../../../../types';
 
 import s from './App.module.scss';
 
 const { setIsAuth } = authorizationSlice.actions;
+const { routingMap } = Types;
 
 export const App = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
     const { isAuth } = useAppSelector((state) => state.authorizationReducer);
@@ -26,15 +30,21 @@ export const App = () => {
         } catch (e) {}
     }
 
+    useEffect (() => {
+        if (!isAuth) {
+            navigate(routingMap.get('login').value);
+        }
+    }, [isAuth])
+
     useEffect(() => {
-        if (!isAuth && (login && password)) {
+        if (login && password) {
             const userAdmin = arrayUsers.find((el) => el.login === login && el.password === password);
             if (userAdmin) {
                 dispatch(setIsAuth(true));
             }
         }
         return;
-    }, [login, password, arrayUsers, isAuth]);
+    }, [login, password, arrayUsers]);
 
     return <div className={s.App}>{isAuth ? <ProtectedPages /> : <UnprotectedPages />}</div>;
 };
