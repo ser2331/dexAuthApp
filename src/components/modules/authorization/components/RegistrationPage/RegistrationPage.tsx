@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input, InputNumber, Select } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../core/redux';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { IAuth } from '../../interfaces/authorizationInterface';
@@ -14,9 +14,12 @@ const { routingMap } = Types;
 
 export const RegistrationPage = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const onFinish = (values: IAuth) => {
         dispatch(setNewUser({ ...values, isAdmin: true }));
+        navigate(routingMap.get('login').value);
+        console.log(values);
     };
 
     return (
@@ -111,7 +114,10 @@ export const RegistrationPage = () => {
                     <div className={s.birthday}>
                         <div className={s.birthdayTitle}>Дата рождения</div>
                         <div className={s.topWrapper}>
-                            <Form.Item name="day" rules={[{ required: true, message: 'Обязательное поле' }]}>
+                            <Form.Item name="day" rules={[
+                                { required: true, message: 'Обязательное поле' },
+                                { type: 'number', max: 31, min: 1 },
+                            ]}>
                                 <InputNumber style={{ width: '100%' }} min={1} max={31} placeholder="День" />
                             </Form.Item>
 
@@ -144,12 +150,14 @@ export const RegistrationPage = () => {
                             <Form.Item
                                 name="phone"
                                 rules={[
-                                    { required: true, message: 'Обязательное поле' },
-                                    { min: 8, message: 'Такого телефона не существует' },
-                                    { max: 8, message: 'Такого телефона не существует' },
+                                    { required: true, message: 'Такого номера не существует' },
                                 ]}
                             >
-                                <Input addonBefore="(+373)" placeholder="Телефон" />
+                                <InputNumber
+                                    formatter={(value: number | string | undefined) => value ? value.toString().slice(0, 8) : ''}
+                                    addonBefore="(+373)"
+                                    placeholder="Телефон"
+                                />
                             </Form.Item>
 
                             <Form.Item name="gender" rules={[{ required: true, message: 'Обязательное поле' }]}>
