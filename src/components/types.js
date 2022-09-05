@@ -2,6 +2,10 @@
 export default class Types {
     static routing = [
         { id: 9, key: 'login', value: '/' },
+        { id: 10, key: 'registration', value: '/registration' },
+        { id: 11, key: 'forgotPassword', value: '/forgotPassword' },
+        { id: 12, key: 'forgotPasswordSuccess', value: '/forgotPasswordSuccess' },
+        { id: 13, key: 'changeMail', value: '/changeMail' },
         { id: 0, key: 'dashboard', value: '/dashboard' },
         { id: 1, key: 'reports', value: '/reports' },
         { id: 2, key: 'invoices', value: '/documents/invoices' },

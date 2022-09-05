@@ -5,21 +5,18 @@ import { useAppDispatch } from '../../../../core/redux';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { IAuth } from '../../interfaces/authorizationInterface';
 import { monthOptions, yearOptions, genderOptions } from '../../halpers/halpers';
+import Types from '../../../../types';
 
 import s from './RegistrationPage.module.scss';
 
 const { setNewUser } = authorizationSlice.actions;
+const { routingMap } = Types;
 
 export const RegistrationPage = () => {
     const dispatch = useAppDispatch();
 
     const onFinish = (values: IAuth) => {
         dispatch(setNewUser({ ...values, isAdmin: true }));
-        console.log('Finish', values);
-    };
-
-    const onFinishFailed = () => {
-        console.log('FinishFailed');
     };
 
     return (
@@ -33,7 +30,6 @@ export const RegistrationPage = () => {
                     name="basic"
                     initialValues={{ remember: false }}
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
                     autoComplete="off"
                     layout="vertical"
                     requiredMark={false}
@@ -176,11 +172,11 @@ export const RegistrationPage = () => {
                     >
                         <Checkbox>
                             Я согласен с
-                            <Link to="/" className={s.linkBtn}>
+                            <Link to={routingMap.get('login').value} className={s.linkBtn}>
                                 пользовательским соглашением
                             </Link>
                             и
-                            <Link to="/" className={s.linkBtn}>
+                            <Link to={routingMap.get('login').value} className={s.linkBtn}>
                                 политикой обработки персональных данных пользователей
                             </Link>
                         </Checkbox>
@@ -193,7 +189,7 @@ export const RegistrationPage = () => {
 
                 <div className={s.haveAccount}>
                     Уже есть аккаунт в StaffPro?{' '}
-                    <Link to="/" className={s.linkBtn}>
+                    <Link to={routingMap.get('login').value} className={s.linkBtn}>
                         Войдите
                     </Link>
                 </div>

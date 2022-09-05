@@ -2,8 +2,10 @@ import React from 'react';
 import { Button } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../../core/redux';
+import Types from '../../../../types';
 
 import s from './ForgotPasswordSuccess.module.scss';
+const { routingMap } = Types;
 
 export const ForgotPasswordSuccess = () => {
     const navigate = useNavigate();
@@ -11,7 +13,7 @@ export const ForgotPasswordSuccess = () => {
     const { changeableMail } = useAppSelector(state => state.authorizationReducer);
 
     const redirect = () => {
-        navigate('/changeMail');
+        navigate(routingMap.get('changeMail').value);
     };
 
     return (

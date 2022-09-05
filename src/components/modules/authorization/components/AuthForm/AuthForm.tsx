@@ -4,9 +4,10 @@ import { IAuth } from '../../interfaces/authorizationInterface';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { searchUser } from '../../halpers/halpers';
 import { authorizationSlice } from '../../AuthorizationSlice';
+import { Link } from 'react-router-dom';
+import Types from '../../../../types';
 
 import s from './AuthForm.module.scss';
-import { Link } from 'react-router-dom';
 
 const { setIsAuth } = authorizationSlice.actions;
 
@@ -14,8 +15,11 @@ interface IAuthForm {
     setErrorMessage: (e: string) => void;
 }
 
+const { routingMap } = Types;
+
 export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
     const dispatch = useAppDispatch();
+
     const [numberAttempts, setNumberAttempts] = useState(0);
     const [isDisabled, setDisabled] = useState(false);
 
@@ -80,7 +84,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                     <Checkbox>Запомнить меня</Checkbox>
                 </Form.Item>
 
-                <Link to="/forgotPassword" className={s.linkBtn}>
+                <Link to={routingMap.get('forgotPassword').value} className={s.linkBtn}>
                     Забыли пароль?
                 </Link>
             </div>
