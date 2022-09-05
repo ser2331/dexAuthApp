@@ -3,13 +3,12 @@ import { WidgetWrapper } from '../../../../common/components/WidgetWrapper/Widge
 // import { Progress } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { useNavigate } from 'react-router-dom';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 import { homeSlice } from '../../HomeSlice';
 
 import s from './widgets.module.scss';
 
 
-const { routingMap } = Types;
 const { setPressedLocation } = homeSlice.actions;
 
 export const InvoiceWidget = () => {
@@ -24,8 +23,8 @@ export const InvoiceWidget = () => {
             title='Invoices'
             description='Уровень оставшихся средств'
             onClickFooter={() => {
-                navigate(routingMap.get('invoices').value);
-                dispatch(setPressedLocation(routingMap.get('invoices').key));
+                navigate(routes.invoices);
+                dispatch(setPressedLocation('invoices'));
             }}
             enableFooter={true}
         >

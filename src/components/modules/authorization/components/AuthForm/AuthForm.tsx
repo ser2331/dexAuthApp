@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { searchUser } from '../../halpers/halpers';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { Link } from 'react-router-dom';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 
 import s from './AuthForm.module.scss';
 
@@ -14,8 +14,6 @@ const { setIsAuth } = authorizationSlice.actions;
 interface IAuthForm {
     setErrorMessage: (e: string) => void;
 }
-
-const { routingMap } = Types;
 
 export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
     const dispatch = useAppDispatch();
@@ -79,7 +77,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 name="password"
                 rules={[
                     { required: true, message: 'Обязательное поле' },
-                    { min: 8, message: 'Пароль должен содержать от 8 до 64 символов' },
+                    { min: 4, message: 'Пароль должен содержать от 8 до 64 символов' },
                     { max: 64, message: 'Пароль должен содержать от 8 до 64 символов' },
                 ]}
             >
@@ -94,7 +92,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                     <Checkbox>Запомнить меня</Checkbox>
                 </Form.Item>
 
-                <Link to={routingMap.get('forgotPassword').value} className={s.linkBtn}>
+                <Link to={routes.forgotPassword} className={s.linkBtn}>
                     Забыли пароль?
                 </Link>
             </div>

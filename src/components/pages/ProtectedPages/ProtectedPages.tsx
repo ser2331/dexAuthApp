@@ -6,13 +6,12 @@ import { useAppDispatch, useAppSelector } from '../../core/redux';
 import { homeSlice } from '../../modules/home/HomeSlice';
 import { HomeRoutes } from '../../modules/home/components/HomeRoutes/HomeRoutes';
 import { items } from '../../modules/home/halpers/halpers';
-import Types from '../../types';
+import { routes } from '../../types';
 
 import s from './ProtectedPages.module.scss';
 
 const { Sider } = Layout;
 const { setPressedLocation } = homeSlice.actions;
-const { routingMap } = Types;
 
 export const ProtectedPages = () => {
     const dispatch = useAppDispatch();
@@ -26,8 +25,8 @@ export const ProtectedPages = () => {
     };
 
     useEffect (() => {
-        navigate(routingMap.get('dashboard').value)
-        dispatch(setPressedLocation(routingMap.get('dashboard').key));
+        navigate(routes.dashboard)
+        dispatch(setPressedLocation('dashboard'));
     }, [])
 
     return (

@@ -6,11 +6,10 @@ import { homeSlice } from '../../HomeSlice';
 import { WidgetWrapper } from '../../../../common/components/WidgetWrapper/WidgetWrapper';
 import { ReportsWidget } from '../Widgets/ReportsWidget';
 import { InvoiceWidget } from '../Widgets/InvoiceWidget';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 
 import s from './Dashboard.module.scss';
 
-const { routingMap } = Types;
 const { setPressedLocation } = homeSlice.actions;
 
 export const Dashboard = () => {
@@ -36,8 +35,8 @@ export const Dashboard = () => {
                 <WidgetWrapper
                     title='Drafts'
                     onClickFooter={() => {
-                        navigate(routingMap.get('drafts').value);
-                        dispatch(setPressedLocation(routingMap.get('drafts').key));
+                        navigate(routes.drafts);
+                        dispatch(setPressedLocation('drafts'));
                     }}
                     enableFooter={true}
                 >
@@ -49,8 +48,8 @@ export const Dashboard = () => {
                 <WidgetWrapper
                     title='Templates'
                     onClickFooter={() => {
-                        navigate(routingMap.get('templates').value);
-                        dispatch(setPressedLocation(routingMap.get('templates').key));
+                        navigate(routes.templates);
+                        dispatch(setPressedLocation('templates'));
                     }}
                     enableFooter={true}
                     width={588}

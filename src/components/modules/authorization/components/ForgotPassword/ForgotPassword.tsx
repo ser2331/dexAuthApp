@@ -4,12 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { userFinder } from '../../halpers/halpers';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 
 import s from './ForgotPassword.module.scss';
 
 const { setChangeableMail } = authorizationSlice.actions;
-const { routingMap } = Types;
 
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +19,7 @@ export const ForgotPassword = () => {
     const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
 
     const redirect = () => {
-        navigate(routingMap.get('forgotPasswordSuccess').value);
+        navigate(routes.forgotPasswordSuccess);
     };
     
     const setMail = (login: string) => {
@@ -77,7 +76,7 @@ export const ForgotPassword = () => {
 
                 <div className={s.haveAccount}>
                     Впервые в StaffPro?
-                    <Link to={routingMap.get('registration').value} className={s.linkBtn}>
+                    <Link to={routes.registration} className={s.linkBtn}>
                         Зарегистрируйтесь
                     </Link>
                 </div>

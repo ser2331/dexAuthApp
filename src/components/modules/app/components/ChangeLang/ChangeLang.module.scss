@@ -1,0 +1,19 @@
+.ChangeLang {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  .content {
+    .description {
+      margin-right: 4px;
+      font: 400 16/24 'SF Pro Display' sans-serif;
+    }
+  }
+
+  .close {
+    position: absolute;
+    right: 12px;
+  }
+}

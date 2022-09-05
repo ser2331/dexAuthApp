@@ -1,10 +1,13 @@
 import React from 'react';
 import authImage from '../../../../assets/images/Vector.png';
 import { Auth } from '../Auth/Auth';
+import { useTranslation } from 'react-i18next';
 
 import s from './LoginPage.module.scss';
 
 export const LoginPage = () => {
+    const { t } = useTranslation();
+
     return (
         <div className={s.AuthPage}>
             <div className={s.leftZone}>
@@ -14,8 +17,7 @@ export const LoginPage = () => {
                     </div>
 
                     <div className={s.description}>
-                        HR processes are automated,
-                        welcome back!
+                        {t('hr_processes')}
                     </div>
                 </div>
 

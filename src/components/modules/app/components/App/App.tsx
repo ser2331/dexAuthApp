@@ -4,12 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { UnprotectedPages } from '../../../../pages/UnprotectedPages/UnprotectedPages';
 import { ProtectedPages } from '../../../../pages/ProtectedPages/ProtectedPages';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 
 import s from './App.module.scss';
+import { ChangeLang } from '../ChangeLang/ChangeLang';
+import { appSlice } from '../../AppSlice';
 
 const { setIsAuth } = authorizationSlice.actions;
-const { routingMap } = Types;
+const { showLangMenu } = appSlice.actions;
 
 export const App = () => {
     const dispatch = useAppDispatch();
@@ -17,6 +19,7 @@ export const App = () => {
 
     const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
     const { isAuth } = useAppSelector((state) => state.authorizationReducer);
+    const { show } = useAppSelector(state => state.appReducer);
 
     let login = '';
     let password = '';
@@ -32,7 +35,7 @@ export const App = () => {
 
     useEffect (() => {
         if (!isAuth) {
-            navigate(routingMap.get('login').value);
+            navigate(routes.login);
         }
     }, [isAuth])
 
@@ -46,5 +49,11 @@ export const App = () => {
         return;
     }, [login, password, arrayUsers]);
 
-    return <div className={s.App}>{isAuth ? <ProtectedPages /> : <UnprotectedPages />}</div>;
+    return (
+        <div className={s.App}>
+            { show && <ChangeLang /> }
+            <div className='mouseMove' onMouseMove={() => dispatch(showLangMenu(true))} />
+
+            {isAuth ? <ProtectedPages /> : <UnprotectedPages />}
+        </div>);
 };

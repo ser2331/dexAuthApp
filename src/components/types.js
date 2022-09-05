@@ -1,4 +1,19 @@
-
+export const routes = {
+    'login': '/',
+    'registration': '/registration',
+    'forgotPassword': '/forgotPassword',
+    'forgotPasswordSuccess': '/forgotPasswordSuccess',
+    'changeMail': '/changeMail',
+    'dashboard': '/dashboard',
+    'reports': '/reports',
+    'invoices': '/documents/invoices',
+    'drafts': '/documents/drafts',
+    'templates': '/documents/templates',
+    'customers1': '/customers/1',
+    'customers2': '/customers/2',
+    'settings': '/settings',
+    'help': '/help',
+}
 export default class Types {
     static routing = [
         { id: 9, key: 'login', value: '/' },

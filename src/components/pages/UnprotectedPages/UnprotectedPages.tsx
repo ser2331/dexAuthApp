@@ -10,7 +10,6 @@ import { ChangePassword } from '../../modules/authorization/components/ChangeMai
 
 import s from './UnprotectedPages.module.scss';
 
-
 export const UnprotectedPages = () => {
     return (
         <div className={s.UnprotectedPages}>

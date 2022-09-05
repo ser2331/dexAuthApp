@@ -12,9 +12,9 @@ export const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        // setIsAuth(state, action: PayloadAction<boolean>) {
-        //     state.isAuth = action.payload;
-        // },
+        showLangMenu(state, action: PayloadAction<boolean>) {
+            state.show = action.payload;
+        },
     }
 
 });

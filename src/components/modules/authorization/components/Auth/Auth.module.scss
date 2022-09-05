@@ -8,9 +8,17 @@
 
   .authHeader {
     width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
     height: 10vh;
     padding: 20px 24px;
     text-align: right;
+
+    .headerContent {
+      position: absolute;
+      right: 24px;
+    }
   }
   .authContentWrapper {
     display: flex;

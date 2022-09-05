@@ -5,12 +5,11 @@ import { useAppDispatch } from '../../../../core/redux';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { IAuth } from '../../interfaces/authorizationInterface';
 import { monthOptions, yearOptions, genderOptions } from '../../halpers/halpers';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 
 import s from './RegistrationPage.module.scss';
 
 const { setNewUser } = authorizationSlice.actions;
-const { routingMap } = Types;
 
 export const RegistrationPage = () => {
     const dispatch = useAppDispatch();
@@ -18,8 +17,7 @@ export const RegistrationPage = () => {
 
     const onFinish = (values: IAuth) => {
         dispatch(setNewUser({ ...values, isAdmin: true }));
-        navigate(routingMap.get('login').value);
-        console.log(values);
+        navigate(routes.login);
     };
 
     return (
@@ -180,11 +178,11 @@ export const RegistrationPage = () => {
                     >
                         <Checkbox>
                             Я согласен с
-                            <Link to={routingMap.get('login').value} className={s.linkBtn}>
+                            <Link to={routes.login} className={s.linkBtn}>
                                 пользовательским соглашением
                             </Link>
                             и
-                            <Link to={routingMap.get('login').value} className={s.linkBtn}>
+                            <Link to={routes.login} className={s.linkBtn}>
                                 политикой обработки персональных данных пользователей
                             </Link>
                         </Checkbox>
@@ -197,7 +195,7 @@ export const RegistrationPage = () => {
 
                 <div className={s.haveAccount}>
                     Уже есть аккаунт в StaffPro?{' '}
-                    <Link to={routingMap.get('login').value} className={s.linkBtn}>
+                    <Link to={routes.login} className={s.linkBtn}>
                         Войдите
                     </Link>
                 </div>

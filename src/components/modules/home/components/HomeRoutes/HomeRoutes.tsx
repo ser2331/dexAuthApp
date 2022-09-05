@@ -6,24 +6,22 @@ import { Dashboard } from '../Dashboard/Dashboard';
 import { Drafts } from '../Drafts/Drafts';
 import { Templates } from '../Templates/Templates';
 import { Reports } from '../Reports/Reports';
-import Types from '../../../../types';
-
-const { routingMap } = Types;
+import { routes } from '../../../../types';
 
 export const HomeRoutes = () => {
     return (
         <Routes>
-            <Route path={routingMap.get('login').value} element={<Outlet />}>
-                <Route path={routingMap.get('dashboard').value} element={<Dashboard />} />
+            <Route path={routes.login} element={<Outlet />}>
+                <Route path={routes.dashboard} element={<Dashboard />} />
             </Route>
-            <Route path={routingMap.get('reports').value} element={<Reports />} />
-            <Route path={routingMap.get('invoices').value}  element={<Invoices />} />
-            <Route path={routingMap.get('drafts').value} element={<Drafts />} />
-            <Route path={routingMap.get('templates').value} element={<Templates />} />
-            <Route path={routingMap.get('customers1').value} element={<div>customers/1</div>} />
-            <Route path={routingMap.get('customers2').value} element={<div>customers/2</div>} />
-            <Route path={routingMap.get('settings').value} element={<Settings />} />
-            <Route path={routingMap.get('help').value} element={<div>help</div>} />
+            <Route path={routes.reports} element={<Reports />} />
+            <Route path={routes.invoices}  element={<Invoices />} />
+            <Route path={routes.drafts} element={<Drafts />} />
+            <Route path={routes.templates} element={<Templates />} />
+            <Route path={routes.customers1} element={<div>customers/1</div>} />
+            <Route path={routes.customers2} element={<div>customers/2</div>} />
+            <Route path={routes.settings} element={<Settings />} />
+            <Route path={routes.help} element={<div>help</div>} />
         </Routes>
     )  
 };

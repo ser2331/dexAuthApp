@@ -5,12 +5,11 @@ import { authorizationSlice } from '../../AuthorizationSlice';
 import { onChangePassword } from '../../halpers/halpers';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { IAuth } from '../../interfaces/authorizationInterface';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 
 import s from './ChangePassword.module.scss';
 
 const { setChangeableMail, setChangeableArray } = authorizationSlice.actions;
-const { routingMap } = Types;
 
 export const ChangePassword = () => {
     const dispatch = useAppDispatch();
@@ -19,7 +18,7 @@ export const ChangePassword = () => {
     const { arrayUsers, changeableMail } = useAppSelector((state) => state.authorizationReducer);
 
     const redirect = () => {
-        navigate(routingMap.get('login').value);
+        navigate(routes.login);
     };
 
     const setMail = () => {

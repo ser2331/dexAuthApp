@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Alert } from 'antd';
 import { AuthForm } from '../AuthForm/AuthForm';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 
 import s from './Auth.module.scss';
 
-const { routingMap } = Types;
-
 export const Auth = () => {
     const navigate = useNavigate();
+
     const [errorMessage, setErrorMessage] = useState('');
 
     const goToRegistration = () => {
-        navigate(routingMap.get('registration').value);
+        navigate(routes.registration);
     };
 
     return (

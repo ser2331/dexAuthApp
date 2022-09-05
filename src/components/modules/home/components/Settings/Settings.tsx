@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'antd';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { useAppDispatch } from '../../../../core/redux';
+import { routes } from '../../../../types';
 
 import s from './Settings.module.scss';
 
@@ -16,7 +17,7 @@ export const Settings = () => {
         window.localStorage && window.localStorage.setItem('LOGIN', JSON.stringify(''));
         window.localStorage && window.localStorage.setItem('PASSWORD', JSON.stringify(''));
         dispatch(setIsAuth(false));
-        navigate('/');
+        navigate(routes.login);
     };
 
     return (
