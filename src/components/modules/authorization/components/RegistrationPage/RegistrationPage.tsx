@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input, InputNumber, Select } from 'antd';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../../core/redux';
 import { authorizationSlice } from '../../AuthorizationSlice';
-import { IRegistration } from '../../interfaces/authorizationInterface';
+import { IAuth } from '../../interfaces/authorizationInterface';
 import { monthOptions, yearOptions, genderOptions } from '../../halpers/halpers';
 
 import s from './RegistrationPage.module.scss';
@@ -13,7 +13,7 @@ const { setNewUser } = authorizationSlice.actions;
 export const RegistrationPage = () => {
     const dispatch = useAppDispatch();
 
-    const onFinish = (values: IRegistration) => {
+    const onFinish = (values: IAuth) => {
         dispatch(setNewUser({ ...values, isAdmin: true }));
         console.log('Finish', values);
     };

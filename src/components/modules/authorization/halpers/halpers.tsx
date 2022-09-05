@@ -22,6 +22,49 @@ export const searchUser = (arr: IAuth[], values: IAuth, setErrorMessage: (e: str
     return;
 };
 
+export const userFinder = (
+    values: { login: string },
+    arrayUsers: IAuth[],
+    setErrorMessage: (e: string) => void,
+    redirect: () => void,
+    setMail: (e: string) => void,
+) => {
+    const user = arrayUsers.find((el) => el.login === values.login);
+
+    if(user) {
+        setErrorMessage('');
+        setMail(values.login);
+        redirect();
+    }
+    if(!user) {
+        setErrorMessage('Пользователь с указанным Email не найден');
+    }
+};
+
+export const onChangePassword = (
+    values: { password: string },
+    arrayUsers: IAuth[],
+    redirect: () => void,
+    setMail: () => void,
+    changeableMail: string,
+    setArrWithUserChangedPassword: (e: IAuth[]) => void,
+) => {
+    const user = arrayUsers.find((el) => el.login === changeableMail);
+    const newArrUsers: IAuth[] = arrayUsers.filter((el) => el.login !== changeableMail);
+    const newArr = () => {
+        if(user) {
+            return [...newArrUsers, { ...user, password: values.password, confirmPassword: values.password }];
+        }
+        return arrayUsers;
+    };
+
+    if(newArrUsers.length && newArr().length) {
+        setMail();
+        setArrWithUserChangedPassword(newArr());
+        redirect();
+    }
+};
+
 export const monthOptions = [
     { value: 1, name: 'Январь' },
     { value: 2, name: 'Февраль' },

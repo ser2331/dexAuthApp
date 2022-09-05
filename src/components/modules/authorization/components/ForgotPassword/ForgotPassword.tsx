@@ -1,17 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Input } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { authorizationSlice } from '../../AuthorizationSlice';
+import { userFinder } from '../../halpers/halpers';
+import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 
 import s from './ForgotPassword.module.scss';
 
+const { setChangeableMail } = authorizationSlice.actions;
+
 export const ForgotPassword = () => {
-    const onFinish = (values: string) => {
-        console.log('Finish', values);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
+
+    const redirect = () => {
+        navigate('/forgotPasswordSuccess');
+    };
+    
+    const setMail = (login: string) => {
+        dispatch(setChangeableMail(login));
     };
 
-    const onFinishFailed = () => {
-        console.log('FinishFailed');
+    const onFinish = (values: {login: string }) => {
+        userFinder(values, arrayUsers, setErrorMessage, redirect, setMail);
     };
+
+    useEffect(() => {
+        let timer: ReturnType<typeof setTimeout>;
+        if(errorMessage) {
+            timer = setTimeout(() => {
+                setErrorMessage('');
+            }, 2000);
+
+        }
+        return () => clearTimeout(timer);
+
+    }, [errorMessage]);
 
     return (
         <div className={s.ForgotPassword}>
@@ -26,7 +54,6 @@ export const ForgotPassword = () => {
                     className={s.AuthForm}
                     name="basic"
                     onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
                     autoComplete="off"
                     requiredMark={false}
                 >
@@ -37,8 +64,9 @@ export const ForgotPassword = () => {
                             { type: 'email', message: 'Введите Email' },
                         ]}
                     >
-                        <Input placeholder="Email" />
+                        <Input placeholder="Email" className={errorMessage && s.error} />
                     </Form.Item>
+                    {errorMessage && <span className={s.errorMessage}>{errorMessage}</span>}
 
                     <Button style={{ width: '100%', marginBottom: 24 }} type="primary" htmlType="submit">
                         Подтвердить
