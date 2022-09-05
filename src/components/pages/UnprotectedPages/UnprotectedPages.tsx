@@ -6,7 +6,7 @@ import { RegistrationPage } from '../../modules/authorization/components/Registr
 import {
     ForgotPasswordSuccess
 } from '../../modules/authorization/components/ForgotPasswordSuccess/ForgotPasswordSuccess';
-import { ChangeMail } from '../../modules/authorization/components/ChangeMail/ChangeMail';
+import { ChangePassword } from '../../modules/authorization/components/ChangeMail/ChangePassword';
 
 import s from './UnprotectedPages.module.scss';
 
@@ -19,7 +19,7 @@ export const UnprotectedPages = () => {
                 <Route path="/registration" element={<RegistrationPage />} />
                 <Route path="/forgotPassword" element={<ForgotPassword />} />
                 <Route path="/forgotPasswordSuccess" element={<ForgotPasswordSuccess />} />
-                <Route path="/changeMail" element={<ChangeMail />} />
+                <Route path="/changeMail" element={<ChangePassword />} />
             </Routes>
         </div>
     );

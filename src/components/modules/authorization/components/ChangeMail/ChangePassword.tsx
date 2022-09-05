@@ -7,12 +7,12 @@ import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { IAuth } from '../../interfaces/authorizationInterface';
 import Types from '../../../../types';
 
-import s from './ChangeMail.module.scss';
+import s from './ChangePassword.module.scss';
 
 const { setChangeableMail, setChangeableArray } = authorizationSlice.actions;
 const { routingMap } = Types;
 
-export const ChangeMail = () => {
+export const ChangePassword = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ export const ChangeMail = () => {
     };
 
     return (
-        <div className={s.ChangeMail}>
+        <div className={s.ChangePassword}>
             <div className={s.pageTitle}>StaffPro</div>
             <div className={s.ForgotPasswordCard}>
                 <div className={s.cardTitle}>Введите новый пароль</div>
