@@ -17,11 +17,12 @@ export const ReportsWidget = () => {
     const { reportsData } = useAppSelector(state => state.homeReducer);
     const data = [... reportsData];
 
-    const topExpenses = useMemo(() => data.sort((a, b) => b.price - a.price), [data]).slice(0, 5);
+    const topExpenses = useMemo(() => data.sort((a, b) => b.price - a.price).slice(0, 5), [data]);
+
     return (
         <WidgetWrapper
             title='Reports'
-            description='Самые большие затраты'
+            description='Топ 5 самых больших затрат'
             onClickFooter={() => {
                 navigate(routingMap.get('reports').value);
                 dispatch(setPressedLocation(routingMap.get('reports').key));
