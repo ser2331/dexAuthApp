@@ -9,19 +9,19 @@ import { Reports } from '../Reports/Reports';
 import { routes } from '../../../../types';
 
 export const HomeRoutes = () => {
-    return (
-        <Routes>
-            <Route path={routes.login} element={<Outlet />}>
-                <Route path={routes.dashboard} element={<Dashboard />} />
-            </Route>
-            <Route path={routes.reports} element={<Reports />} />
-            <Route path={routes.invoices}  element={<Invoices />} />
-            <Route path={routes.drafts} element={<Drafts />} />
-            <Route path={routes.templates} element={<Templates />} />
-            <Route path={routes.customers1} element={<div>customers/1</div>} />
-            <Route path={routes.customers2} element={<div>customers/2</div>} />
-            <Route path={routes.settings} element={<Settings />} />
-            <Route path={routes.help} element={<div>help</div>} />
-        </Routes>
-    )  
+  return (
+    <Routes>
+      <Route path={routes.login} element={<Outlet />}>
+        <Route path={routes.dashboard} element={<Dashboard />} />
+      </Route>
+      <Route path={routes.reports} element={<Reports />} />
+      <Route path={routes.invoices} element={<Invoices />} />
+      <Route path={routes.drafts} element={<Drafts />} />
+      <Route path={routes.templates} element={<Templates />} />
+      <Route path={routes.customers1} element={<div>customers/1</div>} />
+      <Route path={routes.customers2} element={<div>customers/2</div>} />
+      <Route path={routes.settings} element={<Settings />} />
+      <Route path={routes.help} element={<div>help</div>} />
+    </Routes>
+  );
 };

@@ -4,15 +4,15 @@ import authorizationReducer from '../modules/authorization/AuthorizationSlice';
 import homeReducer from '../modules/home/HomeSlice';
 
 const rootReducer = combineReducers({
-    appReducer,
-    authorizationReducer,
-    homeReducer,
+  appReducer,
+  authorizationReducer,
+  homeReducer,
 });
 
 export const setupStore = () => {
-    return configureStore({
-        reducer: rootReducer,
-    });
+  return configureStore({
+    reducer: rootReducer,
+  });
 };
 
 export type RootState = ReturnType<typeof rootReducer>;

@@ -14,35 +14,35 @@ const { Sider } = Layout;
 const { setPressedLocation } = homeSlice.actions;
 
 export const ProtectedPages = () => {
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
-    
-    const { pressedLocation } = useAppSelector(state => state.homeReducer);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-    const onClick: MenuProps['onClick'] = (e) => {
-        dispatch(setPressedLocation(e.key));
-        navigate(e.keyPath.reverse().join('/'));
-    };
+  const { pressedLocation } = useAppSelector((state) => state.homeReducer);
 
-    useEffect (() => {
-        navigate(routes.dashboard)
-        dispatch(setPressedLocation('dashboard'));
-    }, [])
+  const onClick: MenuProps['onClick'] = (e) => {
+    dispatch(setPressedLocation(e.key));
+    navigate(e.keyPath.reverse().join('/'));
+  };
 
-    return (
-        <Layout className={s.ProtectedPages}>
-            <Sider width={200} className={s.siteLayoutBackground}>
-                <Menu
-                    mode="inline"
-                    onClick={onClick}
-                    defaultSelectedKeys={['dashboard']}
-                    selectedKeys={[pressedLocation]}
-                    style={{ height: '100%', borderRight: 0 }}
-                    items={items}
-                />
-            </Sider>
+  useEffect(() => {
+    navigate(routes.dashboard);
+    dispatch(setPressedLocation('dashboard'));
+  }, []);
 
-            <HomeRoutes />
-        </Layout>
-    );
+  return (
+    <Layout className={s.ProtectedPages}>
+      <Sider width={200} className={s.siteLayoutBackground}>
+        <Menu
+          mode='inline'
+          onClick={onClick}
+          defaultSelectedKeys={['dashboard']}
+          selectedKeys={[pressedLocation]}
+          style={{ height: '100%', borderRight: 0 }}
+          items={items}
+        />
+      </Sider>
+
+      <HomeRoutes />
+    </Layout>
+  );
 };

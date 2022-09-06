@@ -57,5 +57,10 @@
   "enter_new_password": "Введите новый пароль",
 
   "__comment7__": "CHANGE_LANGUAGE",
-  "change_language_to": "Сменить язык на"
+  "change_language_to": "Сменить язык на",
+
+  "__comment8__": "DASHBOARD_PAGE",
+  "dashboard": "Панель индикаторов",
+  "reports": "Отчеты",
+  "top_costs": "Топ 5 самых больших затрат"
 }
