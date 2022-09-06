@@ -1,6 +1,13 @@
 import { IAuth } from '../interfaces/authorizationInterface';
 
-export const searchUser = (arr: IAuth[], values: IAuth, setErrorMessage: (e: string) => void, redirect: () => void) => {
+export const searchUser = (
+    arr: IAuth[],
+    values: IAuth,
+    setErrorMessage: (e: string) => void,
+    redirect: () => void,
+    mes2: string,
+    mes1: string
+) => {
     const userAdmin = arr.find((el) => el.login === values.login && el.password === values.password);
 
     if (userAdmin && userAdmin.isAdmin && values?.remember) {
@@ -14,10 +21,10 @@ export const searchUser = (arr: IAuth[], values: IAuth, setErrorMessage: (e: str
         return redirect();
     }
     if (userAdmin && !userAdmin.isAdmin) {
-        return setErrorMessage('Недостаточно прав для входа');
+        return setErrorMessage(mes1);
     }
     if (!userAdmin) {
-        return setErrorMessage('Пользователь с таким эл. адресом и паролем не найден.');
+        return setErrorMessage(mes2);
     }
     return;
 };
@@ -28,6 +35,7 @@ export const userFinder = (
     setErrorMessage: (e: string) => void,
     redirect: () => void,
     setMail: (e: string) => void,
+    mes: string
 ) => {
     const user = arrayUsers.find((el) => el.login === values.login);
 
@@ -37,7 +45,7 @@ export const userFinder = (
         redirect();
     }
     if(!user) {
-        setErrorMessage('Пользователь с указанным Email не найден');
+        setErrorMessage(mes);
     }
 };
 

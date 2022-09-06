@@ -1,4 +1,5 @@
 {
+  "__comment1__": "LOGIN_PAGE",
   "hr_processes": "HR processes are automated, welcome back!",
   "no_account": "No account?",
   "register": "Register",
@@ -8,6 +9,8 @@
   "to_remember_me": "Remember me",
   "forgot_your_password": "Forgot your password?",
   "to_come_in": "Come in",
+
+  "__comment2__": "REGISTRATION_PAGE",
   "surname": "Surname",
   "name": "Name",
   "middle_name": "middle name",
@@ -25,6 +28,8 @@
   "create_an_account": "Create an account",
   "already_have_an_account": "Already have an account",
   "login": "Login",
+
+  "__comment3__": "ERROR_MESSAGES",
   "required_field": "Required field",
   "enter_mail": "Enter Email",
   "max_characters_20": "Maximum number of characters 20",
@@ -33,5 +38,21 @@
   "passwords_not_match": "Passwords do not match",
   "number_not_exist": "This number does not exist",
   "terms_agreement": "To register, you must accept the terms of the agreement",
-  "number_login_attempts_exceeded": "The number of login attempts exceeded, please try again later"
+  "number_login_attempts_exceeded": "The number of login attempts exceeded, please try again later",
+  "insufficient_rights": "Insufficient rights to login",
+  "user_not_found": "User with this email address and password not found",
+  "user_email_not_found": "The user with the specified email was not found",
+
+  "__comment4__": "FORGET_PASSWORD_PAGE",
+  "confirm": "Confirm",
+  "first_time_in": "For the first time in",
+  "enter_your_email": "Enter your email address to restore access to your account",
+
+  "__comment5__": "FORGET_PASSWORD_SUCCESS_PAGE",
+  "to_email_address": "To email address",
+  "letter_sent": "a letter has been sent. Follow the link in the email to create a new password.",
+  "restoring_account_access": "Restoring account access",
+
+  "__comment6__": "CHANGE_PASSWORD",
+  "enter_new_password": "Enter a new password"
 }

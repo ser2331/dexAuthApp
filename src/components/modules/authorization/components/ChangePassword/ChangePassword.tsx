@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { authorizationSlice } from '../../AuthorizationSlice';
+import { useTranslation } from 'react-i18next';
 import { onChangePassword } from '../../halpers/halpers';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { IAuth } from '../../interfaces/authorizationInterface';
@@ -14,6 +15,7 @@ const { setChangeableMail, setChangeableArray } = authorizationSlice.actions;
 export const ChangePassword = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const { arrayUsers, changeableMail } = useAppSelector((state) => state.authorizationReducer);
 
@@ -43,7 +45,7 @@ export const ChangePassword = () => {
         <div className={s.ChangePassword}>
             <div className={s.pageTitle}>StaffPro</div>
             <div className={s.ForgotPasswordCard}>
-                <div className={s.cardTitle}>Введите новый пароль</div>
+                <div className={s.cardTitle}>{t('enter_new_password')}</div>
 
                 <Form
                     className={s.AuthForm}
@@ -55,33 +57,33 @@ export const ChangePassword = () => {
                     <Form.Item
                         name="password"
                         rules={[
-                            { required: true, message: 'Обязательное поле' },
-                            { min: 8, message: 'Пароль должен содержать от 8 до 64 символов' },
-                            { max: 64, message: 'Пароль должен содержать от 8 до 64 символов' },
+                            { required: true, message: t('required_field') },
+                            { min: 4, message: t('password_between_4_and_64_characters') },
+                            { max: 64, message: t('password_between_4_and_64_characters') },
                         ]}
                     >
-                        <Input.Password placeholder="password" />
+                        <Input.Password placeholder={t('password')} />
                     </Form.Item>
                     <Form.Item
                         name="confirmPassword"
                         dependencies={['password']}
                         rules={[
-                            { required: true, message: 'Обязательное поле' },
+                            { required: true, message: t('required_field') },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     }
-                                    return Promise.reject(new Error('Пароли не совпадают'));
+                                    return Promise.reject(new Error(t('passwords_not_match')));
                                 },
                             }),
                         ]}
                     >
-                        <Input.Password placeholder="confirmPassword" />
+                        <Input.Password placeholder={t('repeat_password')}/>
                     </Form.Item>
 
                     <Button style={{ width: '100%' }} type="primary" htmlType="submit">
-                        Подтвердить
+                        {t('confirm')}
                     </Button>
                 </Form>
             </div>

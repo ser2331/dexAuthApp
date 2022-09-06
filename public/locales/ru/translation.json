@@ -1,4 +1,5 @@
 {
+  "__comment1__": "LOGIN_PAGE",
   "hr_processes": "HR-процессы автоматизированы, с возвращением!",
   "no_account": "Нет аккаунта?",
   "register": "Зарегистрироваться",
@@ -8,6 +9,8 @@
   "to_remember_me": "Запомнить меня",
   "forgot_your_password": "Забыли пароль?",
   "to_come_in": "Войти",
+
+  "__comment2__": "REGISTRATION_PAGE",
   "surname": "Фамилия",
   "name": "Имя",
   "middle_name": "Отчество",
@@ -25,6 +28,8 @@
   "create_an_account": "Создать аккаунт",
   "already_have_an_account": "Уже есть аккаунт",
   "login": "Войдите",
+
+  "__comment3__": "ERROR_MESSAGES",
   "required_field": "Обязательное поле",
   "enter_mail": "Введите Email",
   "max_characters_20": "Максимально число символов 20",
@@ -33,6 +38,21 @@
   "passwords_not_match": "Пароли не совпадают",
   "number_not_exist": "Такого номера не существует",
   "terms_agreement": "Для регистрации необходимо принять условия соглашения",
-  "number_login_attempts_exceeded": "Превышено количество попыток входа, попробуйте позже"
+  "number_login_attempts_exceeded": "Превышено количество попыток входа, попробуйте позже",
+  "insufficient_rights": "Недостаточно прав для входа",
+  "user_not_found": "Пользователь с таким эл. адресом и паролем не найден",
+  "user_email_not_found": "Пользователь с указанным Email не найден",
 
+  "__comment4__": "FORGET_PASSWORD_PAGE",
+  "confirm": "Подтвердить",
+  "first_time_in": "Впервые в",
+  "enter_your_email": "Введите ваш эл. адрес, чтобы восстановить доступ к своему аккаунту",
+
+  "__comment5__": "FORGET_PASSWORD_SUCCESS_PAGE",
+  "to_email_address": "На электронный адрес",
+  "letter_sent": "отправлено письмо. Перейдите по ссылке в письме для создания нового пароля.",
+  "restoring_account_access": "Восстановление доступа к аккаунту",
+
+  "__comment6__": "CHANGE_PASSWORD",
+  "enter_new_password": "Введите новый пароль"
 }

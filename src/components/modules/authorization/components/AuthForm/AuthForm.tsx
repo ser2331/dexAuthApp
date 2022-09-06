@@ -7,7 +7,6 @@ import { searchUser } from '../../halpers/halpers';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { Link } from 'react-router-dom';
 import { routes } from '../../../../types';
-import { errorMessages } from '../../../../common/halpers/halpers';
 
 import s from './AuthForm.module.scss';
 
@@ -25,6 +24,8 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
     const [isDisabled, setDisabled] = useState(false);
 
     const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
+    const mes1 = t('insufficient_rights');
+    const mes2 = t('user_not_found');
 
     const redirect = () => {
         dispatch(setIsAuth(true));
@@ -32,7 +33,14 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
 
     const onFinish = (values: IAuth) => {
         setNumberAttempts(numberAttempts + 1);
-        searchUser(arrayUsers, values, setErrorMessage, redirect);
+        searchUser(
+            arrayUsers,
+            values,
+            setErrorMessage,
+            redirect,
+            mes1,
+            mes2
+        );
     };
 
     const onFinishFailed = () => {
@@ -47,7 +55,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 setDisabled(false);
                 setNumberAttempts(0);
             }, 3000);
-            setErrorMessage(errorMessages('number_login_attempts_exceeded'));
+            setErrorMessage(t('number_login_attempts_exceeded'));
 
             return () => clearTimeout(handler);
         }
@@ -68,9 +76,9 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 label={t('email_address')}
                 name="login"
                 rules={[
-                    { required: true, message: errorMessages('required_field') },
-                    { min: 4, message: errorMessages('password_between_4_and_64_characters') },
-                    { max: 64, message: errorMessages('login_between_4_and_64_characters') },
+                    { required: true, message: t('required_field') },
+                    { min: 4, message: t('password_between_4_and_64_characters') },
+                    { max: 64, message: t('login_between_4_and_64_characters') },
                 ]}>
                 <Input />
             </Form.Item>
@@ -79,9 +87,9 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 label={t('password')}
                 name="password"
                 rules={[
-                    { required: true, message: errorMessages('required_field') },
-                    { min: 4, message: errorMessages('password_between_4_and_64_characters') },
-                    { max: 64, message: errorMessages('password_between_4_and_64_characters') },
+                    { required: true, message: t('required_field') },
+                    { min: 4, message: t('password_between_4_and_64_characters') },
+                    { max: 64, message: t('password_between_4_and_64_characters') },
                 ]}
             >
                 <Input.Password style={{ padding: '0 12px' }} />

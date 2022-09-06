@@ -6,7 +6,7 @@ import { RegistrationPage } from '../../modules/authorization/components/Registr
 import {
     ForgotPasswordSuccess
 } from '../../modules/authorization/components/ForgotPasswordSuccess/ForgotPasswordSuccess';
-import { ChangePassword } from '../../modules/authorization/components/ChangeMail/ChangePassword';
+import { ChangePassword } from '../../modules/authorization/components/ChangePassword/ChangePassword';
 
 import s from './UnprotectedPages.module.scss';
 

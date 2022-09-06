@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { userFinder } from '../../halpers/halpers';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
@@ -13,10 +14,12 @@ const { setChangeableMail } = authorizationSlice.actions;
 export const ForgotPassword = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const [errorMessage, setErrorMessage] = useState('');
 
     const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
+    const mes = t('user_email_not_found');
 
     const redirect = () => {
         navigate(routes.forgotPasswordSuccess);
@@ -27,7 +30,7 @@ export const ForgotPassword = () => {
     };
 
     const onFinish = (values: {login: string }) => {
-        userFinder(values, arrayUsers, setErrorMessage, redirect, setMail);
+        userFinder(values, arrayUsers, setErrorMessage, redirect, setMail, mes);
     };
 
     useEffect(() => {
@@ -46,9 +49,9 @@ export const ForgotPassword = () => {
         <div className={s.ForgotPassword}>
             <div className={s.pageTitle}>StaffPro</div>
             <div className={s.ForgotPasswordCard}>
-                <div className={s.cardTitle}>Забыли пароль?</div>
+                <div className={s.cardTitle}>{t('forgot_your_password')}</div>
                 <div className={s.cardDescription}>
-                    Введите ваш эл. адрес, чтобы восстановить доступ к своему аккаунту
+                    {t('enter_your_email')}
                 </div>
 
                 <Form
@@ -61,8 +64,8 @@ export const ForgotPassword = () => {
                     <Form.Item
                         name="login"
                         rules={[
-                            { required: true, message: 'Обязательное поле' },
-                            { type: 'email', message: 'Введите Email' },
+                            { required: true, message: t('required_field') },
+                            { type: 'email', message: t('enter_mail') },
                         ]}
                     >
                         <Input placeholder="Email" className={errorMessage && s.error} />
@@ -70,14 +73,14 @@ export const ForgotPassword = () => {
                     {errorMessage && <span className={s.errorMessage}>{errorMessage}</span>}
 
                     <Button style={{ width: '100%', marginBottom: 24 }} type="primary" htmlType="submit">
-                        Подтвердить
+                        {t('confirm')}
                     </Button>
                 </Form>
 
                 <div className={s.haveAccount}>
-                    Впервые в StaffPro?
+                    {t('first_time_in')} StaffPro?
                     <Link to={routes.registration} className={s.linkBtn}>
-                        Зарегистрируйтесь
+                        {t('register')}
                     </Link>
                 </div>
             </div>

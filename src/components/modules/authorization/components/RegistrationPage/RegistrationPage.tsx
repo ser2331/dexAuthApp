@@ -7,7 +7,6 @@ import { authorizationSlice } from '../../AuthorizationSlice';
 import { IAuth } from '../../interfaces/authorizationInterface';
 import { monthOptions, yearOptions, genderOptions } from '../../halpers/halpers';
 import { routes } from '../../../../types';
-import { errorMessages } from '../../../../common/halpers/halpers';
 
 import s from './RegistrationPage.module.scss';
 
@@ -41,8 +40,8 @@ export const RegistrationPage = () => {
                     <Form.Item
                         name="login"
                         rules={[
-                            { required: true, message: errorMessages('required_field') },
-                            { type: 'email', message: errorMessages('enter_mail') },
+                            { required: true, message: t('required_field') },
+                            { type: 'email', message: t('enter_mail') },
                         ]}
                     >
                         <Input placeholder="Email" />
@@ -51,8 +50,8 @@ export const RegistrationPage = () => {
                     <Form.Item
                         name="sureName"
                         rules={[
-                            { required: true, message: errorMessages('required_field') },
-                            { max: 20, message: errorMessages('max_characters_20') },
+                            { required: true, message: t('required_field') },
+                            { max: 20, message: t('max_characters_20') },
                         ]}
                     >
                         <Input placeholder={t('surname')} />
@@ -62,8 +61,8 @@ export const RegistrationPage = () => {
                         <Form.Item
                             name="name"
                             rules={[
-                                { required: true, message: errorMessages('required_field') },
-                                { max: 20, message: errorMessages('max_characters_20') },
+                                { required: true, message: t('required_field') },
+                                { max: 20, message: t('max_characters_20') },
                             ]}
                         >
                             <Input placeholder={t('name')} />
@@ -72,8 +71,8 @@ export const RegistrationPage = () => {
                         <Form.Item
                             name="lastName"
                             rules={[
-                                { required: true, message: errorMessages('required_field') },
-                                { max: 20, message: errorMessages('max_characters_20') },
+                                { required: true, message: t('required_field') },
+                                { max: 20, message: t('max_characters_20') },
                             ]}
                         >
                             <Input placeholder={t('middle_name')} />
@@ -83,9 +82,9 @@ export const RegistrationPage = () => {
                     <Form.Item
                         name="password"
                         rules={[
-                            { required: true, message: errorMessages('required_field') },
-                            { min: 4, message: errorMessages('password_between_4_and_64_characters') },
-                            { max: 64, message: errorMessages('password_between_4_and_64_characters') },
+                            { required: true, message: t('required_field') },
+                            { min: 4, message: t('password_between_4_and_64_characters') },
+                            { max: 64, message: t('password_between_4_and_64_characters') },
                         ]}
                     >
                         <Input.Password placeholder={t('password')} style={{ padding: '0 12px' }} />
@@ -97,14 +96,14 @@ export const RegistrationPage = () => {
                         rules={[
                             {
                                 required: true,
-                                message: errorMessages('required_field'),
+                                message: t('required_field'),
                             },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     }
-                                    return Promise.reject(new Error(errorMessages('passwords_not_match')));
+                                    return Promise.reject(new Error(t('passwords_not_match')));
                                 },
                             }),
                         ]}
@@ -116,7 +115,7 @@ export const RegistrationPage = () => {
                         <div className={s.birthdayTitle}>Дата рождения</div>
                         <div className={s.topWrapper}>
                             <Form.Item name="day" rules={[
-                                { required: true, message: errorMessages('required_field') },
+                                { required: true, message: t('required_field') },
                                 { type: 'number', max: 31, min: 1 },
                             ]}>
                                 <InputNumber style={{ width: '100%' }} min={1} max={31} placeholder={t('day')} />
@@ -125,7 +124,7 @@ export const RegistrationPage = () => {
                             <Form.Item
                                 className={s.month}
                                 name="month"
-                                rules={[{ required: true, message: errorMessages('required_field') }]}
+                                rules={[{ required: true, message: t('required_field') }]}
                             >
                                 <Select placeholder={t('month')} size="large">
                                     {monthOptions.map((option) => (
@@ -136,7 +135,7 @@ export const RegistrationPage = () => {
                                 </Select>
                             </Form.Item>
 
-                            <Form.Item name="year" rules={[{ required: true, message: errorMessages('required_field') }]}>
+                            <Form.Item name="year" rules={[{ required: true, message: t('required_field') }]}>
                                 <Select placeholder={t('year')} size="large">
                                     {yearOptions().map((option) => (
                                         <Select.Option key={option} value={option}>
@@ -151,7 +150,7 @@ export const RegistrationPage = () => {
                             <Form.Item
                                 name="phone"
                                 rules={[
-                                    { required: true, message: errorMessages('number_not_exist') },
+                                    { required: true, message: t('number_not_exist') },
                                 ]}
                             >
                                 <InputNumber
@@ -161,7 +160,7 @@ export const RegistrationPage = () => {
                                 />
                             </Form.Item>
 
-                            <Form.Item name="gender" rules={[{ required: true, message: errorMessages('required_field') }]}>
+                            <Form.Item name="gender" rules={[{ required: true, message: t('required_field') }]}>
                                 <Select placeholder={t('floor')} size="large">
                                     {genderOptions.map((option) => (
                                         <Select.Option key={option.value} value={option.value}>
@@ -176,7 +175,7 @@ export const RegistrationPage = () => {
                     <Form.Item
                         name="readOut"
                         valuePropName="checked"
-                        rules={[{ required: true, message: errorMessages('terms_agreement') }]}
+                        rules={[{ required: true, message: t('terms_agreement') }]}
                         className={s.checkBox}
                     >
                         <Checkbox>
