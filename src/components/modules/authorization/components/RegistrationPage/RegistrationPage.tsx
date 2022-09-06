@@ -2,10 +2,12 @@ import React from 'react';
 import { Button, Checkbox, Form, Input, InputNumber, Select } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../core/redux';
+import { useTranslation } from 'react-i18next';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { IAuth } from '../../interfaces/authorizationInterface';
 import { monthOptions, yearOptions, genderOptions } from '../../halpers/halpers';
 import { routes } from '../../../../types';
+import { errorMessages } from '../../../../common/halpers/halpers';
 
 import s from './RegistrationPage.module.scss';
 
@@ -14,6 +16,7 @@ const { setNewUser } = authorizationSlice.actions;
 export const RegistrationPage = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const onFinish = (values: IAuth) => {
         dispatch(setNewUser({ ...values, isAdmin: true }));
@@ -25,7 +28,7 @@ export const RegistrationPage = () => {
             <div className={s.pageTitle}>StaffPro</div>
 
             <div className={s.registrationCard}>
-                <div className={s.cardTitle}>Зарегистрируйтесь</div>
+                <div className={s.cardTitle}>{t('register')}</div>
                 <Form
                     className={s.AuthForm}
                     name="basic"
@@ -38,8 +41,8 @@ export const RegistrationPage = () => {
                     <Form.Item
                         name="login"
                         rules={[
-                            { required: true, message: 'Обязательное поле' },
-                            { type: 'email', message: 'Введите Email' },
+                            { required: true, message: errorMessages('required_field') },
+                            { type: 'email', message: errorMessages('enter_mail') },
                         ]}
                     >
                         <Input placeholder="Email" />
@@ -48,44 +51,44 @@ export const RegistrationPage = () => {
                     <Form.Item
                         name="sureName"
                         rules={[
-                            { required: true, message: 'Обязательное поле' },
-                            { max: 20, message: 'Максимально число символов 20' },
+                            { required: true, message: errorMessages('required_field') },
+                            { max: 20, message: errorMessages('max_characters_20') },
                         ]}
                     >
-                        <Input placeholder="Фамилия" />
+                        <Input placeholder={t('surname')} />
                     </Form.Item>
 
                     <div className={s.groupFields}>
                         <Form.Item
                             name="name"
                             rules={[
-                                { required: true, message: 'Обязательное поле' },
-                                { max: 20, message: 'Максимально число символов 20' },
+                                { required: true, message: errorMessages('required_field') },
+                                { max: 20, message: errorMessages('max_characters_20') },
                             ]}
                         >
-                            <Input placeholder="Имя" />
+                            <Input placeholder={t('name')} />
                         </Form.Item>
 
                         <Form.Item
                             name="lastName"
                             rules={[
-                                { required: true, message: 'Обязательное поле' },
-                                { max: 20, message: 'Максимально число символов 20' },
+                                { required: true, message: errorMessages('required_field') },
+                                { max: 20, message: errorMessages('max_characters_20') },
                             ]}
                         >
-                            <Input placeholder="Отчество" />
+                            <Input placeholder={t('middle_name')} />
                         </Form.Item>
                     </div>
 
                     <Form.Item
                         name="password"
                         rules={[
-                            { required: true, message: 'Обязательное поле' },
-                            { min: 8, message: 'Пароль должен содержать от 8 до 64 символов' },
-                            { max: 64, message: 'Пароль должен содержать от 8 до 64 символов' },
+                            { required: true, message: errorMessages('required_field') },
+                            { min: 4, message: errorMessages('password_between_4_and_64_characters') },
+                            { max: 64, message: errorMessages('password_between_4_and_64_characters') },
                         ]}
                     >
-                        <Input.Password placeholder="Пароль" style={{ padding: '0 12px' }} />
+                        <Input.Password placeholder={t('password')} style={{ padding: '0 12px' }} />
                     </Form.Item>
 
                     <Form.Item
@@ -94,37 +97,37 @@ export const RegistrationPage = () => {
                         rules={[
                             {
                                 required: true,
-                                message: 'Обязательное поле',
+                                message: errorMessages('required_field'),
                             },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
                                     if (!value || getFieldValue('password') === value) {
                                         return Promise.resolve();
                                     }
-                                    return Promise.reject(new Error('Пароли не совпадают'));
+                                    return Promise.reject(new Error(errorMessages('passwords_not_match')));
                                 },
                             }),
                         ]}
                     >
-                        <Input.Password placeholder="Повторите пароль" style={{ padding: '0 12px' }} />
+                        <Input.Password placeholder={t('repeat_password')} style={{ padding: '0 12px' }} />
                     </Form.Item>
 
                     <div className={s.birthday}>
                         <div className={s.birthdayTitle}>Дата рождения</div>
                         <div className={s.topWrapper}>
                             <Form.Item name="day" rules={[
-                                { required: true, message: 'Обязательное поле' },
+                                { required: true, message: errorMessages('required_field') },
                                 { type: 'number', max: 31, min: 1 },
                             ]}>
-                                <InputNumber style={{ width: '100%' }} min={1} max={31} placeholder="День" />
+                                <InputNumber style={{ width: '100%' }} min={1} max={31} placeholder={t('day')} />
                             </Form.Item>
 
                             <Form.Item
                                 className={s.month}
                                 name="month"
-                                rules={[{ required: true, message: 'Обязательное поле' }]}
+                                rules={[{ required: true, message: errorMessages('required_field') }]}
                             >
-                                <Select placeholder="Месяц" size="large">
+                                <Select placeholder={t('month')} size="large">
                                     {monthOptions.map((option) => (
                                         <Select.Option key={option.value} value={option.value}>
                                             {option.name}
@@ -133,8 +136,8 @@ export const RegistrationPage = () => {
                                 </Select>
                             </Form.Item>
 
-                            <Form.Item name="year" rules={[{ required: true, message: 'Обязательное поле' }]}>
-                                <Select placeholder="Год" size="large">
+                            <Form.Item name="year" rules={[{ required: true, message: errorMessages('required_field') }]}>
+                                <Select placeholder={t('year')} size="large">
                                     {yearOptions().map((option) => (
                                         <Select.Option key={option} value={option}>
                                             {option}
@@ -148,18 +151,18 @@ export const RegistrationPage = () => {
                             <Form.Item
                                 name="phone"
                                 rules={[
-                                    { required: true, message: 'Такого номера не существует' },
+                                    { required: true, message: errorMessages('number_not_exist') },
                                 ]}
                             >
                                 <InputNumber
                                     formatter={(value: number | string | undefined) => value ? value.toString().slice(0, 8) : ''}
                                     addonBefore="(+373)"
-                                    placeholder="Телефон"
+                                    placeholder={t('phone')}
                                 />
                             </Form.Item>
 
-                            <Form.Item name="gender" rules={[{ required: true, message: 'Обязательное поле' }]}>
-                                <Select placeholder="Пол" size="large">
+                            <Form.Item name="gender" rules={[{ required: true, message: errorMessages('required_field') }]}>
+                                <Select placeholder={t('floor')} size="large">
                                     {genderOptions.map((option) => (
                                         <Select.Option key={option.value} value={option.value}>
                                             {option.name}
@@ -173,30 +176,30 @@ export const RegistrationPage = () => {
                     <Form.Item
                         name="readOut"
                         valuePropName="checked"
-                        rules={[{ required: true, message: 'Для регистрации необходимо принять условия соглашения' }]}
+                        rules={[{ required: true, message: errorMessages('terms_agreement') }]}
                         className={s.checkBox}
                     >
                         <Checkbox>
-                            Я согласен с
+                            {t('i_agree')}
                             <Link to={routes.login} className={s.linkBtn}>
-                                пользовательским соглашением
+                                {t('user_agreement')}
                             </Link>
-                            и
+                            {t('and')}
                             <Link to={routes.login} className={s.linkBtn}>
-                                политикой обработки персональных данных пользователей
+                                {t('policy')}
                             </Link>
                         </Checkbox>
                     </Form.Item>
 
                     <Button style={{ width: '100%' }} type="primary" htmlType="submit">
-                        Создать аккаунт
+                        {t('create_an_account')}
                     </Button>
                 </Form>
 
                 <div className={s.haveAccount}>
-                    Уже есть аккаунт в StaffPro?{' '}
+                    {t('already_have_an_account')} {' '} StaffPro?{' '}
                     <Link to={routes.login} className={s.linkBtn}>
-                        Войдите
+                        {t('login')}
                     </Link>
                 </div>
             </div>

@@ -13,7 +13,8 @@ export const routes = {
     'customers2': '/customers/2',
     'settings': '/settings',
     'help': '/help',
-}
+};
+
 export default class Types {
     static routing = [
         { id: 9, key: 'login', value: '/' },

@@ -7,6 +7,7 @@ import { searchUser } from '../../halpers/halpers';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { Link } from 'react-router-dom';
 import { routes } from '../../../../types';
+import { errorMessages } from '../../../../common/halpers/halpers';
 
 import s from './AuthForm.module.scss';
 
@@ -46,7 +47,7 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 setDisabled(false);
                 setNumberAttempts(0);
             }, 3000);
-            setErrorMessage('Превышено количество попыток входа, попробуйте позже');
+            setErrorMessage(errorMessages('number_login_attempts_exceeded'));
 
             return () => clearTimeout(handler);
         }
@@ -67,9 +68,9 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 label={t('email_address')}
                 name="login"
                 rules={[
-                    { required: true, message: 'Обязательное поле' },
-                    { min: 4, message: 'Логин должен содержать от 4 до 64 символов' },
-                    { max: 64, message: 'Пароль должен содержать от 4 до 64 символов' },
+                    { required: true, message: errorMessages('required_field') },
+                    { min: 4, message: errorMessages('password_between_4_and_64_characters') },
+                    { max: 64, message: errorMessages('login_between_4_and_64_characters') },
                 ]}>
                 <Input />
             </Form.Item>
@@ -78,9 +79,9 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
                 label={t('password')}
                 name="password"
                 rules={[
-                    { required: true, message: 'Обязательное поле' },
-                    { min: 4, message: 'Пароль должен содержать от 8 до 64 символов' },
-                    { max: 64, message: 'Пароль должен содержать от 8 до 64 символов' },
+                    { required: true, message: errorMessages('required_field') },
+                    { min: 4, message: errorMessages('password_between_4_and_64_characters') },
+                    { max: 64, message: errorMessages('password_between_4_and_64_characters') },
                 ]}
             >
                 <Input.Password style={{ padding: '0 12px' }} />
