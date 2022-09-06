@@ -54,5 +54,8 @@
   "restoring_account_access": "Восстановление доступа к аккаунту",
 
   "__comment6__": "CHANGE_PASSWORD",
-  "enter_new_password": "Введите новый пароль"
+  "enter_new_password": "Введите новый пароль",
+
+  "__comment7__": "CHANGE_LANGUAGE",
+  "change_language_to": "Сменить язык на"
 }

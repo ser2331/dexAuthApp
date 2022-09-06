@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button, Select } from 'antd';
 import i18next from 'i18next';
 import { useAppDispatch } from '../../../../core/redux';
+import { useTranslation } from 'react-i18next';
 import { appSlice } from '../../AppSlice';
 import { Link } from 'react-router-dom';
 import { routes } from '../../../../types';
@@ -14,16 +15,19 @@ const { showLangMenu } = appSlice.actions;
 
 export const ChangeLang = () => {
     const dispatch = useAppDispatch();
-    
-    const handleChange = (lang: string) => {
+    const { t } = useTranslation();
+
+    const handleChange = useCallback((lang: string) => {
         return i18next.changeLanguage(lang)
-    };
+    }, []);
+
+    const lang = (i18next.language === 'RU') ? 'english' : 'русский';
 
     return (
         <div className={s.ChangeLang} >
             <div className={s.content}>
                 <span className={s.description}>
-                    <GlobalOutlined /> Сменить язык на <Link to={routes.login}>english?</Link>
+                    <GlobalOutlined /> {t('change_language_to')} <Link to={routes.login}>{lang}?</Link>
                 </span>
 
                 <Select
@@ -32,7 +36,7 @@ export const ChangeLang = () => {
                     className="change-lang"
                     onChange={handleChange}
                 >
-                    <Option value="ru">Русский</Option>
+                    <Option value="RU">Русский</Option>
                     <Option value="EN">English</Option>
                 </Select>
             </div>

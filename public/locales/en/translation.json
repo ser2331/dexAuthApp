@@ -54,5 +54,8 @@
   "restoring_account_access": "Restoring account access",
 
   "__comment6__": "CHANGE_PASSWORD",
-  "enter_new_password": "Enter a new password"
+  "enter_new_password": "Enter a new password",
+
+  "__comment7__": "CHANGE_LANGUAGE",
+  "change_language_to": "Change language to"
 }

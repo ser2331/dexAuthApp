@@ -117,7 +117,7 @@ export default class FakeData {
         {
             login: 'test@mail.ru',
             password: 'test',
-            isAdmin: true,
+            isAdmin: false,
             sureName: 'Дуков',
             name: 'Сергей',
             lastName: 'Сергеевич',
