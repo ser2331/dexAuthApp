@@ -62,5 +62,12 @@
   "__comment8__": "DASHBOARD_PAGE",
   "dashboard": "Панель индикаторов",
   "reports": "Отчеты",
-  "top_costs": "Топ 5 самых больших затрат"
+  "top_costs": "Топ 5 самых больших затрат",
+  "invoices": "Счета",
+  "level_remaining": "Уровень оставшихся средств",
+  "remaining_bank": "На банковских счетах осталось",
+  "remaining_internet": "На счетах в интернете осталось",
+
+  "__comment9__": "CUSTOM_WIDGET",
+  "see_all": "Смотреть все"
 }

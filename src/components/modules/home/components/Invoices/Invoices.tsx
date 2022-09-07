@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from 'antd';
 import { CustomContentWrapper } from '../../../../common/components/CustomContentWrapper/CustomContentWrapper';
+import { BankAccounts } from '../BankAccounts/BankAccounts';
+import { InternetAccounts } from '../InternetAccounts/InternetAccounts';
 
 const documentsData = {
   title: 'Invoices',
@@ -12,22 +14,17 @@ const documentsData = {
   ),
   tabList: [
     {
-      key: 'article',
-      tab: 'article',
+      key: 'BankAccounts',
+      tab: 'Bank Accounts',
     },
     {
-      key: 'app',
-      tab: 'app',
-    },
-    {
-      key: 'project',
-      tab: 'project',
+      key: 'InternetAccounts',
+      tab: 'Internet Accounts',
     },
   ],
   contentList: {
-    article: <p>article content</p>,
-    app: <p>app content</p>,
-    project: <p>project content</p>,
+    BankAccounts: <BankAccounts />,
+    InternetAccounts: <InternetAccounts />,
   },
 };
 

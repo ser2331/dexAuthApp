@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { WidgetWrapper } from '../../../../common/components/WidgetWrapper/WidgetWrapper';
-// import { Progress } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { routes } from '../../../../types';
 import { homeSlice } from '../../HomeSlice';
 
@@ -13,14 +13,22 @@ const { setPressedLocation } = homeSlice.actions;
 export const InvoiceWidget = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { reportsData } = useAppSelector((state) => state.homeReducer);
-  const data = [...reportsData];
+  const { t } = useTranslation();
 
-  // const topExpenses = useMemo(() => data.sort((a, b) => b.price - a.price), [data]).slice(0, 5);
+  const { invoicesData } = useAppSelector((state) => state.homeReducer);
+  const bankSum = useMemo(
+    () => invoicesData[0].reduce((acc, el) => acc + Number(el.amountFunds), 0),
+    [invoicesData]
+  );
+  const internetBankSum = useMemo(
+    () => invoicesData[1].reduce((acc, el) => acc + Number(el.amountFunds), 0),
+    [invoicesData]
+  );
+
   return (
     <WidgetWrapper
-      title='Invoices'
-      description='Уровень оставшихся средств'
+      title={t('invoices')}
+      description={t('level_remaining')}
       onClickFooter={() => {
         navigate(routes.invoices);
         dispatch(setPressedLocation('invoices'));
@@ -28,9 +36,14 @@ export const InvoiceWidget = () => {
       enableFooter={true}
     >
       <div className={s.widgetTable}>
-        {/*<Progress type="circle" percent={30} width={60} />*/}
-        {/*<Progress type="circle" percent={70} width={60} status="exception" />*/}
-        {/*<Progress type="circle" percent={100} width={60} />*/}
+        <span className={s.title}>{t('remaining_bank')}:</span>
+        <br />
+        <span className={s.value}>{bankSum}$</span>
+        <div className={s.divider} />
+        <br />
+        <span className={s.title}>{t('remaining_internet')}:</span>
+        <br />
+        <span className={s.value}>{internetBankSum}$</span>
       </div>
     </WidgetWrapper>
   );

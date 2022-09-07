@@ -130,4 +130,66 @@ export default class FakeData {
       readOut: false,
     },
   ];
+
+  static bankAccountsData = [
+    {
+      key: '1',
+      name: 'Тинькофф Банк',
+      accountNumber: 3223213312331233,
+      address: 'Одесская 76',
+      amountFunds: '1200',
+    },
+    {
+      key: '2',
+      name: 'Агропром Банк',
+      accountNumber: 3223213312331233,
+      address: 'Камарово 81',
+      amountFunds: '1500',
+    },
+    {
+      key: '3',
+      name: 'Сбер Банк',
+      accountNumber: 3223219999999233,
+      address: 'Партизанская 5',
+      amountFunds: '2500',
+    },
+    {
+      key: '4',
+      name: 'Эксим Банк',
+      accountNumber: 1234567891123412,
+      address: 'Пушкина 9',
+      amountFunds: '500',
+    },
+  ];
+
+  static internetAccountsData = [
+    {
+      key: '1',
+      name: 'Банк Левобережный',
+      accountNumber: 9999999999999990,
+      address: 'Набережная 90',
+      amountFunds: '8000',
+    },
+    {
+      key: '2',
+      name: 'Райффайзенбанк',
+      accountNumber: 1111213312331233,
+      address: 'Лермонтова 81',
+      amountFunds: '5000',
+    },
+    {
+      key: '3',
+      name: 'Промсвязьбанк ',
+      accountNumber: 3223219999991111,
+      address: 'Мира 5',
+      amountFunds: '5500',
+    },
+    {
+      key: '4',
+      name: 'Банк Открытие',
+      accountNumber: 1234111191123412,
+      address: 'Суворова 9',
+      amountFunds: '800',
+    },
+  ];
 }

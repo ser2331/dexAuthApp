@@ -62,5 +62,12 @@
   "__comment8__": "DASHBOARD_PAGE",
   "dashboard": "Dashboard",
   "reports": "Reports",
-  "top_costs": "Top 5 Biggest Costs"
+  "top_costs": "Top 5 Biggest Costs",
+  "invoices": "Invoices",
+  "level_remaining": "Level of funds remaining",
+  "remaining_bank": "Remaining in bank accounts",
+  "remaining_internet": "Remaining in internet accounts",
+
+  "__comment9__": "CUSTOM_WIDGET",
+  "see_all": "See all"
 }

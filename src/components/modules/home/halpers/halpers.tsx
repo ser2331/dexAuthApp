@@ -7,7 +7,8 @@ import {
   SettingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { MenuProps } from 'antd';
+import { Form, Input, InputNumber, MenuProps } from 'antd';
+import { IEditableCellProps } from '../interfaces/interfaces';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -40,3 +41,35 @@ export const items: MenuItem[] = [
   getItem('Settings', 'settings', <SettingOutlined />),
   getItem('Help & Contact', 'help', <InfoCircleOutlined />),
 ];
+
+export const EditableCell: React.FC<IEditableCellProps> = ({
+  editing,
+  dataIndex,
+  title,
+  inputType,
+  children,
+  ...restProps
+}) => {
+  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+
+  return (
+    <td {...restProps}>
+      {editing ? (
+        <Form.Item
+          name={dataIndex}
+          style={{ margin: 0 }}
+          rules={[
+            {
+              required: true,
+              message: `Please Input ${title}!`,
+            },
+          ]}
+        >
+          {inputNode}
+        </Form.Item>
+      ) : (
+        children
+      )}
+    </td>
+  );
+};

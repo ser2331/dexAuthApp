@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import s from './WidgetWrapper.module.scss';
 
@@ -19,6 +20,7 @@ export const WidgetWrapper: FC<IWidgetWrapper> = ({
   enableFooter = true,
   width = 289,
 }) => {
+  const { t } = useTranslation();
   return (
     <div className={s.WidgetWrapper} style={{ width: width }}>
       <div className={s.WidgetWrapper__header}>{title}</div>
@@ -28,7 +30,7 @@ export const WidgetWrapper: FC<IWidgetWrapper> = ({
       </div>
       {enableFooter && (
         <div className={s.WidgetWrapper__footer} onClick={onClickFooter}>
-          Смотреть все
+          {t('see_all')}
         </div>
       )}
     </div>
