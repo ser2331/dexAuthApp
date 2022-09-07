@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button } from 'antd';
 import { CustomContentWrapper } from '../../../../common/components/CustomContentWrapper/CustomContentWrapper';
+import { useTranslation } from 'react-i18next';
 
-export const Templates = () => {
-  const data = {
-    title: 'Templates',
-    breadcrumb: ['Documents', 'Templates'],
+const data = (title: string, breadcrumb: string[]) => {
+  return {
+    title: title,
+    breadcrumb: breadcrumb,
     extra: (
       <Button type='primary' style={{ bottom: '-60px' }}>
         Add new Template
@@ -31,6 +32,12 @@ export const Templates = () => {
       Template3: <p>Template3</p>,
     },
   };
+};
 
-  return CustomContentWrapper(data);
+export const Templates = () => {
+  const { t } = useTranslation();
+  const title = t('templates');
+  const breadcrumb = [t('documents'), t('templates')];
+
+  return CustomContentWrapper(data(title, breadcrumb));
 };

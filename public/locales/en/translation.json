@@ -64,10 +64,26 @@
   "reports": "Reports",
   "top_costs": "Top 5 Biggest Costs",
   "invoices": "Invoices",
+  "drafts": "Drafts",
+  "templates": "Templates",
   "level_remaining": "Level of funds remaining",
   "remaining_bank": "Remaining in bank accounts",
   "remaining_internet": "Remaining in internet accounts",
 
   "__comment9__": "CUSTOM_WIDGET",
-  "see_all": "See all"
+  "see_all": "See all",
+
+  "__comment10__": "INVOICES_PAGE",
+  "documents": "Documents",
+  "bank_accounts": "Bank Accounts",
+  "internet_accounts": "Internet Accounts",
+
+  "__comment11__": "ACCOUNTS_TABLES",
+  "nameBank": "Name",
+  "account_number": "Account Number",
+  "address": "Address",
+  "amount_funds": "Amount Funds",
+  "save": "Save",
+  "cancel": "Cancel",
+  "edit": "Edit"
 }

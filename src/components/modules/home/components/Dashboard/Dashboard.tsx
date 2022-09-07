@@ -33,7 +33,7 @@ export const Dashboard = () => {
         <InvoiceWidget />
 
         <WidgetWrapper
-          title='Drafts'
+          title={t('drafts')}
           onClickFooter={() => {
             navigate(routes.drafts);
             dispatch(setPressedLocation('drafts'));
@@ -44,7 +44,7 @@ export const Dashboard = () => {
         </WidgetWrapper>
 
         <WidgetWrapper
-          title='Templates'
+          title={t('templates')}
           onClickFooter={() => {
             navigate(routes.templates);
             dispatch(setPressedLocation('templates'));

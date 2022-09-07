@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Form, Popconfirm, Table, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
+import { useTranslation } from 'react-i18next';
 import { homeSlice } from '../../HomeSlice';
 import { IItem } from '../../interfaces/interfaces';
 import { EditableCell } from '../../halpers/halpers';
@@ -11,6 +12,7 @@ const { setBankAccountsData } = homeSlice.actions;
 
 export const BankAccounts = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const [form] = Form.useForm();
 
   const { invoicesData } = useAppSelector((state) => state.homeReducer);
@@ -54,27 +56,27 @@ export const BankAccounts = () => {
 
   const columns = [
     {
-      title: 'Name',
+      title: t('nameBank'),
       dataIndex: 'name',
       width: '15%',
       editable: true,
     },
     {
-      title: 'Account Number',
+      title: t('account_number'),
       dataIndex: 'accountNumber',
       width: '15%',
       editable: true,
     },
     {
-      title: 'Address',
+      title: t('address'),
       dataIndex: 'address',
       width: '40%',
       editable: true,
     },
     {
-      title: 'Amount Funds',
+      title: t('amount_funds'),
       dataIndex: 'amountFunds',
-      width: '20%',
+      width: '15%',
       editable: true,
     },
     {
@@ -85,15 +87,15 @@ export const BankAccounts = () => {
         return editable ? (
           <span>
             <Typography.Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
-              Save
+              {t('save')}
             </Typography.Link>
             <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
-              <a>Cancel</a>
+              <a>{t('cancel')}</a>
             </Popconfirm>
           </span>
         ) : (
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-            Edit
+            {t('edit')}
           </Typography.Link>
         );
       },

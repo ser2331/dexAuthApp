@@ -1,16 +1,18 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Form, Popconfirm, Table, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
+import { EditableCell } from '../../halpers/halpers';
+import { useTranslation } from 'react-i18next';
 import { homeSlice } from '../../HomeSlice';
 import { IItem } from '../../interfaces/interfaces';
 
 import s from './InternetAccounts.module.scss';
-import { EditableCell } from '../../halpers/halpers';
 
 const { setInternetAccountsData } = homeSlice.actions;
 
 export const InternetAccounts = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const [form] = Form.useForm();
 
   const { invoicesData } = useAppSelector((state) => state.homeReducer);
@@ -54,46 +56,46 @@ export const InternetAccounts = () => {
 
   const columns = [
     {
-      title: 'name',
+      title: t('nameBank'),
       dataIndex: 'name',
       width: '15%',
       editable: true,
     },
     {
-      title: 'accountNumber',
+      title: t('account_number'),
       dataIndex: 'accountNumber',
       width: '15%',
       editable: true,
     },
     {
-      title: 'address',
+      title: t('address'),
       dataIndex: 'address',
       width: '40%',
       editable: true,
     },
     {
-      title: 'amountFunds',
+      title: t('amount_funds'),
       dataIndex: 'amountFunds',
-      width: '20%',
+      width: '15%',
       editable: true,
     },
     {
-      title: 'operation',
+      title: 'Operation',
       dataIndex: 'operation',
       render: (_: '@typescript-eslint/no-explicit-any', record: IItem) => {
         const editable = isEditing(record);
         return editable ? (
           <span>
             <Typography.Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
-              Save
+              {t('save')}
             </Typography.Link>
             <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
-              <a>Cancel</a>
+              <a>{t('cancel')}</a>
             </Popconfirm>
           </span>
         ) : (
           <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-            Edit
+            {t('edit')}
           </Typography.Link>
         );
       },

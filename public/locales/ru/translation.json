@@ -64,10 +64,26 @@
   "reports": "Отчеты",
   "top_costs": "Топ 5 самых больших затрат",
   "invoices": "Счета",
+  "drafts": "Черновики",
+  "templates": "Шаблоны",
   "level_remaining": "Уровень оставшихся средств",
   "remaining_bank": "На банковских счетах осталось",
   "remaining_internet": "На счетах в интернете осталось",
 
   "__comment9__": "CUSTOM_WIDGET",
-  "see_all": "Смотреть все"
+  "see_all": "Смотреть все",
+
+  "__comment10__": "INVOICES_PAGE",
+  "documents": "Документы",
+  "bank_accounts": "Банковские счета",
+  "internet_accounts": "Интернет Счета",
+
+  "__comment11__": "ACCOUNTS_TABLES",
+  "nameBank": "Название банка",
+  "account_number": "Номер карты",
+  "address": "Адрес банка",
+  "amount_funds": "Сумма денежных средств",
+  "save": "Сохранить",
+  "cancel": "Отменить",
+  "edit": "Изменить"
 }

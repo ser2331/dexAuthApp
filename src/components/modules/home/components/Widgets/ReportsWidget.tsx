@@ -3,12 +3,11 @@ import { WidgetWrapper } from '../../../../common/components/WidgetWrapper/Widge
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import Types from '../../../../types';
+import { routes } from '../../../../types';
 import { homeSlice } from '../../HomeSlice';
 
 import s from './widgets.module.scss';
 
-const { routingMap } = Types;
 const { setPressedLocation } = homeSlice.actions;
 
 export const ReportsWidget = () => {
@@ -26,8 +25,8 @@ export const ReportsWidget = () => {
       title={t('reports')}
       description={t('top_costs')}
       onClickFooter={() => {
-        navigate(routingMap.get('reports').value);
-        dispatch(setPressedLocation(routingMap.get('reports').key));
+        navigate(routes.reports);
+        dispatch(setPressedLocation(routes.reports));
       }}
       enableFooter={true}
     >
