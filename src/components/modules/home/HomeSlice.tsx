@@ -7,6 +7,7 @@ const { reports, bankAccountsData, internetAccountsData, planning } = FakeData;
 export interface IHomeState {
   reportsData: IReportsData[];
   invoicesData: Array<IItem[]>;
+  keyBankAccountsData: string;
   draftsData: {
     planning: IPlanning[];
     targetKeys: string[];
@@ -18,6 +19,7 @@ export interface IHomeState {
 const initialState: IHomeState = {
   reportsData: reports,
   invoicesData: [bankAccountsData, internetAccountsData],
+  keyBankAccountsData: '',
   draftsData: {
     planning,
     targetKeys: [],
@@ -47,6 +49,23 @@ export const homeSlice = createSlice({
     },
     setNewChallenge(state, action: PayloadAction<IPlanning>) {
       state.draftsData.planning = [...state.draftsData.planning, action.payload];
+    },
+    setKeyBankAccountsData(state, action: PayloadAction<string>) {
+      state.keyBankAccountsData = action.payload;
+    },
+    setInvoice(state) {
+      const key = String(state.invoicesData[0].length + 1);
+      state.keyBankAccountsData = key;
+      state.invoicesData[0] = [
+        ...state.invoicesData[0],
+        {
+          key: key,
+          name: '',
+          accountNumber: 900000000000000,
+          address: '',
+          amountFunds: '',
+        },
+      ];
     },
   },
 });

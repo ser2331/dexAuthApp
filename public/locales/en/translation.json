@@ -78,6 +78,7 @@
   "documents": "Documents",
   "bank_accounts": "Bank Accounts",
   "internet_accounts": "Internet Accounts",
+  "add_invoice": "Add Invoice",
 
   "__comment11__": "ACCOUNTS_TABLES",
   "nameBank": "Name",

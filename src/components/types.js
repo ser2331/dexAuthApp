@@ -22,6 +22,7 @@ export default class Types {
     { title: 'Кол-во', dataIndex: 'amount' },
     { title: 'Цена', dataIndex: 'expectedPrice' },
     { title: 'Стоимость', dataIndex: 'price' },
+    { title: 'Музыка', dataIndex: 'music' },
   ];
 
   static appSizes = [

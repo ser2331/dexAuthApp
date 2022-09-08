@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Form, Popconfirm, Table, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
@@ -8,26 +8,25 @@ import { EditableCell } from '../../halpers/halpers';
 
 import s from './BankAccounts.module.scss';
 
-const { setBankAccountsData } = homeSlice.actions;
+const { setBankAccountsData, setKeyBankAccountsData } = homeSlice.actions;
 
 export const BankAccounts = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [form] = Form.useForm();
 
-  const { invoicesData } = useAppSelector((state) => state.homeReducer);
-  const [editingKey, setEditingKey] = useState('');
+  const { invoicesData, keyBankAccountsData } = useAppSelector((state) => state.homeReducer);
 
   const data = useMemo(() => invoicesData[0], [invoicesData]);
-  const isEditing = (record: IItem) => record.key === editingKey;
+  const isEditing = (record: IItem) => record.key === keyBankAccountsData;
 
   const edit = useCallback((record: Partial<IItem> & { key: React.Key }) => {
     form.setFieldsValue({ name: '', age: '', address: '', ...record });
-    setEditingKey(record.key);
+    dispatch(setKeyBankAccountsData(record.key));
   }, []);
 
   const cancel = useCallback(() => {
-    setEditingKey('');
+    dispatch(setKeyBankAccountsData(''));
   }, []);
 
   const save = useCallback(async (key: React.Key) => {
@@ -43,14 +42,17 @@ export const BankAccounts = () => {
           ...row,
         });
         dispatch(setBankAccountsData(newData));
-        setEditingKey('');
+        dispatch(setKeyBankAccountsData(''));
+        form.resetFields();
       } else {
         newData.push(row);
         dispatch(setBankAccountsData(newData));
-        setEditingKey('');
+        dispatch(setKeyBankAccountsData(''));
+        form.resetFields();
       }
     } catch (errInfo) {
       console.log('Validate Failed:', errInfo);
+      form.resetFields();
     }
   }, []);
 
@@ -94,7 +96,7 @@ export const BankAccounts = () => {
             </Popconfirm>
           </span>
         ) : (
-          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+          <Typography.Link disabled={keyBankAccountsData !== ''} onClick={() => edit(record)}>
             {t('edit')}
           </Typography.Link>
         );

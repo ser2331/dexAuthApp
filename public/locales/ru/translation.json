@@ -78,6 +78,7 @@
   "documents": "Документы",
   "bank_accounts": "Банковские счета",
   "internet_accounts": "Интернет Счета",
+  "add_invoice": "Добавить счет",
 
   "__comment11__": "ACCOUNTS_TABLES",
   "nameBank": "Название банка",
