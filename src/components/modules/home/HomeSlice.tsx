@@ -54,12 +54,12 @@ export const homeSlice = createSlice({
       state.keyBankAccountsData = action.payload;
     },
     setInvoice(state) {
-      const key = String(state.invoicesData[0].length + 1);
+      const key = `key#${Math.random()}`;
       state.keyBankAccountsData = key;
       state.invoicesData[0] = [
         ...state.invoicesData[0],
         {
-          key: key,
+          key,
           name: '',
           accountNumber: 900000000000000,
           address: '',

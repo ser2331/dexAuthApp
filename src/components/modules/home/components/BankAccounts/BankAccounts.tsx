@@ -56,53 +56,56 @@ export const BankAccounts = () => {
     }
   }, []);
 
-  const columns = [
-    {
-      title: t('nameBank'),
-      dataIndex: 'name',
-      width: '15%',
-      editable: true,
-    },
-    {
-      title: t('account_number'),
-      dataIndex: 'accountNumber',
-      width: '15%',
-      editable: true,
-    },
-    {
-      title: t('address'),
-      dataIndex: 'address',
-      width: '40%',
-      editable: true,
-    },
-    {
-      title: t('amount_funds'),
-      dataIndex: 'amountFunds',
-      width: '15%',
-      editable: true,
-    },
-    {
-      title: 'Operation',
-      dataIndex: 'operation',
-      render: (_: '@typescript-eslint/no-explicit-any', record: IItem) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Typography.Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
-              {t('save')}
-            </Typography.Link>
-            <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
-              <a>{t('cancel')}</a>
-            </Popconfirm>
-          </span>
-        ) : (
-          <Typography.Link disabled={keyBankAccountsData !== ''} onClick={() => edit(record)}>
-            {t('edit')}
-          </Typography.Link>
-        );
+  const columns = useMemo(
+    () => [
+      {
+        title: t('nameBank'),
+        dataIndex: 'name',
+        width: '15%',
+        editable: true,
       },
-    },
-  ];
+      {
+        title: t('account_number'),
+        dataIndex: 'accountNumber',
+        width: '15%',
+        editable: true,
+      },
+      {
+        title: t('address'),
+        dataIndex: 'address',
+        width: '40%',
+        editable: true,
+      },
+      {
+        title: t('amount_funds'),
+        dataIndex: 'amountFunds',
+        width: '15%',
+        editable: true,
+      },
+      {
+        title: 'Operation',
+        dataIndex: 'operation',
+        render: (_: '@typescript-eslint/no-explicit-any', record: IItem) => {
+          const editable = isEditing(record);
+          return editable ? (
+            <span>
+              <Typography.Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
+                {t('save')}
+              </Typography.Link>
+              <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
+                <a>{t('cancel')}</a>
+              </Popconfirm>
+            </span>
+          ) : (
+            <Typography.Link disabled={keyBankAccountsData !== ''} onClick={() => edit(record)}>
+              {t('edit')}
+            </Typography.Link>
+          );
+        },
+      },
+    ],
+    [isEditing]
+  );
 
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
