@@ -46,11 +46,7 @@ export const Reports = () => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         render: (_: '@typescript-eslint/no-explicit-any') => {
           return (
-            <div>
-              <Button type='primary' onClick={onClick}>
-                <DownloadOutlined />
-              </Button>
-            </div>
+            <Button type='primary' shape='round' onClick={onClick} icon={<DownloadOutlined />} />
           );
         },
       },
