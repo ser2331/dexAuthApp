@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { WidgetWrapper } from '../../../../common/components/WidgetWrapper/WidgetWrapper';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +18,10 @@ export const DraftWidget = () => {
   const { draftsData } = useAppSelector((state) => state.homeReducer);
   const { planning } = draftsData;
 
-  const impPlannings = planning.filter((el) => el.important === 'important').slice(0, 5);
+  const impPlannings = useMemo(
+    () => planning.filter((el) => el.important === 'important').slice(0, 5),
+    [planning]
+  );
 
   return (
     <WidgetWrapper
