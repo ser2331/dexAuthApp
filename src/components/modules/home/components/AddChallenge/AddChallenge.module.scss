@@ -1,0 +1,13 @@
+.AddChallenge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .AddForm {
+    width: 40em;
+    min-width: 300px;
+    border: 1px solid #1890ff;
+    border-radius: 4px;
+    padding: 12px;
+  }
+}

@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IItem, IReportsData } from './interfaces/interfaces';
+import { IItem, IReportsData, IPlanning } from './interfaces/interfaces';
 import FakeData from '../../../FakeData';
 
-const { reports, bankAccountsData, internetAccountsData } = FakeData;
+const { reports, bankAccountsData, internetAccountsData, planning } = FakeData;
 
 export interface IHomeState {
   reportsData: IReportsData[];
   invoicesData: Array<IItem[]>;
-  draftsData: IReportsData[];
+  draftsData: {
+    planning: IPlanning[];
+    targetKeys: string[];
+  };
   templatesData: IReportsData[];
   pressedLocation: string;
 }
@@ -15,7 +18,10 @@ export interface IHomeState {
 const initialState: IHomeState = {
   reportsData: reports,
   invoicesData: [bankAccountsData, internetAccountsData],
-  draftsData: reports,
+  draftsData: {
+    planning,
+    targetKeys: [],
+  },
   templatesData: reports,
   pressedLocation: '',
 };
@@ -32,6 +38,15 @@ export const homeSlice = createSlice({
     },
     setInternetAccountsData(state, action: PayloadAction<IItem[]>) {
       state.invoicesData[1] = action.payload;
+    },
+    setPlanningData(state, action: PayloadAction<IPlanning[]>) {
+      state.draftsData.planning = action.payload;
+    },
+    setTargetKeys(state, action: PayloadAction<string[]>) {
+      state.draftsData.targetKeys = action.payload;
+    },
+    setNewChallenge(state, action: PayloadAction<IPlanning>) {
+      state.draftsData.planning = [...state.draftsData.planning, action.payload];
     },
   },
 });

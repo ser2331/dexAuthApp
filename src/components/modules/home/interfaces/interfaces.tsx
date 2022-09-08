@@ -15,6 +15,13 @@ export interface IItem {
   address: string;
   amountFunds: string;
 }
+export interface IPlanning {
+  key: string;
+  title: string;
+  description: string;
+  chosen: boolean;
+  important: string;
+}
 export interface IEditableCellProps extends React.HTMLAttributes<HTMLElement> {
   editing: boolean;
   dataIndex: string;

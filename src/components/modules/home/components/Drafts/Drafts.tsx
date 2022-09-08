@@ -1,35 +1,26 @@
 import React from 'react';
-import { Button } from 'antd';
 import { CustomContentWrapper } from '../../../../common/components/CustomContentWrapper/CustomContentWrapper';
 import { useTranslation } from 'react-i18next';
+import { Planning } from '../Planning/Planning';
+import { AddChallenge } from '../AddChallenge/AddChallenge';
 
-const data = (title: string, breadcrumb: string[]) => {
+const data = (title: string, breadcrumb: string[], tabs: string[]) => {
   return {
     title: title,
     breadcrumb: breadcrumb,
-    extra: (
-      <Button type='primary' style={{ bottom: '-60px' }}>
-        Add new Draft
-      </Button>
-    ),
     tabList: [
       {
         key: 'draft1',
-        tab: 'draft1',
+        tab: tabs[0],
       },
       {
         key: 'draft2',
-        tab: 'draft2',
-      },
-      {
-        key: 'draft3',
-        tab: 'draft3',
+        tab: tabs[1],
       },
     ],
     contentList: {
-      draft1: <p>draft1</p>,
-      draft2: <p>draft2</p>,
-      draft3: <p>draft3</p>,
+      draft1: <Planning />,
+      draft2: <AddChallenge />,
     },
   };
 };
@@ -38,6 +29,7 @@ export const Drafts = () => {
   const { t } = useTranslation();
   const title = t('drafts');
   const breadcrumb = [t('documents'), t('drafts')];
+  const tabs = [t('planning'), t('add_new_challenge')];
 
-  return CustomContentWrapper(data(title, breadcrumb));
+  return CustomContentWrapper(data(title, breadcrumb, tabs));
 };

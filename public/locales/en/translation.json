@@ -85,5 +85,19 @@
   "amount_funds": "Amount Funds",
   "save": "Save",
   "cancel": "Cancel",
-  "edit": "Edit"
+  "edit": "Edit",
+
+  "__comment12__": "DRAFTS_PAGE",
+  "planning": "Planning",
+  "edit_list_tasks": "Edit the list of completed tasks",
+  "planned": "Planned",
+  "achieved": "Achieved",
+  "add_new_challenge": "Add a new challenge",
+  "title_challenge": "Title Challenge",
+  "description_challenge": "Description Challenge",
+  "add_challenge": "Add Challenge",
+  "priority": "Priority",
+  "important": "Important",
+  "average": "Average",
+  "unimportant": "Unimportant"
 }

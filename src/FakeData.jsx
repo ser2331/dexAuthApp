@@ -192,4 +192,49 @@ export default class FakeData {
       amountFunds: '800',
     },
   ];
+
+  static planning = [
+    {
+      key: '0',
+      title: 'Полетать на самолете',
+      description: 'Сесть за штурвал самолета',
+      chosen: Math.random() * 2 > 1,
+      important: 'important',
+    },
+    {
+      key: '1',
+      title: 'Взобраться на Эверест',
+      description: 'Альпинизм',
+      chosen: Math.random() * 2 > 1,
+      important: 'unimportant',
+    },
+    {
+      key: '2',
+      title: 'Купить яхту',
+      description: 'Купить яхту',
+      chosen: Math.random() * 2 > 1,
+      important: 'unimportant',
+    },
+    {
+      key: '3',
+      title: 'Совершить кругосветное путешевствие',
+      description: 'Путешевствие',
+      chosen: Math.random() * 2 > 1,
+      important: 'unimportant',
+    },
+    {
+      key: '4',
+      title: 'Ужин на вершине Египетской пирамиды',
+      description: 'Ужин',
+      chosen: Math.random() * 2 > 1,
+      important: 'unimportant',
+    },
+    {
+      key: '5',
+      title: 'Полетать на самолете',
+      description: 'Сесть за штурвал самолета',
+      chosen: Math.random() * 2 > 1,
+      important: 'unimportant',
+    },
+  ];
 }

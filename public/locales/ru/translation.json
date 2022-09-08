@@ -85,5 +85,20 @@
   "amount_funds": "Сумма денежных средств",
   "save": "Сохранить",
   "cancel": "Отменить",
-  "edit": "Изменить"
+  "edit": "Изменить",
+
+  "__comment12__": "DRAFTS_PAGE",
+  "planning": "Планирование",
+  "edit_list_tasks": "Редактировать список выполненных дел",
+  "planned": "Запланированно",
+  "achieved": "Выполненно",
+  "add_new_challenge": "Добавить новую задачу",
+  "title_challenge": "Название задачи",
+  "description_challenge": "Описание задачи",
+  "add_challenge": "Добавить",
+  "priority": "Приоритет",
+  "important": "Важно",
+  "average": "Средне",
+  "unimportant": "Неважно"
+
 }
