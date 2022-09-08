@@ -220,7 +220,7 @@ export default class FakeData {
       title: 'Совершить кругосветное путешевствие',
       description: 'Путешевствие',
       chosen: Math.random() * 2 > 1,
-      important: 'unimportant',
+      important: 'important',
     },
     {
       key: '4',
@@ -234,7 +234,7 @@ export default class FakeData {
       title: 'Полетать на самолете',
       description: 'Сесть за штурвал самолета',
       chosen: Math.random() * 2 > 1,
-      important: 'unimportant',
+      important: 'important',
     },
   ];
 }
