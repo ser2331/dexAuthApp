@@ -27,7 +27,7 @@ export const Reports = () => {
     const href = await URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = href;
-    link.download = 'Rumba.mp3';
+    link.download = 'Despacito.mp3';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -69,7 +69,6 @@ export const Reports = () => {
 
       <ReactJkMusicPlayer
         showPlayMode={false}
-        playModeShowTime={25}
         className={s.player}
         audioLists={audio}
         autoPlay={true}
