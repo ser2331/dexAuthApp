@@ -5,9 +5,20 @@
 
   .AddForm {
     width: 40em;
+    height: 421px;
     min-width: 300px;
     border: 1px solid #1890ff;
     border-radius: 4px;
     padding: 12px;
+    margin-right: 24px;
+  }
+
+  .listChallenge {
+    width: 25em;
+    height: 421px;
+    border: 1px solid #1890ff;
+    padding: 12px;
+    border-radius: 4px;
+    min-width: 300px;
   }
 }

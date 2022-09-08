@@ -1,20 +1,28 @@
-import React, { useState } from 'react';
-import { Button, Form, Input, Radio } from 'antd';
+import React, { useMemo, useState } from 'react';
+import { Button, Form, Input, Radio, Table } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch } from '../../../../core/redux';
+import { useAppDispatch, useAppSelector } from '../../../../core/redux';
+import TextArea from 'antd/es/input/TextArea';
 import { homeSlice } from '../../HomeSlice';
 import { IPlanning } from '../../interfaces/interfaces';
 
 import s from './AddChallenge.module.scss';
-import TextArea from 'antd/es/input/TextArea';
 
 const { setNewChallenge } = homeSlice.actions;
 
 export const AddChallenge = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
+  const [form] = Form.useForm();
 
   const [valueRadio, setValueRadio] = useState('average');
+
+  const { draftsData } = useAppSelector((state) => state.homeReducer);
+  const { planning } = draftsData;
+
+  const onReset = () => {
+    form.resetFields();
+  };
 
   const onFinish = (values: IPlanning) => {
     const newChallenge = {
@@ -24,11 +32,26 @@ export const AddChallenge = () => {
       important: valueRadio,
     };
     dispatch(setNewChallenge(newChallenge));
+    onReset();
   };
+
+  const columns = useMemo(
+    () => [
+      {
+        title: t('title_challenge'),
+        dataIndex: 'title',
+        width: '100%',
+        editable: true,
+        key: 'title',
+      },
+    ],
+    [t]
+  );
 
   return (
     <div className={s.AddChallenge}>
       <Form
+        form={form}
         className={s.AddForm}
         name='basic'
         initialValues={{ remember: false }}
@@ -65,6 +88,15 @@ export const AddChallenge = () => {
           {t('add_challenge')}
         </Button>
       </Form>
+
+      <div className={s.listChallenge}>
+        <Table
+          pagination={{ pageSize: 5, size: 'small' }}
+          bordered
+          dataSource={planning}
+          columns={columns}
+        />
+      </div>
     </div>
   );
 };

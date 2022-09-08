@@ -10,6 +10,7 @@ import { InvoiceWidget } from '../Widgets/InvoiceWidget';
 import { routes } from '../../../../types';
 
 import s from './Dashboard.module.scss';
+import { DraftWidget } from '../Widgets/DraftsWidget';
 
 const { setPressedLocation } = homeSlice.actions;
 
@@ -32,16 +33,7 @@ export const Dashboard = () => {
 
         <InvoiceWidget />
 
-        <WidgetWrapper
-          title={t('drafts')}
-          onClickFooter={() => {
-            navigate(routes.drafts);
-            dispatch(setPressedLocation('drafts'));
-          }}
-          enableFooter={true}
-        >
-          <div>Данные отсутствуют</div>
-        </WidgetWrapper>
+        <DraftWidget />
 
         <WidgetWrapper
           title={t('templates')}
