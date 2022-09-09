@@ -4,3 +4,6 @@ export interface IData {
   items: { key: string; label: string; children: JSX.Element }[];
   breadcrumb?: string[];
 }
+export interface IFunc {
+  onChangeTab?: (key: string) => void;
+}

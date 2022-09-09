@@ -82,7 +82,8 @@
   "add_invoice": "Добавить счет",
 
   "__comment11__": "ACCOUNTS_TABLES",
-  "nameBank": "Название банка",
+  "name_bank": "Название банка",
+  "name_internet_bank": "Название интернет банка",
   "account_number": "Номер карты",
   "address": "Адрес банка",
   "amount_funds": "Сумма денежных средств",

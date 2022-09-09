@@ -82,7 +82,8 @@
   "add_invoice": "Add Invoice",
 
   "__comment11__": "ACCOUNTS_TABLES",
-  "nameBank": "Name",
+  "name_bank": "Name",
+  "name_internet_bank": "Name internet bank",
   "account_number": "Account Number",
   "address": "Address",
   "amount_funds": "Amount Funds",

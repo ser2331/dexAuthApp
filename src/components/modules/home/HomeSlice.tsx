@@ -8,6 +8,7 @@ export interface IHomeState {
   reportsData: IReportsData[];
   invoicesData: Array<IItem[]>;
   keyBankAccountsData: string;
+  keyInternetAccountsData: string;
   draftsData: {
     planning: IPlanning[];
     targetKeys: string[];
@@ -20,6 +21,7 @@ const initialState: IHomeState = {
   reportsData: reports,
   invoicesData: [bankAccountsData, internetAccountsData],
   keyBankAccountsData: '',
+  keyInternetAccountsData: '',
   draftsData: {
     planning,
     targetKeys: [],
@@ -53,19 +55,8 @@ export const homeSlice = createSlice({
     setKeyBankAccountsData(state, action: PayloadAction<string>) {
       state.keyBankAccountsData = action.payload;
     },
-    setInvoice(state) {
-      const key = `key#${Math.random()}`;
-      state.keyBankAccountsData = key;
-      state.invoicesData[0] = [
-        ...state.invoicesData[0],
-        {
-          key,
-          name: '',
-          accountNumber: 900000000000000,
-          address: '',
-          amountFunds: '',
-        },
-      ];
+    setKeyInternetAccountsData(state, action: PayloadAction<string>) {
+      state.keyInternetAccountsData = action.payload;
     },
   },
 });

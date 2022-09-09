@@ -1,18 +1,17 @@
 import React, { useCallback, useMemo } from 'react';
-import { Form, Table, Typography } from 'antd';
-import { useAppDispatch, useAppSelector } from '../../../../core/redux';
+import { Table, Typography } from 'antd';
+import { homeSlice } from '../../../HomeSlice';
+import { useAppDispatch, useAppSelector } from '../../../../../core/redux';
 import { useTranslation } from 'react-i18next';
-import { homeSlice } from '../../HomeSlice';
-import { IItem } from '../../interfaces/interfaces';
+import { IItem } from '../../../interfaces/interfaces';
 
 import s from './BankAccounts.module.scss';
 
-const { setBankAccountsData, setKeyBankAccountsData } = homeSlice.actions;
+const { setKeyBankAccountsData } = homeSlice.actions;
 
 export const BankAccounts = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const [form] = Form.useForm();
 
   const { invoicesData, keyBankAccountsData } = useAppSelector((state) => state.homeReducer);
 
@@ -29,7 +28,7 @@ export const BankAccounts = () => {
   const columns = useMemo(
     () => [
       {
-        title: t('nameBank'),
+        title: t('name_bank'),
         dataIndex: 'name',
         width: '15%',
         editable: true,
@@ -69,17 +68,15 @@ export const BankAccounts = () => {
 
   return (
     <div className={s.BankAccounts}>
-      <Form form={form} component={false}>
-        <Table
-          bordered
-          dataSource={data}
-          columns={columns}
-          rowClassName='editable-row'
-          pagination={{
-            onChange: cancel,
-          }}
-        />
-      </Form>
+      <Table
+        bordered
+        dataSource={data}
+        columns={columns}
+        rowClassName='editable-row'
+        pagination={{
+          onChange: cancel,
+        }}
+      />
     </div>
   );
 };

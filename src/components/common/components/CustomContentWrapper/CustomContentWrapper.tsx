@@ -1,15 +1,11 @@
 import React, { FC } from 'react';
 import { Breadcrumb, Layout, Tabs } from 'antd';
-import { IData } from '../../interfaces/interfaces';
+import { IData, IFunc } from '../../interfaces/interfaces';
 
 import s from './CustomContentWrapper.module.scss';
 
-export const CustomContentWrapper: FC<IData> = (data) => {
+export const CustomContentWrapper: FC<IData & IFunc> = (data, onChangeTab) => {
   const { title, extra, items, breadcrumb } = data;
-
-  const onChange = (key: string) => {
-    console.log(key);
-  };
 
   return (
     <Layout
@@ -26,7 +22,7 @@ export const CustomContentWrapper: FC<IData> = (data) => {
       </div>
       <Tabs
         style={{ width: '100%', border: 'none', margin: '-70px 15px 0' }}
-        onChange={onChange}
+        onChange={onChangeTab}
         tabBarExtraContent={extra}
         items={items}
       />
