@@ -8,20 +8,26 @@ const data = (title: string, breadcrumb: string[], tabs: string[]) => {
   return {
     title: title,
     breadcrumb: breadcrumb,
-    tabList: [
+    items: [
       {
-        key: 'draft1',
-        tab: tabs[0],
+        label: tabs[0],
+        key: 'planning',
+        children: (
+          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+            <Planning />
+          </div>
+        ),
       },
       {
-        key: 'draft2',
-        tab: tabs[1],
+        label: tabs[0],
+        key: 'add_new_challenge',
+        children: (
+          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+            <AddChallenge />
+          </div>
+        ),
       },
     ],
-    contentList: {
-      draft1: <Planning />,
-      draft2: <AddChallenge />,
-    },
   };
 };
 

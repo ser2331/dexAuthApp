@@ -1,10 +1,9 @@
 import React, { useCallback, useMemo } from 'react';
-import { Form, Popconfirm, Table, Typography } from 'antd';
+import { Form, Table, Typography } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { homeSlice } from '../../HomeSlice';
 import { IItem } from '../../interfaces/interfaces';
-import { EditableCell } from '../../halpers/halpers';
 
 import s from './BankAccounts.module.scss';
 
@@ -18,42 +17,13 @@ export const BankAccounts = () => {
   const { invoicesData, keyBankAccountsData } = useAppSelector((state) => state.homeReducer);
 
   const data = useMemo(() => invoicesData[0], [invoicesData]);
-  const isEditing = (record: IItem) => record.key === keyBankAccountsData;
 
-  const edit = useCallback((record: Partial<IItem> & { key: React.Key }) => {
-    form.setFieldsValue({ name: '', age: '', address: '', ...record });
-    dispatch(setKeyBankAccountsData(record.key));
+  const edit = useCallback((key: string) => {
+    dispatch(setKeyBankAccountsData(key));
   }, []);
 
   const cancel = useCallback(() => {
     dispatch(setKeyBankAccountsData(''));
-  }, []);
-
-  const save = useCallback(async (key: React.Key) => {
-    try {
-      const row = (await form.validateFields()) as IItem;
-
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        dispatch(setBankAccountsData(newData));
-        dispatch(setKeyBankAccountsData(''));
-        form.resetFields();
-      } else {
-        newData.push(row);
-        dispatch(setBankAccountsData(newData));
-        dispatch(setKeyBankAccountsData(''));
-        form.resetFields();
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-      form.resetFields();
-    }
   }, []);
 
   const columns = useMemo(
@@ -86,55 +56,24 @@ export const BankAccounts = () => {
         title: 'Operation',
         dataIndex: 'operation',
         render: (_: '@typescript-eslint/no-explicit-any', record: IItem) => {
-          const editable = isEditing(record);
-          return editable ? (
-            <span>
-              <Typography.Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
-                {t('save')}
-              </Typography.Link>
-              <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
-                <a>{t('cancel')}</a>
-              </Popconfirm>
-            </span>
-          ) : (
-            <Typography.Link disabled={keyBankAccountsData !== ''} onClick={() => edit(record)}>
+          return (
+            <Typography.Link disabled={keyBankAccountsData !== ''} onClick={() => edit(record.key)}>
               {t('edit')}
             </Typography.Link>
           );
         },
       },
     ],
-    [isEditing]
+    []
   );
-
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record: IItem) => ({
-        record,
-        inputType: col.dataIndex === 'accountNumber' ? 'number' : 'text',
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
 
   return (
     <div className={s.BankAccounts}>
       <Form form={form} component={false}>
         <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
           bordered
           dataSource={data}
-          columns={mergedColumns}
+          columns={columns}
           rowClassName='editable-row'
           pagination={{
             onChange: cancel,

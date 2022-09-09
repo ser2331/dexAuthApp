@@ -5,10 +5,10 @@ import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { UnprotectedPages } from '../../../../pages/UnprotectedPages/UnprotectedPages';
 import { ProtectedPages } from '../../../../pages/ProtectedPages/ProtectedPages';
 import { routes } from '../../../../types';
-
-import s from './App.module.scss';
 import { ChangeLang } from '../ChangeLang/ChangeLang';
 import { appSlice } from '../../AppSlice';
+
+import s from './App.module.scss';
 
 const { setIsAuth } = authorizationSlice.actions;
 const { showLangMenu } = appSlice.actions;
@@ -54,7 +54,6 @@ export const App = () => {
     <div className={s.App}>
       {show && <ChangeLang />}
       <div className='mouseMove' onMouseMove={() => dispatch(showLangMenu(true))} />
-
       {isAuth ? <ProtectedPages /> : <UnprotectedPages />}
     </div>
   );

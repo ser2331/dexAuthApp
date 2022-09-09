@@ -1,10 +1,6 @@
-import { CardTabListType } from 'antd/es/card';
-import React from 'react';
-
 export interface IData {
   title: string;
   extra?: JSX.Element;
-  tabList: { key: string; tab: string }[] & CardTabListType[];
-  contentList: Record<string, React.ReactNode>;
+  items: { key: string; label: string; children: JSX.Element }[];
   breadcrumb?: string[];
 }

@@ -1,4 +1,5 @@
 @import "../mixins/mixins";
+@import '~antd/dist/antd.css';
 
 body {
     font-family: "SF Pro Display", serif;
@@ -13,7 +14,7 @@ body {
 .ant-card-body {
     min-height: 280px;
     background: #F0F2F5;
-    padding: 24px;
+    padding: 0 24px 0 0;
 }
 
 .mouseMove {

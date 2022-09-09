@@ -22,7 +22,7 @@ const documentsData = (
       <div>
         <Button
           type='primary'
-          style={{ bottom: '-60px', zIndex: 100 }}
+          style={{ right: 50 }}
           onClick={addInvoice}
           disabled={!!keyBankAccountsData}
         >
@@ -35,20 +35,26 @@ const documentsData = (
     title: title,
     breadcrumb: breadcrumb,
     extra: addInvoiceButton(),
-    tabList: [
+    items: [
       {
-        key: 'BankAccounts',
-        tab: tabs[0],
+        label: tabs[0],
+        key: 'bank_accounts',
+        children: (
+          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+            <BankAccounts />
+          </div>
+        ),
       },
       {
-        key: 'InternetAccounts',
-        tab: tabs[1],
+        label: tabs[1],
+        key: 'internet_accounts',
+        children: (
+          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+            <InternetAccounts />
+          </div>
+        ),
       },
     ],
-    contentList: {
-      BankAccounts: <BankAccounts />,
-      InternetAccounts: <InternetAccounts />,
-    },
   };
 };
 
