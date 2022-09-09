@@ -70,6 +70,7 @@
   "important_challenge": "Important Challenges",
   "remaining_bank": "Remaining in bank accounts",
   "remaining_internet": "Remaining in internet accounts",
+  "vacation": "Vacation",
 
   "__comment9__": "CUSTOM_WIDGET",
   "see_all": "See all",
@@ -101,5 +102,22 @@
   "priority": "Priority",
   "important": "Important",
   "average": "Average",
-  "unimportant": "Unimportant"
+  "unimportant": "Unimportant",
+
+  "__comment13__": "TEMPLATES_PAGE",
+  "schedule": "Schedule",
+  "schedule_relax": "Rest schedule",
+  "schedule_entertainment": "Entertainment Schedule",
+  "schedule_visiting_places": "Schedule of visiting places",
+  "all_time": "All Time",
+  "days": "days",
+  "relaxation": "Relaxation",
+  "salons": "Salons",
+  "sea": "Sea",
+  "shops": "Shops",
+  "carousels": "Carousels",
+  "race": "Race",
+  "horseRacing": "HorseRacing",
+  "entertainment": "Entertainment ",
+  "of_them": "Of them"
 }

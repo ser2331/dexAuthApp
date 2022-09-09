@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IItem, IReportsData, IPlanning } from './interfaces/interfaces';
+import { IItem, IReportsData, IPlanning, ISchedule } from './interfaces/interfaces';
 import FakeData from '../../../FakeData';
 
-const { reports, bankAccountsData, internetAccountsData, planning } = FakeData;
+const { reports, bankAccountsData, internetAccountsData, planning, schedule } = FakeData;
 
 export interface IHomeState {
   reportsData: IReportsData[];
@@ -12,7 +12,7 @@ export interface IHomeState {
     planning: IPlanning[];
     targetKeys: string[];
   };
-  templatesData: IReportsData[];
+  templatesData: ISchedule;
   pressedLocation: string;
 }
 
@@ -24,7 +24,7 @@ const initialState: IHomeState = {
     planning,
     targetKeys: [],
   },
-  templatesData: reports,
+  templatesData: schedule,
   pressedLocation: '',
 };
 

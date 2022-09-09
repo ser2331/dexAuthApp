@@ -1,22 +1,14 @@
 import React from 'react';
 import { Breadcrumb } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
-import { homeSlice } from '../../HomeSlice';
-import { WidgetWrapper } from '../../../../common/components/WidgetWrapper/WidgetWrapper';
 import { ReportsWidget } from '../Widgets/ReportsWidget';
 import { InvoiceWidget } from '../Widgets/InvoiceWidget';
-import { routes } from '../../../../types';
 
 import s from './Dashboard.module.scss';
 import { DraftWidget } from '../Widgets/DraftsWidget';
-
-const { setPressedLocation } = homeSlice.actions;
+import { TemplatesWidget } from '../Widgets/TemplatesWidget';
 
 export const Dashboard = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { t } = useTranslation();
 
   return (
@@ -35,17 +27,7 @@ export const Dashboard = () => {
 
         <DraftWidget />
 
-        <WidgetWrapper
-          title={t('templates')}
-          onClickFooter={() => {
-            navigate(routes.templates);
-            dispatch(setPressedLocation('templates'));
-          }}
-          enableFooter={true}
-          width={588}
-        >
-          <div>Данные отсутствуют</div>
-        </WidgetWrapper>
+        <TemplatesWidget />
       </div>
     </div>
   );

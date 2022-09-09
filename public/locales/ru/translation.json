@@ -70,6 +70,7 @@
   "important_challenge": "Задачи помеченные важным",
   "remaining_bank": "На банковских счетах осталось",
   "remaining_internet": "На счетах в интернете осталось",
+  "vacation": "Отпуск",
 
   "__comment9__": "CUSTOM_WIDGET",
   "see_all": "Смотреть все",
@@ -101,6 +102,22 @@
   "priority": "Приоритет",
   "important": "Важно",
   "average": "Средне",
-  "unimportant": "Неважно"
+  "unimportant": "Неважно",
 
+  "__comment13__": "TEMPLATES_PAGE",
+  "schedule": "График",
+  "schedule_relax": "График отдыха",
+  "schedule_entertainment": "График развлечений",
+  "schedule_visiting_places": "График посещения мест",
+  "all_time": "Время на весь опуск",
+  "days": "дней",
+  "relaxation": "Отдых",
+  "salons": "Салоны",
+  "sea": "Море",
+  "shops": "Магазины",
+  "carousels": "Карусели",
+  "race": "Гонки",
+  "horseRacing": "Скачки",
+  "entertainment": "Развлечения ",
+  "of_them": "Из них"
 }

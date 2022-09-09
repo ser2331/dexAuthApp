@@ -31,3 +31,56 @@ export interface IEditableCellProps extends React.HTMLAttributes<HTMLElement> {
   index: number;
   children: React.ReactNode;
 }
+export interface ISchedule {
+  allTime: number;
+  relaxation: {
+    all: number;
+    salons: number;
+    sea: number;
+    shops: number;
+  };
+  entertainment: {
+    all: number;
+    carousels: number;
+    race: number;
+    horseRacing: number;
+  };
+  road: number;
+  timeForLiving: number;
+}
+export interface ISchedule {
+  allTime: number;
+  relaxation: {
+    all: number;
+    salons: number;
+    sea: number;
+    shops: number;
+  };
+  entertainment: {
+    all: number;
+    carousels: number;
+    race: number;
+    horseRacing: number;
+  };
+  road: number;
+  timeForLiving: number;
+}
+interface IRow {
+  days: number;
+  percent: number;
+  title: string;
+}
+export interface IRest {
+  all: IRow;
+  relaxationAll: IRow;
+  salons: IRow;
+  sea: IRow;
+  shops: IRow;
+}
+export interface IEntertainment {
+  all: IRow;
+  entertainment: IRow;
+  carousels: IRow;
+  race: IRow;
+  horseRacing: IRow;
+}

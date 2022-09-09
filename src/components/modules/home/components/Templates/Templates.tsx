@@ -2,8 +2,10 @@ import React from 'react';
 import { Button } from 'antd';
 import { CustomContentWrapper } from '../../../../common/components/CustomContentWrapper/CustomContentWrapper';
 import { useTranslation } from 'react-i18next';
+import { Rest } from '../Rest/Rest';
+import { Entertainment } from '../Entertainment/Entertainment';
 
-const data = (title: string, breadcrumb: string[]) => {
+const data = (title: string, breadcrumb: string[], tabs: string[]) => {
   return {
     title: title,
     breadcrumb: breadcrumb,
@@ -14,12 +16,12 @@ const data = (title: string, breadcrumb: string[]) => {
     ),
     tabList: [
       {
-        key: 'Template1',
-        tab: 'Template1',
+        key: 'schedule',
+        tab: tabs[0],
       },
       {
-        key: 'Template2',
-        tab: 'Template2',
+        key: 'entertainment',
+        tab: tabs[1],
       },
       {
         key: 'Template3',
@@ -27,8 +29,8 @@ const data = (title: string, breadcrumb: string[]) => {
       },
     ],
     contentList: {
-      Template1: <p>Template1</p>,
-      Template2: <p>Template2</p>,
+      schedule: <Rest />,
+      entertainment: <Entertainment />,
       Template3: <p>Template3</p>,
     },
   };
@@ -38,6 +40,7 @@ export const Templates = () => {
   const { t } = useTranslation();
   const title = t('templates');
   const breadcrumb = [t('documents'), t('templates')];
+  const tabs = [t('schedule_relax'), t('schedule_entertainment')];
 
-  return CustomContentWrapper(data(title, breadcrumb));
+  return CustomContentWrapper(data(title, breadcrumb, tabs));
 };

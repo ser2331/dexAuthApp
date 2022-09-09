@@ -237,4 +237,22 @@ export default class FakeData {
       important: 'important',
     },
   ];
+
+  static schedule = {
+    allTime: 720,
+    relaxation: {
+      all: 320,
+      salons: 100,
+      sea: 170,
+      shops: 50,
+    },
+    entertainment: {
+      all: 200,
+      carousels: 50,
+      race: 100,
+      horseRacing: 50,
+    },
+    road: 100,
+    timeForLiving: 100,
+  };
 }

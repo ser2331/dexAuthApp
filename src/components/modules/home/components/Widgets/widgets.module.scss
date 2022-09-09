@@ -21,4 +21,18 @@
     font: 600 16px/24px 'SF Pro Display', sans-serif;
     color: red;
   }
+
+  .Templates {
+    &__content {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    &__header {
+      .top {
+        display: flex;
+      }
+    }
+  }
 }

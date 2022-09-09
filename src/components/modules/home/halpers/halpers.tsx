@@ -7,8 +7,8 @@ import {
   SettingOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Form, Input, InputNumber, MenuProps } from 'antd';
-import { IEditableCellProps } from '../interfaces/interfaces';
+import { Form, Input, InputNumber, MenuProps, Progress } from 'antd';
+import { IEditableCellProps, IEntertainment, IRest } from '../interfaces/interfaces';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -71,5 +71,37 @@ export const EditableCell: React.FC<IEditableCellProps> = ({
         children
       )}
     </td>
+  );
+};
+
+export const getPercents = (all: number, numb: number) => {
+  return Math.round((numb * 100) / all);
+};
+
+export const getDays = (hours: number) => {
+  return Math.round(hours / 24);
+};
+
+export const renderRow = (key: string, rowData: IRest | IEntertainment, days: string) => {
+  return (
+    <div style={{ marginBottom: 24 }}>
+      <div style={{ font: '600 24px/34px "SF Pro Display", sans-serif', color: '#28658e' }}>{`${
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        rowData[key].title
+      } ${
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        rowData[key].days
+      } ${days}`}</div>
+      <Progress
+        percent={
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          rowData[key].percent
+        }
+        showInfo={key !== 'all'}
+      />
+    </div>
   );
 };

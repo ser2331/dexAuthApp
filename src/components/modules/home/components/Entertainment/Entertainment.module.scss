@@ -1,0 +1,14 @@
+.Entertainment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .contentWrapper {
+    width: 50em;
+  }
+  .title {
+    font: 600 24px/34px "SF Pro Display", sans-serif;
+    color: #28658e;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Button, Form, Input, Radio, Table } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
@@ -20,20 +20,23 @@ export const AddChallenge = () => {
   const { draftsData } = useAppSelector((state) => state.homeReducer);
   const { planning } = draftsData;
 
-  const onReset = () => {
+  const onReset = useCallback(() => {
     form.resetFields();
-  };
+  }, []);
 
-  const onFinish = (values: IPlanning) => {
-    const newChallenge = {
-      ...values,
-      key: Math.random().toString(),
-      chosen: false,
-      important: valueRadio,
-    };
-    dispatch(setNewChallenge(newChallenge));
-    onReset();
-  };
+  const onFinish = useCallback(
+    (values: IPlanning) => {
+      const newChallenge = {
+        ...values,
+        key: Math.random().toString(),
+        chosen: false,
+        important: valueRadio,
+      };
+      dispatch(setNewChallenge(newChallenge));
+      onReset();
+    },
+    [valueRadio]
+  );
 
   const columns = useMemo(
     () => [

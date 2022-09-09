@@ -10,13 +10,22 @@ interface IWidgetWrapper {
   onClickFooter: () => void;
   enableFooter: boolean;
   width?: number;
+  height?: number;
 }
 
 export const WidgetWrapper: FC<IWidgetWrapper> = (data) => {
-  const { title, description, children, onClickFooter, enableFooter = true, width = 289 } = data;
+  const {
+    title,
+    description,
+    children,
+    onClickFooter,
+    enableFooter = true,
+    width = 289,
+    height = 302,
+  } = data;
   const { t } = useTranslation();
   return (
-    <div className={s.WidgetWrapper} style={{ width: width }}>
+    <div className={s.WidgetWrapper} style={{ width: width, height: height }}>
       {data ? (
         <>
           <div className={s.WidgetWrapper__header}>{title}</div>
