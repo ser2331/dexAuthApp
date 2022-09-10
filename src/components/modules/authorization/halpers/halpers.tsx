@@ -4,6 +4,7 @@ export const searchUser = (
   arr: IAuth[],
   values: IAuth,
   setErrorMessage: (e: string) => void,
+  setCurrentUser: (u: IAuth) => void,
   redirect: () => void,
   mes2: string,
   mes1: string
@@ -15,10 +16,12 @@ export const searchUser = (
     window.localStorage && window.localStorage.setItem('LOGIN', JSON.stringify(userAdmin.login));
     window.localStorage &&
       window.localStorage.setItem('PASSWORD', JSON.stringify(userAdmin.password));
+    setCurrentUser(userAdmin);
     return redirect();
   }
   if (userAdmin && userAdmin.isAdmin && !values?.remember) {
     setErrorMessage('');
+    setCurrentUser(userAdmin);
     return redirect();
   }
   if (userAdmin && !userAdmin.isAdmin) {

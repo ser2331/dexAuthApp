@@ -122,5 +122,16 @@
   "race": "Race",
   "horseRacing": "HorseRacing",
   "entertainment": "Entertainment ",
-  "of_them": "Of them"
+  "of_them": "Of them",
+
+  "__comment14__": "SETTINGS",
+  "personal_area": "Personal Area",
+  "log_out": "Log Out",
+  "user_name": "Name",
+  "last_name": "Last Name",
+  "sure_name": "Sure Name",
+  "phone": "Phone",
+  "birthday": "Birthday",
+  "gender": "Gender",
+  "email": "Email"
 }

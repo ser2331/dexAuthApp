@@ -6,6 +6,7 @@ const { users } = FakeData;
 
 export interface AuthorizationState {
   arrayUsers: IAuth[];
+  currentUser: IAuth;
   changeableMail: string;
   rememberMe: boolean;
   isAuth: boolean;
@@ -13,6 +14,23 @@ export interface AuthorizationState {
 
 const initialState: AuthorizationState = {
   arrayUsers: users,
+  currentUser: {
+    login: '',
+    password: '',
+    sureName: '',
+    name: '',
+    lastName: '',
+    confirmPassword: '',
+    day: '',
+    month: '',
+    year: '',
+    phone: '',
+    gender: '',
+    readOut: false,
+    isAdmin: false,
+    remember: false,
+    avatar: '',
+  },
   changeableMail: '',
   rememberMe: false,
   isAuth: false,
@@ -33,6 +51,9 @@ export const authorizationSlice = createSlice({
     },
     setChangeableArray(state, action: PayloadAction<IAuth[]>) {
       state.arrayUsers = action.payload;
+    },
+    setUser(state, action: PayloadAction<IAuth>) {
+      state.currentUser = action.payload;
     },
   },
 });

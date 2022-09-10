@@ -1,3 +1,5 @@
+import avatar from './components/assets/images/avatarRick.jpg';
+
 export default class FakeData {
   static reports = [
     {
@@ -113,6 +115,7 @@ export default class FakeData {
       phone: '77589599',
       gender: 'mail',
       readOut: false,
+      avatar: avatar,
     },
     {
       login: 'test@mail.ru',

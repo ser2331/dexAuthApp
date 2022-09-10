@@ -10,7 +10,7 @@ import { appSlice } from '../../AppSlice';
 
 import s from './App.module.scss';
 
-const { setIsAuth } = authorizationSlice.actions;
+const { setIsAuth, setUser } = authorizationSlice.actions;
 const { showLangMenu } = appSlice.actions;
 
 export const App = () => {
@@ -44,6 +44,7 @@ export const App = () => {
     if (login && password) {
       const userAdmin = arrayUsers.find((el) => el.login === login && el.password === password);
       if (userAdmin) {
+        dispatch(setUser(userAdmin));
         dispatch(setIsAuth(true));
       }
     }

@@ -14,4 +14,5 @@ export interface IAuth {
 
   isAdmin?: boolean;
   remember?: boolean;
+  avatar?: string;
 }

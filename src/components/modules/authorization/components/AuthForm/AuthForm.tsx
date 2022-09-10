@@ -10,7 +10,7 @@ import { routes } from '../../../../types';
 
 import s from './AuthForm.module.scss';
 
-const { setIsAuth } = authorizationSlice.actions;
+const { setIsAuth, setUser } = authorizationSlice.actions;
 
 interface IAuthForm {
   setErrorMessage: (e: string) => void;
@@ -31,9 +31,13 @@ export const AuthForm: FC<IAuthForm> = ({ setErrorMessage }) => {
     dispatch(setIsAuth(true));
   };
 
+  const setCurrentUser = (user: IAuth) => {
+    dispatch(setUser(user));
+  };
+
   const onFinish = (values: IAuth) => {
     setNumberAttempts(numberAttempts + 1);
-    searchUser(arrayUsers, values, setErrorMessage, redirect, mes1, mes2);
+    searchUser(arrayUsers, values, setErrorMessage, setCurrentUser, redirect, mes1, mes2);
   };
 
   const onFinishFailed = () => {

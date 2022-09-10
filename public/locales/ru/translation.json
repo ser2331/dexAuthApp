@@ -122,5 +122,16 @@
   "race": "Гонки",
   "horseRacing": "Скачки",
   "entertainment": "Развлечения ",
-  "of_them": "Из них"
+  "of_them": "Из них",
+
+  "__comment14__": "SETTINGS",
+  "personal_area": "Личный кабинет",
+  "log_out": "Выйти",
+  "user_name": "Имя",
+  "last_name": "Фамилия",
+  "sure_name": "Отчество",
+  "phone": "Телефон",
+  "birthday": "День рождения",
+  "gender": "Пол",
+  "email": "Email"
 }
