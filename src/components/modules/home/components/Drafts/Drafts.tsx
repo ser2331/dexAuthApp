@@ -13,7 +13,7 @@ const data = (title: string, breadcrumb: string[], tabs: string[]) => {
         label: tabs[0],
         key: 'planning',
         children: (
-          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+          <div style={{ minHeight: 280 }}>
             <Planning />
           </div>
         ),
@@ -22,7 +22,7 @@ const data = (title: string, breadcrumb: string[], tabs: string[]) => {
         label: tabs[0],
         key: 'add_new_challenge',
         children: (
-          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+          <div style={{ minHeight: 280 }}>
             <AddChallenge />
           </div>
         ),

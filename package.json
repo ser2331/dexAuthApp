@@ -45,7 +45,8 @@
     "singleQuote": true,
     "printWidth": 100,
     "tabWidth": 2,
-    "jsxSingleQuote": true
+    "jsxSingleQuote": true,
+    "endOfLine": "auto"
   },
   "browserslist": {
     "production": [

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Form, Input, Radio, Table } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
@@ -8,7 +8,7 @@ import { IPlanning } from '../../interfaces/interfaces';
 
 import s from './AddChallenge.module.scss';
 
-const { setNewChallenge } = homeSlice.actions;
+const { setNewChallenge, setAlertMessage } = homeSlice.actions;
 
 export const AddChallenge = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,7 @@ export const AddChallenge = () => {
 
   const [valueRadio, setValueRadio] = useState('average');
 
-  const { draftsData } = useAppSelector((state) => state.homeReducer);
+  const { draftsData, alertMessage } = useAppSelector((state) => state.homeReducer);
   const { planning } = draftsData;
 
   const onReset = useCallback(() => {
@@ -26,16 +26,22 @@ export const AddChallenge = () => {
 
   const onFinish = useCallback(
     (values: IPlanning) => {
-      const newChallenge = {
-        ...values,
-        key: Math.random().toString(),
-        chosen: false,
-        important: valueRadio,
-      };
-      dispatch(setNewChallenge(newChallenge));
-      onReset();
+      try {
+        const newChallenge = {
+          ...values,
+          key: Math.random().toString(),
+          chosen: false,
+          important: valueRadio,
+        };
+        dispatch(setNewChallenge(newChallenge));
+        dispatch(setAlertMessage({ message: t('case_added_successfully'), type: 'success' }));
+        onReset();
+      } catch (e) {
+        console.log(e);
+        dispatch(setAlertMessage({ message: t('case_not_added'), type: 'error' }));
+      }
     },
-    [valueRadio]
+    [dispatch, valueRadio]
   );
 
   const columns = useMemo(
@@ -50,6 +56,16 @@ export const AddChallenge = () => {
     ],
     [t]
   );
+
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    if (alertMessage) {
+      timer = setTimeout(() => {
+        dispatch(setAlertMessage({ message: '', type: 'info' }));
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [alertMessage]);
 
   return (
     <div className={s.AddChallenge}>

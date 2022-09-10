@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
-import { Breadcrumb, Layout, Tabs } from 'antd';
+import { useAppSelector } from '../../../core/redux';
+import { Alert, Breadcrumb, Layout, Tabs } from 'antd';
 import { IData, IFunc } from '../../interfaces/interfaces';
 
 import s from './CustomContentWrapper.module.scss';
@@ -7,11 +8,10 @@ import s from './CustomContentWrapper.module.scss';
 export const CustomContentWrapper: FC<IData & IFunc> = (data, onChangeTab) => {
   const { title, extra, items, breadcrumb } = data;
 
+  const { alertMessage } = useAppSelector((state) => state.homeReducer);
+
   return (
-    <Layout
-      className={s.CustomContentWrapper}
-      style={{ padding: '0 4px 24px', minHeight: '100vh' }}
-    >
+    <Layout className={s.CustomContentWrapper} style={{ minHeight: '100vh' }}>
       <div className={s.header}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           {breadcrumb?.map((el, index) => (
@@ -20,8 +20,12 @@ export const CustomContentWrapper: FC<IData & IFunc> = (data, onChangeTab) => {
         </Breadcrumb>
         <div className={s.title}>{title}</div>
       </div>
+      {alertMessage.message && (
+        <Alert className={s.alert} message={alertMessage.message} type={alertMessage.type} />
+      )}
+
       <Tabs
-        style={{ width: '100%', border: 'none', margin: '-70px 15px 0' }}
+        style={{ border: 'none', margin: '-70px 24px 0' }}
         onChange={onChangeTab}
         tabBarExtraContent={extra}
         items={items}

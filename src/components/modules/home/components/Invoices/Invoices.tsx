@@ -40,7 +40,7 @@ const documentsData = (
         label: tabs[0],
         key: 'bank_accounts',
         children: (
-          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+          <div style={{ minHeight: 280 }}>
             <BankAccounts />
           </div>
         ),
@@ -49,7 +49,7 @@ const documentsData = (
         label: tabs[1],
         key: 'internet_accounts',
         children: (
-          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+          <div style={{ minHeight: 280 }}>
             <InternetAccounts />
           </div>
         ),

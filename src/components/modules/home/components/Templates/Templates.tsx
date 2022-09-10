@@ -25,7 +25,7 @@ const data = (
         label: tabs[0],
         key: 'schedule_relax',
         children: (
-          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+          <div style={{ minHeight: 280 }}>
             <Rest />
           </div>
         ),
@@ -34,7 +34,7 @@ const data = (
         label: tabs[0],
         key: 'schedule_entertainment',
         children: (
-          <div style={{ minHeight: 280, padding: '0 24px 0 0' }}>
+          <div style={{ minHeight: 280 }}>
             <Entertainment />
           </div>
         ),

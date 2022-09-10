@@ -104,6 +104,8 @@
   "important": "Important",
   "average": "Average",
   "unimportant": "Unimportant",
+  "case_added_successfully": "Case added successfully",
+  "case_not_added": "Case not added",
 
   "__comment13__": "TEMPLATES_PAGE",
   "schedule": "Schedule",

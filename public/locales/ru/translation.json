@@ -104,6 +104,8 @@
   "important": "Важно",
   "average": "Средне",
   "unimportant": "Неважно",
+  "case_added_successfully": "Дело успешно добавленно",
+  "case_not_added": "Дело не добавленно",
 
   "__comment13__": "TEMPLATES_PAGE",
   "schedule": "График",

@@ -4,6 +4,8 @@ import FakeData from '../../../FakeData';
 
 const { reports, bankAccountsData, internetAccountsData, planning, schedule } = FakeData;
 
+type messageType = 'success' | 'info' | 'warning' | 'error';
+
 export interface IHomeState {
   reportsData: IReportsData[];
   invoicesData: Array<IItem[]>;
@@ -15,6 +17,10 @@ export interface IHomeState {
   };
   templatesData: ISchedule;
   pressedLocation: string;
+  alertMessage: {
+    message: string;
+    type: messageType;
+  };
 }
 
 const initialState: IHomeState = {
@@ -28,6 +34,10 @@ const initialState: IHomeState = {
   },
   templatesData: schedule,
   pressedLocation: '',
+  alertMessage: {
+    message: '',
+    type: 'info',
+  },
 };
 
 export const homeSlice = createSlice({
@@ -57,6 +67,9 @@ export const homeSlice = createSlice({
     },
     setKeyInternetAccountsData(state, action: PayloadAction<string>) {
       state.keyInternetAccountsData = action.payload;
+    },
+    setAlertMessage(state, action: PayloadAction<{ message: string; type: messageType }>) {
+      state.alertMessage = action.payload;
     },
   },
 });
