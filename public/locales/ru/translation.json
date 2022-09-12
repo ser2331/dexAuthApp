@@ -145,7 +145,10 @@
 
   "__comment15__": "CUSTOMERS",
   "admin": "Админ",
-  "user_information": "Информация о пользователе",
-  "user_authorization_data": "Данные авторизации пользователя",
-  "user_description": "Описание пользователя"
+  "user_information": "Информация о покупателя",
+  "user_authorization_data": "Данные авторизации покупателя",
+  "user_description": "Описание покупателя",
+  "customer": "Покупатель",
+  "logIn": "Логин"
+
 }

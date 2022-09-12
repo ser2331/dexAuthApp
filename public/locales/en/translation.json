@@ -145,7 +145,9 @@
 
   "__comment15__": "CUSTOMERS",
   "admin": "Admin",
-  "user_information": "User information",
-  "user_authorization_data": "User authorization data",
-  "user_description": "User description"
+  "user_information": "Customer information",
+  "user_authorization_data": "Customer authorization data",
+  "user_description": "Customer description",
+  "customer": "Customer",
+  "logIn": "Login"
 }

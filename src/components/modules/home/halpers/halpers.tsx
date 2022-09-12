@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 import { Form, Input, InputNumber, MenuProps, Progress } from 'antd';
 import { IEditableCellProps, IEntertainment, IRest } from '../interfaces/interfaces';
-import { IAuth } from '../../authorization/interfaces/authorizationInterface';
+import { ICustomers } from '../../authorization/interfaces/authorizationInterface';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -27,7 +27,7 @@ function getItem(
   } as MenuItem;
 }
 
-export const items = (userArr: IAuth[]) => {
+export const items = (userArr: ICustomers[]) => {
   return [
     getItem('Dashboard', 'dashboard', <PieChartOutlined />),
     getItem('Reports', 'reports', <RiseOutlined />),
@@ -40,11 +40,7 @@ export const items = (userArr: IAuth[]) => {
       'Customers',
       'customers',
       <UserOutlined />,
-      userArr.map((el) => getItem(el.name, el.login))
-      //   [
-      //   getItem('Customers 1', '1'),
-      //   getItem('Customers 2', '2'),
-      // ]
+      userArr.map((el) => getItem(el.sureName, el.key))
     ),
     getItem('Settings', 'settings', <SettingOutlined />),
     getItem('Help & Contact', 'help', <InfoCircleOutlined />),

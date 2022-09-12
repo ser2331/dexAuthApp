@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IItem, IReportsData, IPlanning, ISchedule } from './interfaces/interfaces';
 import FakeData from '../../../FakeData';
+import { ICustomers } from '../authorization/interfaces/authorizationInterface';
 
-const { reports, bankAccountsData, internetAccountsData, planning, schedule } = FakeData;
+const { reports, bankAccountsData, internetAccountsData, planning, schedule, customers } = FakeData;
 
 type messageType = 'success' | 'info' | 'warning' | 'error';
 
@@ -21,6 +22,7 @@ export interface IHomeState {
     message: string;
     type: messageType;
   };
+  customers: ICustomers[];
 }
 
 const initialState: IHomeState = {
@@ -38,6 +40,7 @@ const initialState: IHomeState = {
     message: '',
     type: 'info',
   },
+  customers: customers,
 };
 
 export const homeSlice = createSlice({

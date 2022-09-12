@@ -12,7 +12,7 @@ import { Help } from '../Help/Help';
 import { routes } from '../../../../types';
 
 export const HomeRoutes = () => {
-  const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
+  const { customers } = useAppSelector((state) => state.homeReducer);
 
   return (
     <Routes>
@@ -23,8 +23,8 @@ export const HomeRoutes = () => {
       <Route path={routes.invoices} element={<Invoices />} />
       <Route path={routes.drafts} element={<Drafts />} />
       <Route path={routes.templates} element={<Templates />} />
-      {arrayUsers.map((el) => (
-        <Route key={el.login} path={`/customers/${el.login}`} element={<Customers />} />
+      {customers.map((el) => (
+        <Route key={el.key} path={`/customers/${el.key}`} element={<Customers />} />
       ))}
       <Route path={routes.settings} element={<Settings />} />
       <Route path={routes.help} element={<Help />} />

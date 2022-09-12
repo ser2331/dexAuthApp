@@ -135,6 +135,55 @@ export default class FakeData {
     },
   ];
 
+  static customers = [
+    {
+      key: 'Customer1',
+      password: 'admin',
+      login: 'qwerty@mail.ru',
+      isAdmin: true,
+      sureName: 'Дуков',
+      name: 'Сергей',
+      lastName: 'Сергеевич',
+      day: '19',
+      month: '3',
+      year: '1995',
+      phone: '77589599',
+      gender: 'Male',
+      readOut: false,
+      avatar: avatar,
+    },
+    {
+      key: 'Customer2',
+      password: 'test',
+      login: '123456@mail.ru',
+      isAdmin: false,
+      sureName: 'Афанасьев',
+      name: 'Алексей',
+      lastName: 'Алексеевич',
+      day: '28',
+      month: '9',
+      year: '1991',
+      phone: '77589599',
+      gender: 'Male',
+      readOut: false,
+    },
+    {
+      key: 'Customer3',
+      password: 'test',
+      login: '9999@mail.ru',
+      isAdmin: false,
+      sureName: 'Петров',
+      name: 'Михаил',
+      lastName: 'Михайлович',
+      day: '16',
+      month: '2',
+      year: '1999',
+      phone: '77589599',
+      gender: 'Male',
+      readOut: false,
+    },
+  ];
+
   static bankAccountsData = [
     {
       key: '1',

@@ -8,13 +8,13 @@ import s from './Customers.module.scss';
 export const Customers = () => {
   const { t } = useTranslation();
 
-  const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
+  const { customers } = useAppSelector((state) => state.homeReducer);
   const { pressedLocation } = useAppSelector((state) => state.homeReducer);
   const currentCustomer = useMemo(() => {
-    return arrayUsers.find((el) => el.login === pressedLocation);
-  }, [pressedLocation, arrayUsers]);
+    return customers.find((el) => el.key === pressedLocation);
+  }, [pressedLocation, customers]);
 
-  const isData = currentCustomer?.login;
+  const isData = currentCustomer?.key;
 
   const userData = useMemo(() => {
     if (isData) {
@@ -30,7 +30,6 @@ export const Customers = () => {
           }г.`,
         },
         { key: t('gender'), value: currentCustomer.gender },
-        { key: t('email'), value: currentCustomer.login },
       ];
     }
   }, [currentCustomer, t, isData]);
@@ -38,7 +37,7 @@ export const Customers = () => {
   const userAuthData = useMemo(() => {
     if (isData) {
       return [
-        { key: t('login'), value: currentCustomer.login },
+        { key: t('logIn'), value: currentCustomer.login },
         { key: t('password'), value: currentCustomer.password },
         { key: t('admin'), value: currentCustomer.isAdmin ? 'Yes' : 'No' },
       ];
@@ -49,7 +48,7 @@ export const Customers = () => {
     () => (
       <div className={s.content}>
         <div className={s.header}>
-          <div className={s.title}>{`Customer ${currentCustomer?.login}`}</div>
+          <div className={s.title}>{`${t('customer')} ${currentCustomer?.sureName}`}</div>
         </div>
 
         <div className={s.body}>
