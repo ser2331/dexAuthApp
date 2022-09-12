@@ -1,15 +1,16 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Button, Card } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
-import { routes } from '../../../../types';
-
-import s from './Settings.module.scss';
 import { EditUserInformationDrawer } from '../EditUserInformationDrawer/EditUserInformationDrawer';
 import { EditUserAuthInfoDrawer } from '../EditUserAuthInfoDrawer/EditUserAuthInfoDrawer';
+import { routes } from '../../../../types';
+import { getDayMonth, renderInfoTable } from '../../halpers/halpers';
+
+import s from './Settings.module.scss';
 
 const { setIsAuth } = authorizationSlice.actions;
 
@@ -23,15 +24,6 @@ export const Settings = () => {
 
   const { currentUser } = useAppSelector((state) => state.authorizationReducer);
   const { login, name, avatar, day, lastName, gender, month, phone, sureName, year } = currentUser;
-
-  const getDayMonth = useCallback(
-    (numb: string) => {
-      if (Number(numb) <= 10) {
-        return `0${numb}`;
-      } else return numb;
-    },
-    [currentUser]
-  );
 
   const userData = useMemo(
     () => [
@@ -100,21 +92,7 @@ export const Settings = () => {
             <EllipsisOutlined key='ellipsis' />,
           ]}
         >
-          <table className={s.table}>
-            <tbody>
-              {userData.map((el, index) => (
-                <tr key={index} className={s.tableWrapper}>
-                  <td className={s.tableLabelWrapper}>
-                    <div className={s.tableLabel}>{el.key}</div>
-                  </td>
-
-                  <td className={s.tableValueWrapper}>
-                    <div className={s.tableValue}>{el.value}</div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {renderInfoTable({ data: userData, s })}
         </Card>
       </div>
     </div>

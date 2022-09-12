@@ -3,10 +3,10 @@ import { Breadcrumb } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { ReportsWidget } from '../Widgets/ReportsWidget';
 import { InvoiceWidget } from '../Widgets/InvoiceWidget';
-
-import s from './Dashboard.module.scss';
 import { DraftWidget } from '../Widgets/DraftsWidget';
 import { TemplatesWidget } from '../Widgets/TemplatesWidget';
+
+import s from './Dashboard.module.scss';
 
 export const Dashboard = () => {
   const { t } = useTranslation();

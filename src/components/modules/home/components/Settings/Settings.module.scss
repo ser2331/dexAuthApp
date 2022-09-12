@@ -4,16 +4,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 24px;
 
   .header {
+    background: white;
     width: 100%;
-    position: relative;
+    margin: 0 4px 24px 4px;
     padding: 24px;
+    position: relative;
 
     .title {
-      font: 600 32px/38px "SF Pro Display", sans-serif;
-      color: #1f5b84;
+      font: 600 20px/28px 'SF Pro Display', sans-serif;
     }
 
     .logOut {

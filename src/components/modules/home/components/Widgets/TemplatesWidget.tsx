@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { routes } from '../../../../types';
 import { homeSlice } from '../../HomeSlice';
-
-import s from './widgets.module.scss';
 import { Progress } from 'antd';
 import { getDays, getPercents } from '../../halpers/halpers';
+
+import s from './widgets.module.scss';
 
 const { setPressedLocation } = homeSlice.actions;
 

@@ -18,6 +18,7 @@ export const ProtectedPages = () => {
   const navigate = useNavigate();
 
   const { pressedLocation } = useAppSelector((state) => state.homeReducer);
+  const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
 
   const onClick: MenuProps['onClick'] = (e) => {
     dispatch(setPressedLocation(e.key));
@@ -38,7 +39,7 @@ export const ProtectedPages = () => {
           defaultSelectedKeys={['dashboard']}
           selectedKeys={[pressedLocation]}
           style={{ height: '100%', borderRight: 0 }}
-          items={items}
+          items={items(arrayUsers)}
         />
       </Sider>
       <HomeRoutes />
