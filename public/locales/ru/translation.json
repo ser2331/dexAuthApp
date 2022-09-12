@@ -133,5 +133,6 @@
   "phone": "Телефон",
   "birthday": "День рождения",
   "gender": "Пол",
-  "email": "Email"
+  "email": "Email",
+  "edit_user_info": "Редактировать информацию пользователя"
 }

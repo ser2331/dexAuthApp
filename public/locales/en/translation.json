@@ -13,7 +13,7 @@
   "__comment2__": "REGISTRATION_PAGE",
   "surname": "Surname",
   "name": "Name",
-  "middle_name": "middle name",
+  "middle_name": "Middle name",
   "repeat_password": "Repeat password",
   "date_of_birth": "Date of Birth",
   "day": "Day",
@@ -133,5 +133,6 @@
   "phone": "Phone",
   "birthday": "Birthday",
   "gender": "Gender",
-  "email": "Email"
+  "email": "Email",
+  "edit_user_info": "Edit user information"
 }

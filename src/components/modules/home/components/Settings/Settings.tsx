@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Button, Card } from 'antd';
@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { routes } from '../../../../types';
 
 import s from './Settings.module.scss';
+import { EditUserInformationDrawer } from '../EditUserInformationDrawer/EditUserInformationDrawer';
 
 const { setIsAuth } = authorizationSlice.actions;
 
@@ -16,8 +17,23 @@ export const Settings = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
+  const [showEditDrawer, setShowEditDrawer] = useState(false);
+
   const { currentUser } = useAppSelector((state) => state.authorizationReducer);
   const { login, name, avatar, day, lastName, gender, month, phone, sureName, year } = currentUser;
+
+  const userData = useMemo(
+    () => [
+      { key: t('user_name'), value: name },
+      { key: t('last_name'), value: lastName },
+      { key: t('sure_name'), value: sureName },
+      { key: t('phone'), value: `(+373) ${phone}` },
+      { key: t('birthday'), value: `${day}.${month}.${year}г.` },
+      { key: t('gender'), value: gender },
+      { key: t('email'), value: login },
+    ],
+    [currentUser, t]
+  );
 
   const logOut = () => {
     window.localStorage && window.localStorage.setItem('LOGIN', JSON.stringify(''));
@@ -26,21 +42,23 @@ export const Settings = () => {
     navigate(routes.login);
   };
 
-  const userData = useMemo(
-    () => [
-      { key: t('user_name'), value: name },
-      { key: t('last_name'), value: lastName },
-      { key: t('sure_name'), value: sureName },
-      { key: t('phone'), value: `(+373) ${phone}` },
-      { key: t('birthday'), value: `${day} ${month} ${year}г.` },
-      { key: t('gender'), value: gender },
-      { key: t('email'), value: login },
-    ],
-    [currentUser, t]
-  );
+  const showSettings = () => {
+    console.log('Settings');
+  };
+  const showEditUserInfo = () => {
+    setShowEditDrawer(true);
+  };
+  const closeEditUserInfo = () => {
+    setShowEditDrawer(false);
+  };
 
   return (
     <div className={s.Settings}>
+      <EditUserInformationDrawer
+        showEditDrawer={showEditDrawer}
+        closeEditUserInfo={closeEditUserInfo}
+      />
+
       <div className={s.header}>
         <div className={s.title}>{t('personal_area')}</div>
 
@@ -63,8 +81,8 @@ export const Settings = () => {
           }
           style={{ width: '40em', marginTop: 16 }}
           actions={[
-            <SettingOutlined key='setting' />,
-            <EditOutlined key='edit' />,
+            <SettingOutlined key='setting' onClick={showSettings} />,
+            <EditOutlined key='edit' onClick={showEditUserInfo} />,
             <EllipsisOutlined key='ellipsis' />,
           ]}
         >

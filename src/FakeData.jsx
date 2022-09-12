@@ -113,7 +113,7 @@ export default class FakeData {
       month: '03',
       year: '1995',
       phone: '77589599',
-      gender: 'mail',
+      gender: 'Male',
       readOut: false,
       avatar: avatar,
     },
@@ -129,7 +129,7 @@ export default class FakeData {
       month: '03',
       year: '1995',
       phone: '77589599',
-      gender: 'mail',
+      gender: 'Male',
       readOut: false,
     },
   ];

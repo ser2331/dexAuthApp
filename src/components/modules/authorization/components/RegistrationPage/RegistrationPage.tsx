@@ -61,10 +61,7 @@ export const RegistrationPage = () => {
             <Form.Item
               name='name'
               rules={[
-                {
-                  required: true,
-                  message: t('required_field'),
-                },
+                { required: true, message: t('required_field') },
                 { max: 20, message: t('max_characters_20') },
               ]}
             >
@@ -74,10 +71,7 @@ export const RegistrationPage = () => {
             <Form.Item
               name='lastName'
               rules={[
-                {
-                  required: true,
-                  message: t('required_field'),
-                },
+                { required: true, message: t('required_field') },
                 { max: 20, message: t('max_characters_20') },
               ]}
             >
@@ -89,14 +83,8 @@ export const RegistrationPage = () => {
             name='password'
             rules={[
               { required: true, message: t('required_field') },
-              {
-                min: 4,
-                message: t('password_between_4_and_64_characters'),
-              },
-              {
-                max: 64,
-                message: t('password_between_4_and_64_characters'),
-              },
+              { min: 4, message: t('password_between_4_and_64_characters') },
+              { max: 64, message: t('password_between_4_and_64_characters') },
             ]}
           >
             <Input.Password placeholder={t('password')} style={{ padding: '0 12px' }} />
@@ -106,10 +94,7 @@ export const RegistrationPage = () => {
             name='confirmPassword'
             dependencies={['password']}
             rules={[
-              {
-                required: true,
-                message: t('required_field'),
-              },
+              { required: true, message: t('required_field') },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
@@ -129,10 +114,7 @@ export const RegistrationPage = () => {
               <Form.Item
                 name='day'
                 rules={[
-                  {
-                    required: true,
-                    message: t('required_field'),
-                  },
+                  { required: true, message: t('required_field') },
                   { type: 'number', max: 31, min: 1 },
                 ]}
               >
@@ -142,12 +124,7 @@ export const RegistrationPage = () => {
               <Form.Item
                 className={s.month}
                 name='month'
-                rules={[
-                  {
-                    required: true,
-                    message: t('required_field'),
-                  },
-                ]}
+                rules={[{ required: true, message: t('required_field') }]}
               >
                 <Select placeholder={t('month')} size='large'>
                   {monthOptions.map((option) => (
@@ -158,15 +135,7 @@ export const RegistrationPage = () => {
                 </Select>
               </Form.Item>
 
-              <Form.Item
-                name='year'
-                rules={[
-                  {
-                    required: true,
-                    message: t('required_field'),
-                  },
-                ]}
-              >
+              <Form.Item name='year' rules={[{ required: true, message: t('required_field') }]}>
                 <Select placeholder={t('year')} size='large'>
                   {yearOptions().map((option) => (
                     <Select.Option key={option} value={option}>
@@ -178,15 +147,7 @@ export const RegistrationPage = () => {
             </div>
 
             <div className={s.bottomWrapper}>
-              <Form.Item
-                name='phone'
-                rules={[
-                  {
-                    required: true,
-                    message: t('number_not_exist'),
-                  },
-                ]}
-              >
+              <Form.Item name='phone' rules={[{ required: true, message: t('number_not_exist') }]}>
                 <InputNumber
                   formatter={(value: number | string | undefined) =>
                     value ? value.toString().slice(0, 8) : ''
@@ -196,15 +157,7 @@ export const RegistrationPage = () => {
                 />
               </Form.Item>
 
-              <Form.Item
-                name='gender'
-                rules={[
-                  {
-                    required: true,
-                    message: t('required_field'),
-                  },
-                ]}
-              >
+              <Form.Item name='gender' rules={[{ required: true, message: t('required_field') }]}>
                 <Select placeholder={t('floor')} size='large'>
                   {genderOptions.map((option) => (
                     <Select.Option key={option.value} value={option.value}>
