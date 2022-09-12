@@ -1,11 +1,16 @@
-import React, { FC } from 'react';
-import { Button, Col, Drawer, Form, Input, InputNumber, Row, Select } from 'antd';
+import React, { FC, useCallback, useMemo } from 'react';
+import { Button, Col, Divider, Drawer, Form, Input, InputNumber, Row, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
-import s from '../../../authorization/components/RegistrationPage/RegistrationPage.module.scss';
+import { useAppDispatch, useAppSelector } from '../../../../core/redux';
+import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { IAuth } from '../../../authorization/interfaces/authorizationInterface';
 import { genderOptions, monthOptions, yearOptions } from '../../../authorization/halpers/halpers';
 
+import s from './EditUserInformationDrawer.module.scss';
+
 const { Option } = Select;
+
+const { setUser } = authorizationSlice.actions;
 
 interface IEditUserInformationDrawer {
   showEditDrawer: boolean;
@@ -16,12 +21,28 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
   showEditDrawer,
   closeEditUserInfo,
 }) => {
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  console.log(genderOptions);
-  console.log(yearOptions());
+  const [form] = Form.useForm();
+
+  const { currentUser } = useAppSelector((state) => state.authorizationReducer);
+  const { name, avatar, day, lastName, gender, month, phone, sureName, year } = currentUser;
+
+  const getMonthName = useMemo(() => {
+    return monthOptions.find((el) => el.value === Number(month))?.name;
+  }, [currentUser]);
+
   const onFinish = (values: IAuth) => {
-    console.log(values);
+    dispatch(setUser({ ...currentUser, ...values }));
+    closeEditUserInfo();
   };
+
+  const onReset = useCallback(() => {
+    form.setFieldsValue({
+      ...currentUser,
+      month: getMonthName,
+    });
+  }, [currentUser, getMonthName]);
 
   return (
     <Drawer
@@ -31,9 +52,21 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
       open={showEditDrawer}
     >
       <Form
-        className={s.AuthForm}
-        name='basic'
-        initialValues={{ remember: false }}
+        form={form}
+        className={s.Form}
+        name='EditUserInformation'
+        style={{ height: '-webkit-fill-available' }}
+        initialValues={{
+          sureName: sureName,
+          name: name,
+          lastName: lastName,
+          day: Number(day),
+          month: getMonthName,
+          year: year,
+          phone: phone,
+          gender: gender,
+          avatar: avatar,
+        }}
         onFinish={onFinish}
         layout='vertical'
         requiredMark={false}
@@ -142,9 +175,27 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
           </Select>
         </Form.Item>
 
-        <Button type='primary' htmlType='submit' style={{ width: '100%' }}>
-          {t('save')}
-        </Button>
+        <Form.Item
+          name='avatar'
+          label={t('avatar')}
+          rules={[{ required: true, message: t('required_field') }]}
+        >
+          <Input placeholder={t('avatar')} />
+        </Form.Item>
+
+        <div className={s.formFooter}>
+          <Divider />
+
+          <div className={s.btnWrapper}>
+            <Button className={s.reset} onClick={onReset}>
+              {t('cancellation')}
+            </Button>
+
+            <Button className={s.submit} type='primary' htmlType='submit'>
+              {t('change_info')}
+            </Button>
+          </div>
+        </div>
       </Form>
     </Drawer>
   );

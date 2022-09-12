@@ -128,11 +128,18 @@
   "personal_area": "Личный кабинет",
   "log_out": "Выйти",
   "user_name": "Имя",
-  "last_name": "Фамилия",
-  "sure_name": "Отчество",
+  "last_name": "Отчество",
+  "sure_name": "Фамилия",
   "phone": "Телефон",
   "birthday": "День рождения",
   "gender": "Пол",
   "email": "Email",
-  "edit_user_info": "Редактировать информацию пользователя"
+  "edit_user_info": "Редактировать информацию пользователя",
+  "avatar": "Аватар",
+  "old_password": "Старый пароль",
+  "new_password": "Новый пароль",
+  "confirm_password": "Подтвердите новый пароль",
+  "cancellation": "Отмена",
+  "change_password": "Изменить пароль",
+  "change_info": "Изменить данные"
 }

@@ -73,6 +73,8 @@ export const onChangePassword = (
     return arrayUsers;
   };
 
+  console.log(newArr());
+
   if (newArrUsers.length && newArr().length) {
     setMail();
     setArrWithUserChangedPassword(newArr());

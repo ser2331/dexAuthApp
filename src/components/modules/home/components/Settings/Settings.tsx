@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Button, Card } from 'antd';
@@ -9,6 +9,7 @@ import { routes } from '../../../../types';
 
 import s from './Settings.module.scss';
 import { EditUserInformationDrawer } from '../EditUserInformationDrawer/EditUserInformationDrawer';
+import { EditUserAuthInfoDrawer } from '../EditUserAuthInfoDrawer/EditUserAuthInfoDrawer';
 
 const { setIsAuth } = authorizationSlice.actions;
 
@@ -18,17 +19,27 @@ export const Settings = () => {
   const { t } = useTranslation();
 
   const [showEditDrawer, setShowEditDrawer] = useState(false);
+  const [showEditAuth, setShowEditAuth] = useState(false);
 
   const { currentUser } = useAppSelector((state) => state.authorizationReducer);
   const { login, name, avatar, day, lastName, gender, month, phone, sureName, year } = currentUser;
 
+  const getDayMonth = useCallback(
+    (numb: string) => {
+      if (Number(numb) <= 10) {
+        return `0${numb}`;
+      } else return numb;
+    },
+    [currentUser]
+  );
+
   const userData = useMemo(
     () => [
+      { key: t('sure_name'), value: sureName },
       { key: t('user_name'), value: name },
       { key: t('last_name'), value: lastName },
-      { key: t('sure_name'), value: sureName },
       { key: t('phone'), value: `(+373) ${phone}` },
-      { key: t('birthday'), value: `${day}.${month}.${year}г.` },
+      { key: t('birthday'), value: `${getDayMonth(day)}.${getDayMonth(month)}.${year}г.` },
       { key: t('gender'), value: gender },
       { key: t('email'), value: login },
     ],
@@ -42,22 +53,26 @@ export const Settings = () => {
     navigate(routes.login);
   };
 
-  const showSettings = () => {
-    console.log('Settings');
-  };
   const showEditUserInfo = () => {
     setShowEditDrawer(true);
   };
   const closeEditUserInfo = () => {
     setShowEditDrawer(false);
   };
-
+  const closeEditAuth = () => {
+    setShowEditAuth(false);
+  };
+  const onShowEditAuth = () => {
+    setShowEditAuth(true);
+  };
   return (
     <div className={s.Settings}>
       <EditUserInformationDrawer
         showEditDrawer={showEditDrawer}
         closeEditUserInfo={closeEditUserInfo}
       />
+
+      <EditUserAuthInfoDrawer showEditAuth={showEditAuth} closeEditAuth={closeEditAuth} />
 
       <div className={s.header}>
         <div className={s.title}>{t('personal_area')}</div>
@@ -74,14 +89,13 @@ export const Settings = () => {
             <div
               className={s.cover}
               style={{
-                background: `url(${avatar}) center no-repeat`,
-                backgroundSize: 'cover',
+                background: `center / cover no-repeat url(${avatar})`,
               }}
             />
           }
           style={{ width: '40em', marginTop: 16 }}
           actions={[
-            <SettingOutlined key='setting' onClick={showSettings} />,
+            <SettingOutlined key='setting' onClick={onShowEditAuth} />,
             <EditOutlined key='edit' onClick={showEditUserInfo} />,
             <EllipsisOutlined key='ellipsis' />,
           ]}

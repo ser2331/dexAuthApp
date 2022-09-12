@@ -134,5 +134,12 @@
   "birthday": "Birthday",
   "gender": "Gender",
   "email": "Email",
-  "edit_user_info": "Edit user information"
+  "edit_user_info": "Edit user information",
+  "avatar": "Avatar",
+  "old_password": "Old password",
+  "new_password": "New password",
+  "confirm_password": "Confirm password",
+  "cancellation": "Cancellation",
+  "change_password": "Change password",
+  "change_info": "Change information"
 }
