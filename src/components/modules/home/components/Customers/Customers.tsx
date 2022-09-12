@@ -54,19 +54,19 @@ export const Customers = () => {
 
         <div className={s.body}>
           <div className={s.wrapper}>
-            <div className={s.title}>Информация о пользователе</div>
+            <div className={s.title}>{t('user_information')}</div>
 
             <div className={s.infoWrapper}>{renderInfoTable({ data: userData, s: s })}</div>
           </div>
 
           <div className={s.wrapper}>
-            <div className={s.title}>Данные авторизации пользователя</div>
+            <div className={s.title}>{t('user_authorization_data')}</div>
 
             <div className={s.infoWrapper}>{renderInfoTable({ data: userAuthData, s: s })}</div>
           </div>
 
           <div className={s.wrapper}>
-            <div className={s.title}>Описание пользователя</div>
+            <div className={s.title}>{t('user_description')}</div>
 
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi dolor ea ipsam modi
@@ -83,7 +83,7 @@ export const Customers = () => {
         </div>
       </div>
     ),
-    [currentCustomer]
+    [currentCustomer, t]
   );
 
   return (

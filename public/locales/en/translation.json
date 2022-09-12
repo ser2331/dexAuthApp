@@ -141,5 +141,11 @@
   "confirm_password": "Confirm password",
   "cancellation": "Cancellation",
   "change_password": "Change password",
-  "change_info": "Change information"
+  "change_info": "Change information",
+
+  "__comment15__": "CUSTOMERS",
+  "admin": "Admin",
+  "user_information": "User information",
+  "user_authorization_data": "User authorization data",
+  "user_description": "User description"
 }

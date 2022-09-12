@@ -141,5 +141,11 @@
   "confirm_password": "Подтвердите новый пароль",
   "cancellation": "Отмена",
   "change_password": "Изменить пароль",
-  "change_info": "Изменить данные"
+  "change_info": "Изменить данные",
+
+  "__comment15__": "CUSTOMERS",
+  "admin": "Админ",
+  "user_information": "Информация о пользователе",
+  "user_authorization_data": "Данные авторизации пользователя",
+  "user_description": "Описание пользователя"
 }
