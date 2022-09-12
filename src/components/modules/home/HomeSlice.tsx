@@ -74,6 +74,9 @@ export const homeSlice = createSlice({
     setAlertMessage(state, action: PayloadAction<{ message: string; type: messageType }>) {
       state.alertMessage = action.payload;
     },
+    setCustomer(state, action: PayloadAction<ICustomers>) {
+      state.customers = [...state.customers, action.payload];
+    },
   },
 });
 

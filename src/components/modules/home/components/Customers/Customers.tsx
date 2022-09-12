@@ -1,12 +1,16 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { getDayMonth, renderInfoTable } from '../../halpers/halpers';
 
 import s from './Customers.module.scss';
+import { Button } from 'antd';
+import { AddCustomer } from '../AddCustomer/AddCustomer';
 
 export const Customers = () => {
   const { t } = useTranslation();
+
+  const [showDrawer, setShowDrawer] = useState(false);
 
   const { customers } = useAppSelector((state) => state.homeReducer);
   const { pressedLocation } = useAppSelector((state) => state.homeReducer);
@@ -44,11 +48,26 @@ export const Customers = () => {
     }
   }, [currentCustomer, t, isData]);
 
+  const showAddCustomerDrawer = () => {
+    return setShowDrawer(true);
+  };
+  const onCloseDrawer = () => {
+    return setShowDrawer(false);
+  };
+
   const renderContent = useCallback(
     () => (
       <div className={s.content}>
         <div className={s.header}>
-          <div className={s.title}>{`${t('customer')} ${currentCustomer?.sureName}`}</div>
+          <div className={s.title}>
+            {`${t('customer')} ${currentCustomer?.sureName} ${currentCustomer?.name} ${
+              currentCustomer?.lastName
+            } `}
+          </div>
+
+          <Button type='primary' className={s.AddCustomerBtn} onClick={showAddCustomerDrawer}>
+            {t('add_customer')}
+          </Button>
         </div>
 
         <div className={s.body}>
@@ -87,6 +106,8 @@ export const Customers = () => {
 
   return (
     <div className={s.Customers}>
+      <AddCustomer showDrawer={showDrawer} onCloseDrawer={onCloseDrawer} />
+
       {isData && renderContent()}
       {!isData && <div>Empty Data</div>}
     </div>

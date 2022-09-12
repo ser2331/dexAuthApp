@@ -1,72 +1,42 @@
-import React, { FC, useCallback, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Button, Col, Divider, Drawer, Form, Input, InputNumber, Row, Select } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../../../../core/redux';
-import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
-import { IAuth } from '../../../authorization/interfaces/authorizationInterface';
+import { useAppDispatch } from '../../../../core/redux';
+import { homeSlice } from '../../HomeSlice';
 import { genderOptions, monthOptions, yearOptions } from '../../../authorization/halpers/halpers';
+import { ICustomers } from '../../../authorization/interfaces/authorizationInterface';
 
-import s from './EditUserInformationDrawer.module.scss';
+import s from '../EditUserInformationDrawer/EditUserInformationDrawer.module.scss';
 
+const { setCustomer } = homeSlice.actions;
 const { Option } = Select;
 
-const { setUser } = authorizationSlice.actions;
-
-interface IEditUserInformationDrawer {
-  showEditDrawer: boolean;
-  closeEditUserInfo: () => void;
+interface IAddCustomer {
+  showDrawer: boolean;
+  onCloseDrawer: () => void;
 }
 
-export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
-  showEditDrawer,
-  closeEditUserInfo,
-}) => {
+export const AddCustomer: FC<IAddCustomer> = ({ showDrawer, onCloseDrawer }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [form] = Form.useForm();
 
-  const { currentUser } = useAppSelector((state) => state.authorizationReducer);
-  const { name, avatar, day, lastName, gender, month, phone, sureName, year } = currentUser;
-
-  const getMonthName = useMemo(() => {
-    return monthOptions.find((el) => el.value === Number(month))?.name;
-  }, [currentUser]);
-
-  const onFinish = (values: IAuth) => {
-    dispatch(setUser({ ...currentUser, ...values }));
-    closeEditUserInfo();
+  const onFinish = (values: ICustomers) => {
+    dispatch(setCustomer({ ...values, key: Math.random().toString(), isAdmin: false }));
+    form.resetFields();
+    onCloseDrawer();
+  };
+  const onReset = () => {
+    form.resetFields();
   };
 
-  const onReset = useCallback(() => {
-    form.setFieldsValue({
-      ...currentUser,
-      month: getMonthName,
-    });
-  }, [currentUser, getMonthName]);
-
   return (
-    <Drawer
-      title={t('edit_user_info')}
-      placement='right'
-      onClose={closeEditUserInfo}
-      open={showEditDrawer}
-    >
+    <Drawer title={t('add_customer')} placement='right' onClose={onCloseDrawer} open={showDrawer}>
       <Form
         form={form}
         className={s.Form}
-        name='EditUserInformation'
+        name='AddCustomer'
         style={{ height: '-webkit-fill-available' }}
-        initialValues={{
-          sureName: sureName,
-          name: name,
-          lastName: lastName,
-          day: Number(day),
-          month: getMonthName,
-          year: year,
-          phone: phone,
-          gender: gender,
-          avatar: avatar,
-        }}
         onFinish={onFinish}
         layout='vertical'
         requiredMark={false}
@@ -103,6 +73,28 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
             ]}
           >
             <Input placeholder={t('middle_name')} />
+          </Form.Item>
+
+          <Form.Item
+            name='login'
+            label={t('logIn')}
+            rules={[
+              { required: true, message: t('required_field') },
+              { max: 20, message: t('max_characters_20') },
+            ]}
+          >
+            <Input placeholder={t('logIn')} />
+          </Form.Item>
+
+          <Form.Item
+            name='password'
+            label={t('password')}
+            rules={[
+              { required: true, message: t('required_field') },
+              { max: 20, message: t('max_characters_20') },
+            ]}
+          >
+            <Input placeholder={t('password')} />
           </Form.Item>
 
           <div>{t('date_of_birth')}</div>
@@ -194,7 +186,7 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
             </Button>
 
             <Button className={s.submit} type='primary' htmlType='submit'>
-              {t('change_info')}
+              {t('save')}
             </Button>
           </div>
         </div>

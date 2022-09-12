@@ -149,5 +149,6 @@
   "user_authorization_data": "Customer authorization data",
   "user_description": "Customer description",
   "customer": "Customer",
-  "logIn": "Login"
+  "logIn": "Login",
+  "add_customer": "Add customer"
 }

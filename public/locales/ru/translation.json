@@ -149,6 +149,7 @@
   "user_authorization_data": "Данные авторизации покупателя",
   "user_description": "Описание покупателя",
   "customer": "Покупатель",
-  "logIn": "Логин"
+  "logIn": "Логин",
+  "add_customer": "Добавить покупателя"
 
 }

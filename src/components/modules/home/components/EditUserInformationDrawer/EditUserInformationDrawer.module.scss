@@ -1,13 +1,15 @@
 .Form {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .formFooter {
     width: 100%;
-    position: absolute;
-    bottom: 24px;
     text-align: right;
 
     .btnWrapper {
+      padding-bottom: 24px;
       .reset {
         margin-right: 8px;
       }
