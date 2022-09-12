@@ -6,6 +6,7 @@ import { Dashboard } from '../Dashboard/Dashboard';
 import { Drafts } from '../Drafts/Drafts';
 import { Templates } from '../Templates/Templates';
 import { Reports } from '../Reports/Reports';
+import { Help } from '../Help/Help';
 import { routes } from '../../../../types';
 
 export const HomeRoutes = () => {
@@ -21,7 +22,7 @@ export const HomeRoutes = () => {
       <Route path={routes.customers1} element={<div>customers/1</div>} />
       <Route path={routes.customers2} element={<div>customers/2</div>} />
       <Route path={routes.settings} element={<Settings />} />
-      <Route path={routes.help} element={<div>help</div>} />
+      <Route path={routes.help} element={<Help />} />
     </Routes>
   );
 };

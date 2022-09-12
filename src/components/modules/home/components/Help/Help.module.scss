@@ -1,0 +1,45 @@
+.Help {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .header {
+    background: white;
+    width: 100%;
+    margin: 0 4px 24px 4px;
+    padding: 24px;
+
+    .title {
+      font: 600 20px/28px 'SF Pro Display', sans-serif;
+    }
+  }
+
+  .body {
+    padding: 24px;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 120px;
+        border-radius: 50%;
+      }
+    }
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

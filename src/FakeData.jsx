@@ -1,4 +1,5 @@
 import avatar from './components/assets/images/avatarRick.jpg';
+import dex from './components/assets/images/download.png';
 
 export default class FakeData {
   static reports = [
@@ -258,4 +259,88 @@ export default class FakeData {
     road: 100,
     timeForLiving: 100,
   };
+
+  static helpData = [
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 0,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 2,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 3,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 4,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 234,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 2345,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 5354,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 426,
+    },
+    {
+      label: 'DEX',
+      image: dex,
+      description:
+        'We design, ' +
+        'develop and support innovative Mobile, ' +
+        'Web and Cross-platform IT solutions',
+      id: 2624,
+    },
+  ];
 }
