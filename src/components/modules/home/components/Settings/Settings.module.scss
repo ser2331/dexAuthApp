@@ -5,22 +5,10 @@
   flex-direction: column;
   align-items: center;
 
-  .header {
-    background: white;
-    width: 100%;
-    margin: 0 4px 24px 4px;
-    padding: 24px;
-    position: relative;
-
-    .title {
-      font: 600 20px/28px 'SF Pro Display', sans-serif;
-    }
-
-    .logOut {
-      position: absolute;
-      right: 24px;
-      top: 24px;
-    }
+  .logOut {
+    position: absolute;
+    right: 24px;
+    top: 24px;
   }
 
   .cover {
@@ -35,8 +23,10 @@
 
     .table {
       width: 100%;
+
       .tableWrapper {
         display: flex;
+
         .tableLabelWrapper {
           display: flex;
           align-items: center;

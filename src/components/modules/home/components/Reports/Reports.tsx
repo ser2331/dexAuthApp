@@ -1,12 +1,13 @@
 import React, { useCallback, useMemo } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
-import { Breadcrumb, Button, Table } from 'antd';
+import { Button, Table } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 import { useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 
 import 'react-jinke-music-player/assets/index.css';
 import s from './Reports.module.scss';
+import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
 
 const audio = [
   {
@@ -56,12 +57,7 @@ export const Reports = () => {
 
   return (
     <div className={s.Reports}>
-      <div className={s.header}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>{t('reports')}</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className={s.title}>{t('reports')}</div>
-      </div>
+      <PageHeader title={t('reports')} breadcrumb={[t('reports')]} />
 
       <ReactJkMusicPlayer
         showPlayMode={false}

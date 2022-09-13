@@ -26,8 +26,9 @@ export default class Types {
   ];
 
   static appSizes = [
-    { id: 0, key: 'mobile', size: 320, value: true },
-    { id: 1, key: 'desktop', size: 1152, value: false },
+    { id: 0, key: 'mobile', size: 320 },
+    { id: 1, key: 'tablet', size: 768 },
+    { id: 2, key: 'desktop', size: 1152 },
   ];
 
   static appSizesMap = Types.appSizes.reduce(

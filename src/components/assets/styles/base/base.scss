@@ -18,8 +18,15 @@ body {
 
 .mouseMove {
     position: absolute;
-    left: 40%;
-    width: 400px;
     height: 70px;
     z-index: 1000;
+    margin: auto;
+    left: 0;
+    right: 0;
+    @include media($tablet) {
+        width: 250px;
+    }
+    @include media($desktop) {
+        width: 400px;
+    }
 }

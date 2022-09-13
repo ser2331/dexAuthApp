@@ -1,6 +1,7 @@
 @import "../fonts/fonts";
 
 $mobile: 320px;
+$tablet: 768px;
 $desktop: 1152px;
 
 @mixin media($size) {

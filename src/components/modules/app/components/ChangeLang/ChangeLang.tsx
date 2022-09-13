@@ -11,7 +11,7 @@ import { GlobalOutlined, CloseOutlined } from '@ant-design/icons';
 import s from './ChangeLang.module.scss';
 
 const { Option } = Select;
-const { showLangMenu } = appSlice.actions;
+const { setShowLangMenu } = appSlice.actions;
 
 export const ChangeLang = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ export const ChangeLang = () => {
       </div>
 
       <div className={s.close}>
-        <Button style={{ border: '0' }} onClick={() => dispatch(showLangMenu(false))}>
+        <Button style={{ border: '0' }} onClick={() => dispatch(setShowLangMenu(false))}>
           <CloseOutlined />
         </Button>
       </div>

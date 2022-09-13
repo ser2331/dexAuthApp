@@ -6,6 +6,7 @@ import { getDayMonth, renderInfoTable } from '../../halpers/halpers';
 import { AddCustomer } from '../AddCustomer/AddCustomer';
 
 import s from './Customers.module.scss';
+import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
 
 export const Customers = () => {
   const { t } = useTranslation();
@@ -58,17 +59,16 @@ export const Customers = () => {
   const renderContent = useCallback(
     () => (
       <div className={s.content}>
-        <div className={s.header}>
-          <div className={s.title}>
-            {`${t('customer')} ${currentCustomer?.sureName} ${currentCustomer?.name} ${
-              currentCustomer?.lastName
-            } `}
-          </div>
+        <PageHeader
+          title={`${t('customer')} ${currentCustomer?.sureName} ${currentCustomer?.name} ${
+            currentCustomer?.lastName
+          } `}
+          breadcrumb={[]}
+        />
 
-          <Button type='primary' className={s.AddCustomerBtn} onClick={showAddCustomerDrawer}>
-            {t('add_customer')}
-          </Button>
-        </div>
+        <Button type='primary' className={s.AddCustomerBtn} onClick={showAddCustomerDrawer}>
+          {t('add_customer')}
+        </Button>
 
         <div className={s.body}>
           <div className={s.wrapper}>

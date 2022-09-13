@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Row, Tooltip } from 'antd';
+import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
 import FakeData from '../../../../../FakeData';
 
 import s from './Help.module.scss';
@@ -10,9 +11,8 @@ const data = helpData;
 export const Help = () => {
   return (
     <div className={s.Help}>
-      <header className={s.header}>
-        <div className={s.title}>Help & Contact</div>
-      </header>
+      <PageHeader title={'Help & Contact'} breadcrumb={[]} width={'100%'} />
+
       <div className={s.body}>
         <Row gutter={[16, 80]}>
           {data.map((el) => (

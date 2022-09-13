@@ -11,6 +11,7 @@ import { routes } from '../../../../types';
 import { getDayMonth, renderInfoTable } from '../../halpers/halpers';
 
 import s from './Settings.module.scss';
+import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
 
 const { setIsAuth } = authorizationSlice.actions;
 
@@ -66,13 +67,11 @@ export const Settings = () => {
 
       <EditUserAuthInfoDrawer showEditAuth={showEditAuth} closeEditAuth={closeEditAuth} />
 
-      <div className={s.header}>
-        <div className={s.title}>{t('personal_area')}</div>
+      <PageHeader title={t('personal_area')} breadcrumb={[]} width={'100%'} />
 
-        <Button onClick={logOut} type='primary' className={s.logOut}>
-          {t('log_out')}
-        </Button>
-      </div>
+      <Button onClick={logOut} type='primary' className={s.logOut}>
+        {t('log_out')}
+      </Button>
 
       <div className={s.userCard}>
         <Card

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Breadcrumb } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { ReportsWidget } from '../Widgets/ReportsWidget';
 import { InvoiceWidget } from '../Widgets/InvoiceWidget';
 import { DraftWidget } from '../Widgets/DraftsWidget';
 import { TemplatesWidget } from '../Widgets/TemplatesWidget';
+import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
 
 import s from './Dashboard.module.scss';
 
@@ -13,12 +13,7 @@ export const Dashboard = () => {
 
   return (
     <div className={s.Dashboard}>
-      <div className={s.header}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>{t('dashboard')}</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className={s.title}>{t('dashboard')}</div>
-      </div>
+      <PageHeader breadcrumb={[t('dashboard')]} title={t('dashboard')} />
 
       <div className={s.content}>
         <ReportsWidget />

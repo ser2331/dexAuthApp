@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { useAppSelector } from '../../../core/redux';
-import { Alert, Breadcrumb, Layout, Tabs } from 'antd';
+import { Alert, Layout, Tabs } from 'antd';
 import { IData, IFunc } from '../../interfaces/interfaces';
+import { PageHeader } from '../PageHeader/PageHeader';
 
 import s from './CustomContentWrapper.module.scss';
 
@@ -12,14 +13,8 @@ export const CustomContentWrapper: FC<IData & IFunc> = (data, onChangeTab) => {
 
   return (
     <Layout className={s.CustomContentWrapper} style={{ minHeight: '100vh' }}>
-      <div className={s.header}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          {breadcrumb?.map((el, index) => (
-            <Breadcrumb.Item key={index}>{el}</Breadcrumb.Item>
-          ))}
-        </Breadcrumb>
-        <div className={s.title}>{title}</div>
-      </div>
+      <PageHeader breadcrumb={breadcrumb} title={title} />
+
       {alertMessage.message && (
         <Alert className={s.alert} message={alertMessage.message} type={alertMessage.type} />
       )}

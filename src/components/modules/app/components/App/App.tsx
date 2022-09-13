@@ -11,7 +11,7 @@ import { appSlice } from '../../AppSlice';
 import s from './App.module.scss';
 
 const { setIsAuth, setUser } = authorizationSlice.actions;
-const { showLangMenu, setSize } = appSlice.actions;
+const { setShowLangMenu, setSize } = appSlice.actions;
 const { appSizesMap } = Types;
 
 export const App = () => {
@@ -20,7 +20,7 @@ export const App = () => {
 
   const { arrayUsers } = useAppSelector((state) => state.authorizationReducer);
   const { isAuth } = useAppSelector((state) => state.authorizationReducer);
-  const { show } = useAppSelector((state) => state.appReducer);
+  const { showLangMenu } = useAppSelector((state) => state.appReducer);
 
   let login = '';
   let password = '';
@@ -55,7 +55,9 @@ export const App = () => {
   useEffect(() => {
     const getSizeKey = () => {
       const size = document.documentElement.clientWidth;
-      if (size < appSizesMap.get('desktop').size) return appSizesMap.get('mobile').key;
+      if (size < appSizesMap.get('tablet').size) return appSizesMap.get('mobile').key;
+      if (size >= appSizesMap.get('tablet').size && size < appSizesMap.get('desktop').size)
+        return appSizesMap.get('tablet').key;
       if (size >= appSizesMap.get('desktop').size) return appSizesMap.get('desktop').key;
       return appSizesMap.get('desktop').key;
     };
@@ -73,8 +75,8 @@ export const App = () => {
 
   return (
     <div className={s.App}>
-      {show && <ChangeLang />}
-      <div className='mouseMove' onMouseMove={() => dispatch(showLangMenu(true))} />
+      {showLangMenu && <ChangeLang />}
+      <div className='mouseMove' onMouseMove={() => dispatch(setShowLangMenu(true))} />
       {isAuth ? <ProtectedPages /> : <UnprotectedPages />}
     </div>
   );
