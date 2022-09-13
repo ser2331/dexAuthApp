@@ -7,6 +7,7 @@ import { IAuth } from '../../../authorization/interfaces/authorizationInterface'
 import { genderOptions, monthOptions, yearOptions } from '../../../authorization/halpers/halpers';
 
 import s from './EditUserInformationDrawer.module.scss';
+import { UploadImage } from '../../../../common/components/UploadImage/UploadImage';
 
 const { Option } = Select;
 
@@ -25,7 +26,7 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
   const { t } = useTranslation();
   const [form] = Form.useForm();
 
-  const { currentUser } = useAppSelector((state) => state.authorizationReducer);
+  const { currentUser, imageUrl } = useAppSelector((state) => state.authorizationReducer);
   const { name, avatar, day, lastName, gender, month, phone, sureName, year } = currentUser;
 
   const getMonthName = useMemo(() => {
@@ -33,7 +34,8 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
   }, [currentUser]);
 
   const onFinish = (values: IAuth) => {
-    dispatch(setUser({ ...currentUser, ...values }));
+    const avatar = imageUrl || currentUser.avatar;
+    dispatch(setUser({ ...currentUser, ...values, avatar }));
     closeEditUserInfo();
   };
 
@@ -176,13 +178,7 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
             </Select>
           </Form.Item>
 
-          <Form.Item
-            name='avatar'
-            label={t('avatar')}
-            rules={[{ required: true, message: t('required_field') }]}
-          >
-            <Input placeholder={t('avatar')} />
-          </Form.Item>
+          <UploadImage />
         </div>
 
         <div className={s.formFooter}>

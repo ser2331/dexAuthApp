@@ -167,14 +167,6 @@ export const AddCustomer: FC<IAddCustomer> = ({ showDrawer, onCloseDrawer }) => 
               ))}
             </Select>
           </Form.Item>
-
-          <Form.Item
-            name='avatar'
-            label={t('avatar')}
-            rules={[{ required: true, message: t('required_field') }]}
-          >
-            <Input placeholder={t('avatar')} />
-          </Form.Item>
         </div>
 
         <div className={s.formFooter}>

@@ -10,6 +10,7 @@ export interface AuthorizationState {
   changeableMail: string;
   rememberMe: boolean;
   isAuth: boolean;
+  imageUrl: string;
 }
 
 const initialState: AuthorizationState = {
@@ -34,6 +35,7 @@ const initialState: AuthorizationState = {
   changeableMail: '',
   rememberMe: false,
   isAuth: false,
+  imageUrl: '',
 };
 
 export const authorizationSlice = createSlice({
@@ -54,6 +56,9 @@ export const authorizationSlice = createSlice({
     },
     setUser(state, action: PayloadAction<IAuth>) {
       state.currentUser = action.payload;
+    },
+    setImageUrl(state, action: PayloadAction<string>) {
+      state.imageUrl = action.payload;
     },
   },
 });

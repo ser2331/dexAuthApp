@@ -32,5 +32,4 @@ export interface ICustomers {
   readOut: boolean;
 
   isAdmin?: boolean;
-  avatar?: string;
 }

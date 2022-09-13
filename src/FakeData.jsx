@@ -150,7 +150,6 @@ export default class FakeData {
       phone: '77589599',
       gender: 'Male',
       readOut: false,
-      avatar: avatar,
     },
     {
       key: 'Customer2',

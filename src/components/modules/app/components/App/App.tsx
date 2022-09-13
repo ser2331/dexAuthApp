@@ -4,14 +4,15 @@ import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { UnprotectedPages } from '../../../../pages/UnprotectedPages/UnprotectedPages';
 import { ProtectedPages } from '../../../../pages/ProtectedPages/ProtectedPages';
-import { routes } from '../../../../types';
+import Types, { routes } from '../../../../types';
 import { ChangeLang } from '../ChangeLang/ChangeLang';
 import { appSlice } from '../../AppSlice';
 
 import s from './App.module.scss';
 
 const { setIsAuth, setUser } = authorizationSlice.actions;
-const { showLangMenu } = appSlice.actions;
+const { showLangMenu, setSize } = appSlice.actions;
+const { appSizesMap } = Types;
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -50,6 +51,25 @@ export const App = () => {
     }
     return;
   }, [login, password, arrayUsers]);
+
+  useEffect(() => {
+    const getSizeKey = () => {
+      const size = document.documentElement.clientWidth;
+      if (size < appSizesMap.get('desktop').size) return appSizesMap.get('mobile').key;
+      if (size >= appSizesMap.get('desktop').size) return appSizesMap.get('desktop').key;
+      return appSizesMap.get('desktop').key;
+    };
+
+    const onResize = () => {
+      const sizeKey = getSizeKey();
+      dispatch(setSize(sizeKey));
+    };
+
+    onResize();
+    window.addEventListener('resize', onResize);
+
+    return () => window.removeEventListener('resize', onResize);
+  }, [dispatch]);
 
   return (
     <div className={s.App}>
