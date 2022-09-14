@@ -1,24 +1,27 @@
+@import "src/components/assets/styles/index";
+
 .widgetTable {
   .table {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font: 600 16px/24px 'SF Pro Display', sans-serif;
     color: #49799A;
+
+    @include widgetTable;
   }
 
   .title {
-    font: 600 16px/24px 'SF Pro Display', sans-serif;
     color: #49799A;
+    @include widgetTable;
   }
 
   .value {
-    font: 600 24px/34px 'SF Pro Display', sans-serif;
     color: #28658e;
+    @include widgetValue;
   }
 
   .important {
-    font: 600 16px/24px 'SF Pro Display', sans-serif;
+    @include widgetTable;
     color: red;
   }
 

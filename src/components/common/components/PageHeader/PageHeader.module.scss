@@ -13,7 +13,7 @@
     top: 24px;
   }
 
-  @include media($tablet) {
+  @include media($mobile) {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,6 +27,6 @@
   }
 
   .title {
-    font: 600 20px/28px 'SF Pro Display', sans-serif;
+    @include pageHeaderTitle;
   }
 }

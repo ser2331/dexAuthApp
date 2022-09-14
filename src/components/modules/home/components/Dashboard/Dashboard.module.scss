@@ -1,3 +1,5 @@
+@import "src/components/assets/styles/index";
+
 .Dashboard {
   width: 100%;
   min-height: 100vh;
@@ -6,8 +8,16 @@
     display: flex;
     flex-flow: row wrap;
     background: white;
-    margin: 0 24px;
     min-height: 228px;
     padding: 24px;
+
+    @include media($mobile) {
+      margin: 0 8px;
+      padding: 12px;
+    }
+    @include media($tablet) {
+      margin: 0 24px;
+      padding: 24px;
+    }
   }
 }

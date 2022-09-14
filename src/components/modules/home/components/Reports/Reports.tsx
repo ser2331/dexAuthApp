@@ -1,13 +1,18 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
-import { Button, Table } from 'antd';
+import { Button, Pagination, PaginationProps, Table } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 import { useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
+import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
+import { ReportCardMobile } from './ReportCartMobile/ReportCardMobile';
+import Types from '../../../../types';
 
 import 'react-jinke-music-player/assets/index.css';
 import s from './Reports.module.scss';
-import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
+import { CustomPagination } from '../../../../common/components/CustomPagination/CustomPagination';
+
+const { appSizesMap } = Types;
 
 const audio = [
   {
@@ -21,7 +26,11 @@ const audio = [
 export const Reports = () => {
   const { t } = useTranslation();
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { reportsData } = useAppSelector((state) => state.homeReducer);
+  const { size } = useAppSelector((state) => state.appReducer);
+  const isMobile = size === appSizesMap.get('mobile').key;
 
   const onClick = useCallback(async () => {
     const blob = await fetch('http://localhost:3002/loadSound').then((res) => res.blob()); // blob just as yours
@@ -55,19 +64,44 @@ export const Reports = () => {
     []
   );
 
+  const onChangePage: PaginationProps['onChange'] = (page) => {
+    setCurrentPage(page);
+  };
+
+  const pageSize = 5;
+  const visibleData = reportsData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const pageNumber = (reportsData?.length / pageSize) * 10;
+
   return (
     <div className={s.Reports}>
       <PageHeader title={t('reports')} breadcrumb={[t('reports')]} />
 
-      <ReactJkMusicPlayer
-        showPlayMode={false}
-        className={s.player}
-        audioLists={audio}
-        autoPlay={true}
-        showDownload={false}
-      />
+      {!isMobile ? (
+        <>
+          <ReactJkMusicPlayer
+            showPlayMode={false}
+            className={s.player}
+            audioLists={audio}
+            autoPlay={true}
+            showDownload={false}
+          />
 
-      <Table className={s.tableWrapper} columns={columns} dataSource={reportsData} bordered />
+          <Table className={s.tableWrapper} columns={columns} dataSource={reportsData} bordered />
+        </>
+      ) : (
+        <>
+          {visibleData &&
+            visibleData.map((el) => (
+              <ReportCardMobile key={el.key} data={el} columns={columns} onClick={onClick} />
+            ))}
+          <CustomPagination
+            currentPage={currentPage}
+            onChangePage={onChangePage}
+            pageNumber={pageNumber}
+            size='small'
+          />
+        </>
+      )}
     </div>
   );
 };

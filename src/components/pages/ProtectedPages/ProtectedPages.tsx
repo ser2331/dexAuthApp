@@ -24,8 +24,6 @@ export const ProtectedPages = () => {
   const { size, showMobileMenu } = useAppSelector((state) => state.appReducer);
   const isMobile = size === appSizesMap.get('mobile').key;
   const isTablet = size === appSizesMap.get('tablet').key;
-  console.log(size);
-  console.log('isMobile', isMobile);
 
   const onClick: MenuProps['onClick'] = (e) => {
     dispatch(setPressedLocation(e.key));
@@ -56,8 +54,9 @@ export const ProtectedPages = () => {
 
   const renderMobileMenu = () => (
     <Drawer
-      width={'40%'}
+      width={isMobile ? 164 : 248}
       contentWrapperStyle={{ padding: 0 }}
+      className={'MobileMenu'}
       title='Menu'
       placement='left'
       onClose={closeMenu}

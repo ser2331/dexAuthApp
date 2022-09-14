@@ -1,15 +1,23 @@
+@import "src/components/assets/styles/index";
+
 .WidgetWrapper {
   display: flex;
   flex-flow: column nowrap;
   width: max-content;
-  min-width: 289px;
   height: 302px;
   border: 1px solid #E3E8EB;
   background: #FFFFFF;
   border-radius: 14px;
-  margin-right: 20px;
   margin-bottom: 20px;
   flex: 1 1;
+
+  @include media($mobile) {
+    min-width: 278px;
+  }
+  @include media($tablet) {
+    min-width: 289px;
+    margin-right: 20px;
+  }
 
   &__header {
     flex: 0 0 32px;

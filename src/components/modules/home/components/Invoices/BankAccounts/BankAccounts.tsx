@@ -1,19 +1,28 @@
-import React, { useCallback, useMemo } from 'react';
-import { Table, Typography } from 'antd';
+import React, { useCallback, useMemo, useState } from 'react';
+import { PaginationProps, Table, Typography } from 'antd';
 import { homeSlice } from '../../../HomeSlice';
 import { useAppDispatch, useAppSelector } from '../../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { IItem } from '../../../interfaces/interfaces';
+import Types from '../../../../../types';
 
 import s from './BankAccounts.module.scss';
+import { AccountCardMobile } from '../AccountCardMobile/AccountCardMobile';
+import { CustomPagination } from '../../../../../common/components/CustomPagination/CustomPagination';
 
 const { setKeyBankAccountsData } = homeSlice.actions;
+const { appSizesMap } = Types;
 
 export const BankAccounts = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { invoicesData, keyBankAccountsData } = useAppSelector((state) => state.homeReducer);
+  const { size } = useAppSelector((state) => state.appReducer);
+
+  const isMobile = size === appSizesMap.get('mobile').key;
 
   const data = useMemo(() => invoicesData[0], [invoicesData]);
 
@@ -66,17 +75,36 @@ export const BankAccounts = () => {
     []
   );
 
+  const onChangePage: PaginationProps['onChange'] = (page) => {
+    setCurrentPage(page);
+  };
+  const pageSize = 5;
+  const visibleData = data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const pageNumber = (data?.length / pageSize) * 10;
+
   return (
     <div className={s.BankAccounts}>
-      <Table
-        bordered
-        dataSource={data}
-        columns={columns}
-        rowClassName='editable-row'
-        pagination={{
-          onChange: cancel,
-        }}
-      />
+      {isMobile ? (
+        <>
+          <AccountCardMobile />
+
+          <CustomPagination
+            currentPage={currentPage}
+            onChangePage={onChangePage}
+            pageNumber={pageNumber}
+          />
+        </>
+      ) : (
+        <Table
+          bordered
+          dataSource={data}
+          columns={columns}
+          rowClassName='editable-row'
+          pagination={{
+            onChange: cancel,
+          }}
+        />
+      )}
     </div>
   );
 };

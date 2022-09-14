@@ -2,12 +2,12 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { Button, Drawer } from 'antd';
 import { homeSlice } from '../../HomeSlice';
 import { CustomContentWrapper } from '../../../../common/components/CustomContentWrapper/CustomContentWrapper';
-import { InternetAccounts } from '../InternetAccounts/InternetAccounts';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { BankAccounts } from './BankAccounts/BankAccounts';
 import { AddBankAccount } from './AddBankAccountForm/AddBankAccount';
 import { AddInternetAccount } from './AddInternetAccountForm/AddInternetAccount';
+import { InternetAccounts } from './InternetAccounts/InternetAccounts';
 
 const { setKeyBankAccountsData, setKeyInternetAccountsData } = homeSlice.actions;
 

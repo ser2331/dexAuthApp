@@ -1,0 +1,25 @@
+@import "src/components/assets/styles/index";
+
+.ReportCardMobile > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+  border: 1px solid #E3E8EB;
+
+  .title {
+    margin-bottom: 12px;
+    @include pageHeaderTitle;
+  }
+
+  td, .music {
+    @include changePasswordCardTitle;
+    color: #28658e;
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}

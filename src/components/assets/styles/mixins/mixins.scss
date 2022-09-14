@@ -10,6 +10,80 @@ $desktop: 1152px;
     }
 }
 
-//@mixin authTitle {
-//    font: 400 36px/49px 'Avenir 300', sans-serif;
-//}
+@mixin pageHeaderTitle {
+    @include media($mobile) {
+        font: 600 16px/22px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 600 18px/24px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 600 20px/28px 'SF Pro Display', sans-serif;
+    }
+}
+@mixin widgetTable {
+    @include media($mobile) {
+        font: 600 12px/20px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 600 14px/22px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 600 16px/24px 'SF Pro Display', sans-serif;
+    }
+}
+@mixin widgetTitle {
+    @include media($mobile) {
+        font: 600 12px/20px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 600 14px/22px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 600 16px/24px 'SF Pro Display', sans-serif;
+    }
+}
+@mixin widgetValue {
+    @include media($mobile) {
+        font: 600 20px/30px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 600 22px/32px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 600 24px/34px 'SF Pro Display', sans-serif;
+    }
+}
+@mixin changeLang {
+    @include media($mobile) {
+        font: 600 12px/20px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 600 14px/22px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 400 16px/24px 'SF Pro Display' sans-serif;
+    }
+}
+@mixin changePasswordTitle {
+    @include media($mobile) {
+        font: 400 50px/60px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 400 54px/62px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 400 56px/64px 'SF Pro Display', sans-serif;
+    }
+}
+@mixin changePasswordCardTitle {
+    @include media($mobile) {
+        font: 600 16px/20px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 600 18px/22px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 600 20px/24px 'SF Pro Display', sans-serif;
+    }
+}

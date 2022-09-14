@@ -1,3 +1,5 @@
+@import "src/components/assets/styles/index";
+
 .Settings {
   width: 100%;
   min-height: 100vh;
@@ -34,7 +36,7 @@
 
           .tableLabel {
             width: 150px;
-            font: 600 20px/28px "SF Pro Display", sans-serif;
+            @include pageHeaderTitle;
             color: #28658e;
           }
         }
@@ -48,7 +50,7 @@
 
           .tableValue {
             width: 150px;
-            font: 600 16px/24px "SF Pro Display", sans-serif;
+            @include widgetTable;
             color: #49799A;
           }
         }

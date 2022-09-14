@@ -18,15 +18,26 @@ body {
 
 .mouseMove {
     position: absolute;
-    height: 70px;
     z-index: 1000;
     margin: auto;
     left: 0;
     right: 0;
-    @include media($tablet) {
+    @include media($mobile) {
         width: 250px;
+        height: 24px;
     }
     @include media($desktop) {
         width: 400px;
+        height: 70px;
+    }
+}
+
+.MobileMenu {
+    .ant-drawer-body {
+        padding: 0;
+
+        .ant-menu-item, .ant-menu-submenu-title {
+            padding-left: 8px !important;
+        }
     }
 }
