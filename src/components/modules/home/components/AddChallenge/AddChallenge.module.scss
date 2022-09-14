@@ -1,26 +1,52 @@
+@import "src/components/assets/styles/index";
+
 .AddChallenge {
   display: flex;
   justify-content: center;
   align-items: center;
   background: #FFFFFF;
-  padding: 24px;
+
+  @include media($mobile) {
+    flex-direction: column;
+    padding: 8px;
+  }
+  @include media($tablet) {
+    flex-direction: row;
+    padding: 24px;
+  }
 
   .AddForm {
-    width: 40em;
     height: 421px;
-    min-width: 300px;
     border: 1px solid #1890ff;
     border-radius: 4px;
-    padding: 12px;
-    margin-right: 24px;
+
+    @include media($mobile) {
+      width: 20em;
+      padding: 8px;
+      margin-bottom: 12px;
+    }
+    @include media($tablet) {
+      width: 40em;
+      padding: 12px;
+      margin-right: 24px;
+      min-width: 300px;
+    }
   }
 
   .listChallenge {
-    width: 25em;
-    height: 421px;
     border: 1px solid #1890ff;
-    padding: 12px;
     border-radius: 4px;
-    min-width: 300px;
+
+    @include media($mobile) {
+      height: 436px;
+      width: 20em;
+      padding: 8px;
+    }
+    @include media($tablet) {
+      height: 421px;
+      width: 25em;
+      padding: 12px;
+      min-width: 300px;
+    }
   }
 }

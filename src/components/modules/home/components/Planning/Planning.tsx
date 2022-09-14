@@ -3,10 +3,12 @@ import { Switch, Transfer } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { homeSlice } from '../../HomeSlice';
+import Types from '../../../../types';
 
 import s from './Planning.module.scss';
 
 const { setTargetKeys } = homeSlice.actions;
+const { appSizesMap } = Types;
 
 export const Planning: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -14,6 +16,8 @@ export const Planning: React.FC = () => {
   const [oneWay, setOneWay] = useState(false);
 
   const { draftsData } = useAppSelector((state) => state.homeReducer);
+  const { size } = useAppSelector((state) => state.appReducer);
+  const isMobile = size === appSizesMap.get('mobile').key;
 
   const onChange = (newTargetKeys: string[]) => {
     dispatch(setTargetKeys(newTargetKeys));
@@ -22,6 +26,7 @@ export const Planning: React.FC = () => {
   return (
     <div className={s.Planning}>
       <Transfer
+        style={isMobile ? { flexDirection: 'column' } : {}}
         dataSource={draftsData.planning}
         targetKeys={draftsData.targetKeys}
         onChange={onChange}
