@@ -1,16 +1,18 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import ReactJkMusicPlayer from 'react-jinke-music-player';
-import { Button, Pagination, PaginationProps, Table } from 'antd';
+import { Button, PaginationProps, Table } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 import { useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
+import { CustomPagination } from '../../../../common/components/CustomPagination/CustomPagination';
+import { getVisibleItems } from '../../halpers/halpers';
+import { IReportsData } from '../../interfaces/interfaces';
 import { ReportCardMobile } from './ReportCartMobile/ReportCardMobile';
 import Types from '../../../../types';
 
 import 'react-jinke-music-player/assets/index.css';
 import s from './Reports.module.scss';
-import { CustomPagination } from '../../../../common/components/CustomPagination/CustomPagination';
 
 const { appSizesMap } = Types;
 
@@ -68,9 +70,11 @@ export const Reports = () => {
     setCurrentPage(page);
   };
 
-  const pageSize = 5;
-  const visibleData = reportsData.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-  const pageNumber = (reportsData?.length / pageSize) * 10;
+  const { visibleItems, pageNumber } = getVisibleItems({
+    data: reportsData,
+    currentPage,
+    pageSize: 5,
+  });
 
   return (
     <div className={s.Reports}>
@@ -90,9 +94,11 @@ export const Reports = () => {
         </>
       ) : (
         <>
-          {visibleData &&
-            visibleData.map((el) => (
-              <ReportCardMobile key={el.key} data={el} columns={columns} onClick={onClick} />
+          {visibleItems.length &&
+            visibleItems.map((el: IReportsData) => (
+              <div key={el.key}>
+                <ReportCardMobile item={el} columns={columns} onClick={onClick} />
+              </div>
             ))}
           <CustomPagination
             currentPage={currentPage}

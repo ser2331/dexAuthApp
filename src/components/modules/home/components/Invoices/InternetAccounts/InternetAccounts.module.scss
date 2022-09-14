@@ -1,4 +1,12 @@
+@import "src/components/assets/styles/index";
+
 .BankAccounts {
-  background: #FFFFFF;
-  padding: 24px;
+  @include media($mobile) {
+    background: none;
+    padding: 0;
+  }
+  @include media($tablet) {
+    background: #FFFFFF;
+    padding: 24px;
+  }
 }

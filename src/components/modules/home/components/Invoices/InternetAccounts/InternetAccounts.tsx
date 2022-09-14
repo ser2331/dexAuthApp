@@ -1,57 +1,36 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { Form, Popconfirm, Table, Typography } from 'antd';
+import { PaginationProps, Table, Typography } from 'antd';
 import { homeSlice } from '../../../HomeSlice';
 import { useAppDispatch, useAppSelector } from '../../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { IItem } from '../../../interfaces/interfaces';
-import { EditableCell } from '../../../halpers/halpers';
+import { getVisibleItems } from '../../../halpers/halpers';
+import { AccountCardMobile } from '../AccountCardMobile/AccountCardMobile';
+import { CustomPagination } from '../../../../../common/components/CustomPagination/CustomPagination';
+import Types from '../../../../../types';
 
 import s from './InternetAccounts.module.scss';
 
-const { setInternetAccountsData } = homeSlice.actions;
+const { setKeyInternetAccountsData } = homeSlice.actions;
+const { appSizesMap } = Types;
 
 export const InternetAccounts = () => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const [form] = Form.useForm();
 
-  const { invoicesData } = useAppSelector((state) => state.homeReducer);
-  const [editingKey, setEditingKey] = useState('');
+  const { invoicesData, keyInternetAccountsData } = useAppSelector((state) => state.homeReducer);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const data = useMemo(() => invoicesData[1], [invoicesData]);
-  const isEditing = (record: IItem) => record.key === editingKey;
+  const { size } = useAppSelector((state) => state.appReducer);
+  const isMobile = size === appSizesMap.get('mobile').key;
 
-  const edit = useCallback((record: Partial<IItem> & { key: React.Key }) => {
-    form.setFieldsValue({ name: '', age: '', address: '', ...record });
-    setEditingKey(record.key);
+  const edit = useCallback((key: string) => {
+    dispatch(setKeyInternetAccountsData(key));
   }, []);
 
   const cancel = useCallback(() => {
-    setEditingKey('');
-  }, []);
-
-  const save = useCallback(async (key: React.Key) => {
-    try {
-      const row = (await form.validateFields()) as IItem;
-
-      const newData = [...data];
-      const index = newData.findIndex((item) => key === item.key);
-      if (index > -1) {
-        const item = newData[index];
-        newData.splice(index, 1, {
-          ...item,
-          ...row,
-        });
-        dispatch(setInternetAccountsData(newData));
-        setEditingKey('');
-      } else {
-        newData.push(row);
-        dispatch(setInternetAccountsData(newData));
-        setEditingKey('');
-      }
-    } catch (errInfo) {
-      console.log('Validate Failed:', errInfo);
-    }
+    dispatch(setKeyInternetAccountsData(''));
   }, []);
 
   const columns = [
@@ -83,18 +62,11 @@ export const InternetAccounts = () => {
       title: 'Operation',
       dataIndex: 'operation',
       render: (_: '@typescript-eslint/no-explicit-any', record: IItem) => {
-        const editable = isEditing(record);
-        return editable ? (
-          <span>
-            <Typography.Link onClick={() => save(record.key)} style={{ marginRight: 8 }}>
-              {t('save')}
-            </Typography.Link>
-            <Popconfirm title='Sure to cancel?' onConfirm={cancel}>
-              <a>{t('cancel')}</a>
-            </Popconfirm>
-          </span>
-        ) : (
-          <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+        return (
+          <Typography.Link
+            disabled={keyInternetAccountsData !== ''}
+            onClick={() => edit(record.key)}
+          >
             {t('edit')}
           </Typography.Link>
         );
@@ -102,40 +74,41 @@ export const InternetAccounts = () => {
     },
   ];
 
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record: IItem) => ({
-        record,
-        inputType: col.dataIndex === 'accountNumber' ? 'number' : 'text',
-        dataIndex: col.dataIndex,
-        title: col.title,
-        editing: isEditing(record),
-      }),
-    };
-  });
+  const onChangePage: PaginationProps['onChange'] = (page) => {
+    setCurrentPage(page);
+  };
+
+  const { visibleItems, pageNumber } = getVisibleItems({ data, currentPage, pageSize: 1 });
 
   return (
     <div className={s.BankAccounts}>
-      <Form form={form} component={false}>
+      {isMobile ? (
+        <>
+          {visibleItems.length
+            ? visibleItems.map((el: IItem) => (
+                <div key={el.key}>
+                  <AccountCardMobile item={el} columns={columns} onEdit={edit} />
+                </div>
+              ))
+            : ''}
+
+          <CustomPagination
+            currentPage={currentPage}
+            onChangePage={onChangePage}
+            pageNumber={pageNumber}
+          />
+        </>
+      ) : (
         <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
           bordered
           dataSource={data}
-          columns={mergedColumns}
+          columns={columns}
           rowClassName='editable-row'
           pagination={{
             onChange: cancel,
           }}
         />
-      </Form>
+      )}
     </div>
   );
 };

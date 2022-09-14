@@ -8,7 +8,13 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { Form, Input, InputNumber, MenuProps, Progress } from 'antd';
-import { IEditableCellProps, IEntertainment, IRest } from '../interfaces/interfaces';
+import {
+  IEditableCellProps,
+  IEntertainment,
+  IItem,
+  IReportsData,
+  IRest,
+} from '../interfaces/interfaces';
 import { ICustomers } from '../../authorization/interfaces/authorizationInterface';
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -141,4 +147,18 @@ export const renderInfoTable = ({
       </tbody>
     </table>
   );
+};
+
+export const getVisibleItems = ({
+  data,
+  currentPage,
+  pageSize,
+}: {
+  data: IItem[] | IReportsData[] | any;
+  currentPage: number;
+  pageSize: number;
+}) => {
+  const visibleItems = data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const pageNumber = (data?.length / pageSize) * 10;
+  return { visibleItems, pageNumber };
 };

@@ -1,0 +1,45 @@
+@import "src/components/assets/styles/index";
+
+.AccountCardMobile {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 16px;
+  margin: 0 8px 24px 8px;
+  background: #FFFFFF;
+  min-height: 288px;
+  border: 1px solid #E3E8EB;
+
+  .content {
+    flex: 1 1;
+    .title {
+      margin-bottom: 12px;
+      @include pageHeaderTitle;
+    }
+
+    .tHead, .tBody {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 150px;
+    }
+
+    .tBody {
+      text-align: right;
+      @include changeLang;
+      color: #28658e;
+      tr {
+        text-align: right;
+        display: table;
+      }
+    }
+    .tHead {
+      @include changeLang;
+      color: #112c3d;
+    }
+  }
+
+  .footer, .footer > button {
+    width: 100%;
+  }
+}

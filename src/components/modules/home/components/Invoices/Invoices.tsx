@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Button, Drawer } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { homeSlice } from '../../HomeSlice';
 import { CustomContentWrapper } from '../../../../common/components/CustomContentWrapper/CustomContentWrapper';
 import { useTranslation } from 'react-i18next';
@@ -8,8 +9,10 @@ import { BankAccounts } from './BankAccounts/BankAccounts';
 import { AddBankAccount } from './AddBankAccountForm/AddBankAccount';
 import { AddInternetAccount } from './AddInternetAccountForm/AddInternetAccount';
 import { InternetAccounts } from './InternetAccounts/InternetAccounts';
+import Types from '../../../../types';
 
 const { setKeyBankAccountsData, setKeyInternetAccountsData } = homeSlice.actions;
+const { appSizesMap } = Types;
 
 const documentsData = (
   title: string,
@@ -17,17 +20,18 @@ const documentsData = (
   tabs: string[],
   buttonTitle: string,
   addNewInvoice: () => void,
-  keyBankAccountsData: string
+  keyBankAccountsData: string,
+  isMobile: boolean
 ) => {
   const addInvoiceButton = () => {
     return (
       <Button
         type='primary'
-        style={{ right: 50 }}
+        style={isMobile ? { right: 0 } : { right: 50 }}
         onClick={addNewInvoice}
         disabled={!!keyBankAccountsData}
       >
-        {buttonTitle}
+        {isMobile ? <PlusOutlined /> : buttonTitle}
       </Button>
     );
   };
@@ -67,6 +71,8 @@ export const Invoices = () => {
   const { keyBankAccountsData, keyInternetAccountsData } = useAppSelector(
     (state) => state.homeReducer
   );
+  const { size } = useAppSelector((state) => state.appReducer);
+  const isMobile = size === appSizesMap.get('mobile').key;
 
   const title = t('invoices');
   const breadcrumb = [t('documents'), t('invoices')];
@@ -129,7 +135,15 @@ export const Invoices = () => {
       {renderBankDrawer}
       {renderInternetDrawer}
       {CustomContentWrapper(
-        documentsData(title, breadcrumb, tabs, buttonTitle, addNewInvoice, keyBankAccountsData),
+        documentsData(
+          title,
+          breadcrumb,
+          tabs,
+          buttonTitle,
+          addNewInvoice,
+          keyBankAccountsData,
+          isMobile
+        ),
         onChangeTab
       )}
     </>
