@@ -111,6 +111,7 @@ export const Invoices = () => {
         placement='right'
         onClose={onClose}
         open={!!keyBankAccountsData}
+        width={isMobile ? 240 : ''}
       >
         <AddBankAccount onClose={onClose} />
       </Drawer>
@@ -124,6 +125,7 @@ export const Invoices = () => {
         placement='right'
         onClose={onClose}
         open={!!keyInternetAccountsData}
+        width={isMobile ? 240 : ''}
       >
         <AddInternetAccount onClose={onClose} />
       </Drawer>

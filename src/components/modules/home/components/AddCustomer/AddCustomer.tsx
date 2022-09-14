@@ -14,9 +14,10 @@ const { Option } = Select;
 interface IAddCustomer {
   showDrawer: boolean;
   onCloseDrawer: () => void;
+  isMobile: boolean;
 }
 
-export const AddCustomer: FC<IAddCustomer> = ({ showDrawer, onCloseDrawer }) => {
+export const AddCustomer: FC<IAddCustomer> = ({ showDrawer, onCloseDrawer, isMobile }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const [form] = Form.useForm();
@@ -31,7 +32,13 @@ export const AddCustomer: FC<IAddCustomer> = ({ showDrawer, onCloseDrawer }) => 
   };
 
   return (
-    <Drawer title={t('add_customer')} placement='right' onClose={onCloseDrawer} open={showDrawer}>
+    <Drawer
+      title={t('add_customer')}
+      placement='right'
+      onClose={onCloseDrawer}
+      open={showDrawer}
+      width={isMobile ? 240 : ''}
+    >
       <Form
         form={form}
         className={s.Form}

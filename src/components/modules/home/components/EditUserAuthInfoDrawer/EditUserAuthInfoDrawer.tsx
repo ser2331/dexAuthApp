@@ -13,11 +13,13 @@ const { setUser, setChangeableMail, setChangeableArray } = authorizationSlice.ac
 interface EditUserAuthInfoDrawer {
   showEditAuth: boolean;
   closeEditAuth: () => void;
+  isMobile: boolean;
 }
 
 export const EditUserAuthInfoDrawer: FC<EditUserAuthInfoDrawer> = ({
   showEditAuth,
   closeEditAuth,
+  isMobile,
 }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -55,6 +57,7 @@ export const EditUserAuthInfoDrawer: FC<EditUserAuthInfoDrawer> = ({
       placement='right'
       onClose={closeEditAuth}
       open={showEditAuth}
+      width={isMobile ? 240 : ''}
     >
       <Form
         className={s.Form}

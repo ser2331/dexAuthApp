@@ -113,7 +113,7 @@ export const Customers = () => {
 
   return (
     <div className={s.Customers}>
-      <AddCustomer showDrawer={showDrawer} onCloseDrawer={onCloseDrawer} />
+      <AddCustomer showDrawer={showDrawer} onCloseDrawer={onCloseDrawer} isMobile={isMobile} />
 
       {isData && renderContent()}
       {!isData && <div>Empty Data</div>}

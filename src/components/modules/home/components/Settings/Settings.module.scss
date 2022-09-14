@@ -9,8 +9,15 @@
 
   .logOut {
     position: absolute;
-    right: 24px;
-    top: 24px;
+
+    @include media($mobile) {
+      right: 8px;
+      top: 8px;
+    }
+    @include media($tablet) {
+      right: 24px;
+      top: 24px;
+    }
   }
 
   .cover {
@@ -20,7 +27,6 @@
   .userCard {
     .card {
       background: #FFFFFF;
-
     }
 
     .table {
@@ -35,9 +41,15 @@
           padding: 8px;
 
           .tableLabel {
-            width: 150px;
             @include pageHeaderTitle;
             color: #28658e;
+
+            @include media($mobile) {
+              width: max-content;
+            }
+            @include media($tablet) {
+              width: 150px;
+            }
           }
         }
 
@@ -49,9 +61,15 @@
           justify-content: flex-end;
 
           .tableValue {
-            width: 150px;
             @include widgetTable;
             color: #49799A;
+
+            @include media($mobile) {
+              width: max-content;
+            }
+            @include media($tablet) {
+              width: 150px;
+            }
           }
         }
       }

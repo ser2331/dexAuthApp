@@ -7,13 +7,14 @@ import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { EditUserInformationDrawer } from '../EditUserInformationDrawer/EditUserInformationDrawer';
 import { EditUserAuthInfoDrawer } from '../EditUserAuthInfoDrawer/EditUserAuthInfoDrawer';
-import { routes } from '../../../../types';
+import Types, { routes } from '../../../../types';
 import { getDayMonth, renderInfoTable } from '../../halpers/halpers';
-
-import s from './Settings.module.scss';
 import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
 
+import s from './Settings.module.scss';
+
 const { setIsAuth } = authorizationSlice.actions;
+const { appSizesMap } = Types;
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
@@ -25,6 +26,8 @@ export const Settings = () => {
 
   const { currentUser } = useAppSelector((state) => state.authorizationReducer);
   const { login, name, avatar, day, lastName, gender, month, phone, sureName, year } = currentUser;
+  const { size } = useAppSelector((state) => state.appReducer);
+  const isMobile = size === appSizesMap.get('mobile').key;
 
   const userData = useMemo(
     () => [
@@ -63,9 +66,14 @@ export const Settings = () => {
       <EditUserInformationDrawer
         showEditDrawer={showEditDrawer}
         closeEditUserInfo={closeEditUserInfo}
+        isMobile={isMobile}
       />
 
-      <EditUserAuthInfoDrawer showEditAuth={showEditAuth} closeEditAuth={closeEditAuth} />
+      <EditUserAuthInfoDrawer
+        showEditAuth={showEditAuth}
+        closeEditAuth={closeEditAuth}
+        isMobile={isMobile}
+      />
 
       <PageHeader title={t('personal_area')} breadcrumb={[]} width={'100%'} />
 
@@ -84,7 +92,7 @@ export const Settings = () => {
               }}
             />
           }
-          style={{ width: '40em', marginTop: 16 }}
+          style={isMobile ? {} : { width: '40em', marginTop: 16 }}
           actions={[
             <SettingOutlined key='setting' onClick={onShowEditAuth} />,
             <EditOutlined key='edit' onClick={showEditUserInfo} />,

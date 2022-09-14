@@ -16,11 +16,13 @@ const { setUser } = authorizationSlice.actions;
 interface IEditUserInformationDrawer {
   showEditDrawer: boolean;
   closeEditUserInfo: () => void;
+  isMobile: boolean;
 }
 
 export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
   showEditDrawer,
   closeEditUserInfo,
+  isMobile,
 }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
@@ -52,6 +54,7 @@ export const EditUserInformationDrawer: FC<IEditUserInformationDrawer> = ({
       placement='right'
       onClose={closeEditUserInfo}
       open={showEditDrawer}
+      width={isMobile ? 240 : ''}
     >
       <Form
         form={form}
