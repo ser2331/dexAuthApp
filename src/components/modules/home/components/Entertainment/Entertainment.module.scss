@@ -1,3 +1,5 @@
+@import "src/components/assets/styles/index";
+
 .Entertainment {
   display: flex;
   flex-direction: column;
@@ -7,10 +9,15 @@
   padding: 24px;
 
   .contentWrapper {
-    width: 50em;
+    @include media($mobile) {
+      width: 20em;
+    }
+    @include media($tablet) {
+      width: 50em;
+    }
   }
   .title {
-    font: 600 24px/34px "SF Pro Display", sans-serif;
+    @include widgetValue;
     color: #28658e;
   }
 }

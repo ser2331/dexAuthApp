@@ -96,7 +96,7 @@ export const getDays = (hours: number) => {
 export const renderRow = (key: string, rowData: IRest | IEntertainment, days: string) => {
   return (
     <div style={{ marginBottom: 24 }}>
-      <div style={{ font: '600 24px/34px "SF Pro Display", sans-serif', color: '#28658e' }}>{`${
+      <div style={{ color: '#28658e' }}>{`${
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         rowData[key].title
