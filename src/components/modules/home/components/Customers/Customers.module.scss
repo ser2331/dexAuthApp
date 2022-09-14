@@ -7,12 +7,13 @@
 
   .AddCustomerBtn {
     position: absolute;
-    right: 24px;
     @include media($mobile) {
-      top: 94px;
+      top: 90px;
+      right: 12px;
     }
     @include media($desktop) {
-      top: 24px
+      top: 24px;
+      right: 24px;
     }
   }
 
@@ -20,24 +21,43 @@
   .body {
     display: flex;
     flex-flow: row wrap;
-    margin: 0 24px;
     min-height: 228px;
-    padding: 24px;
+
+    @include media($mobile) {
+      flex-direction: column;
+      padding: 8px;
+      margin: 0;
+    }
+    @include media($tablet) {
+      flex-direction: row;
+      padding: 24px;
+      margin: 0 24px;
+    }
 
     .wrapper {
       display: flex;
       flex-flow: column nowrap;
-      min-width: 388px;
       height: 302px;
       border: 1px solid #E3E8EB;
       background: #FFFFFF;
       border-radius: 14px;
-      margin-right: 24px;
-      margin-bottom: 24px;
-      padding: 24px;
       flex: 1 1;
 
+      @include media($mobile) {
+        margin-bottom: 12px;
+        padding: 16px;
+        height: max-content;
+      }
+      @include media($tablet) {
+        margin-right: 24px;
+        margin-bottom: 24px;
+        padding: 24px;
+        min-width: 388px;
+        height: auto;
+      }
+
       .title {
+        text-align: center;
         padding: 0 20px;
         font-weight: 600;
         font-size: 20px;
@@ -63,9 +83,14 @@
               padding: 8px;
 
               .tableLabel {
-                width: 150px;
                 font: 400 14px/16px "SF Pro Display", sans-serif;
                 color: #28658e;
+                @include media($mobile) {
+                  width: max-content;
+                }
+                @include media($tablet) {
+                  width: 150px;
+                }
               }
             }
 
@@ -77,9 +102,16 @@
               justify-content: flex-end;
 
               .tableValue {
-                width: 150px;
                 font: 400 14px/16px "SF Pro Display", sans-serif;
                 color: #49799A;
+
+
+                @include media($mobile) {
+                  width: max-content;
+                }
+                @include media($tablet) {
+                  width: 150px;
+                }
               }
             }
           }

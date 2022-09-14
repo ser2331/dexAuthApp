@@ -14,11 +14,12 @@ interface IPageHeader {
   breadcrumb?: string[];
   title: string;
   width?: number | string;
+  height?: number | string;
 }
 
 const { setShowMobileMenu } = appSlice.actions;
 
-export const PageHeader: FC<IPageHeader> = ({ breadcrumb, title, width }) => {
+export const PageHeader: FC<IPageHeader> = ({ breadcrumb, title, width, height }) => {
   const dispatch = useAppDispatch();
 
   const { size, showMobileMenu } = useAppSelector((state) => state.appReducer);
@@ -26,7 +27,7 @@ export const PageHeader: FC<IPageHeader> = ({ breadcrumb, title, width }) => {
   const isTablet = size === appSizesMap.get('tablet').key;
 
   return (
-    <div className={s.PageHeader} style={{ width: width }}>
+    <div className={s.PageHeader} style={{ width: width, height: height }}>
       {isMobile || isTablet ? (
         <Button
           className={s.showMenuBtn}

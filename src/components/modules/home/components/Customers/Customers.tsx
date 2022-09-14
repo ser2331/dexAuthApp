@@ -4,9 +4,13 @@ import { useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { getDayMonth, renderInfoTable } from '../../halpers/halpers';
 import { AddCustomer } from '../AddCustomer/AddCustomer';
+import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
+import Types from '../../../../types';
 
 import s from './Customers.module.scss';
-import { PageHeader } from '../../../../common/components/PageHeader/PageHeader';
+import { PlusOutlined } from '@ant-design/icons';
+
+const { appSizesMap } = Types;
 
 export const Customers = () => {
   const { t } = useTranslation();
@@ -15,6 +19,8 @@ export const Customers = () => {
 
   const { customers } = useAppSelector((state) => state.homeReducer);
   const { pressedLocation } = useAppSelector((state) => state.homeReducer);
+  const { size } = useAppSelector((state) => state.appReducer);
+  const isMobile = size === appSizesMap.get('mobile').key;
   const currentCustomer = useMemo(() => {
     return customers.find((el) => el.key === pressedLocation);
   }, [pressedLocation, customers]);
@@ -64,10 +70,11 @@ export const Customers = () => {
             currentCustomer?.lastName
           } `}
           breadcrumb={[]}
+          height={isMobile ? 122 : ''}
         />
 
         <Button type='primary' className={s.AddCustomerBtn} onClick={showAddCustomerDrawer}>
-          {t('add_customer')}
+          {isMobile ? <PlusOutlined /> : t('add_customer')}
         </Button>
 
         <div className={s.body}>
