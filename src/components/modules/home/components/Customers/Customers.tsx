@@ -108,7 +108,7 @@ export const Customers = () => {
         </div>
       </div>
     ),
-    [currentCustomer, t]
+    [currentCustomer, t, isMobile]
   );
 
   return (
