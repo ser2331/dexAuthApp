@@ -22,6 +22,7 @@
       right: 24px;
     }
   }
+
   .authContentWrapper {
     display: flex;
     flex-direction: column;
@@ -35,11 +36,7 @@
         width: 100%;
         padding: 8px;
       }
-      //@include media($tablet) {
-      //  width: 100%;
-      //  padding: 32px;
-      //}
-    @include media($tablet) {
+      @include media($tablet) {
         width: 464px;
         padding: 24px;
       }
