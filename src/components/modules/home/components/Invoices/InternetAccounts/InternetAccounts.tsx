@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { PaginationProps, Table, Typography } from 'antd';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { PaginationProps, Select, Table, Typography } from 'antd';
 import { homeSlice } from '../../../HomeSlice';
 import { useAppDispatch, useAppSelector } from '../../../../../core/redux';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,7 @@ export const InternetAccounts = () => {
 
   const { invoicesData, keyInternetAccountsData } = useAppSelector((state) => state.homeReducer);
   const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState<number>(1);
 
   const data = useMemo(() => invoicesData[1], [invoicesData]);
   const { size } = useAppSelector((state) => state.appReducer);
@@ -78,12 +79,30 @@ export const InternetAccounts = () => {
     setCurrentPage(page);
   };
 
-  const { visibleItems, pageNumber } = getVisibleItems({ data, currentPage, pageSize: 1 });
+  const handleChangeSelect = (value: string) => {
+    setPerPage(Number(value));
+  };
+
+  const { visibleItems, pageNumber } = getVisibleItems({ data, currentPage, perPage });
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [perPage]);
 
   return (
-    <div className={s.BankAccounts}>
+    <div className={s.InternetAccounts}>
       {isMobile ? (
         <>
+          <Select
+            defaultValue={'1'}
+            onChange={handleChangeSelect}
+            style={{ width: '100%', marginBottom: 16, textAlign: 'center' }}
+          >
+            <Select.Option value={'1'}>1</Select.Option>
+            <Select.Option value={'3'}>3</Select.Option>
+            <Select.Option value={'5'}>5</Select.Option>
+          </Select>
+
           {visibleItems.length
             ? visibleItems.map((el: IItem) => (
                 <div key={el.key}>

@@ -152,13 +152,13 @@ export const renderInfoTable = ({
 export const getVisibleItems = ({
   data,
   currentPage,
-  pageSize,
+  perPage,
 }: {
   data: IItem[] | IReportsData[] | any;
   currentPage: number;
-  pageSize: number;
+  perPage: number;
 }) => {
-  const visibleItems = data.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-  const pageNumber = (data?.length / pageSize) * 10;
+  const visibleItems = data.slice((currentPage - 1) * perPage, currentPage * perPage);
+  const pageNumber = Math.round((data?.length / perPage) * 10);
   return { visibleItems, pageNumber };
 };

@@ -73,7 +73,7 @@ export const Reports = () => {
   const { visibleItems, pageNumber } = getVisibleItems({
     data: reportsData,
     currentPage,
-    pageSize: 5,
+    perPage: 5,
   });
 
   return (

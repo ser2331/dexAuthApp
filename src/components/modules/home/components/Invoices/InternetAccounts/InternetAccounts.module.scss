@@ -1,9 +1,10 @@
 @import "src/components/assets/styles/index";
 
-.BankAccounts {
+.InternetAccounts {
+
   @include media($mobile) {
     background: none;
-    padding: 0;
+    padding-bottom: 24px;
   }
   @include media($tablet) {
     background: #FFFFFF;
