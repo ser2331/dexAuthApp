@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Button, Checkbox, Form, Input, InputNumber, Select } from 'antd';
+import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
@@ -17,9 +18,20 @@ export const RegistrationPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  const onFinish = (values: IAuth) => {
-    dispatch(setNewUser({ ...values, isAdmin: true }));
-    navigate(routes.login);
+  const [isAgree, setIsAgree] = useState(false);
+
+  const onFinish = useCallback(
+    (values: IAuth) => {
+      if (isAgree) {
+        dispatch(setNewUser({ ...values, isAdmin: true }));
+        navigate(routes.login);
+      }
+    },
+    [dispatch, isAgree]
+  );
+
+  const handleChecked = (value: CheckboxChangeEvent) => {
+    setIsAgree(value.target.checked);
   };
 
   return (
@@ -172,11 +184,22 @@ export const RegistrationPage = () => {
           <Form.Item
             name='readOut'
             valuePropName='checked'
-            rules={[{ required: true, message: t('terms_agreement') }]}
+            rules={[
+              () => ({
+                validator() {
+                  if (isAgree) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error(t('terms_agreement')));
+                },
+              }),
+            ]}
             className={s.checkBox}
           >
             <p>
-              <Checkbox className={s.checkboxLabel}>{t('i_agree')}</Checkbox>
+              <Checkbox onChange={handleChecked} className={s.checkboxLabel}>
+                {t('i_agree')}
+              </Checkbox>
               <Link to={routes.login} className={s.linkBtn}>
                 {t('user_agreement')}
               </Link>
