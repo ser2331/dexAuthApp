@@ -31,7 +31,7 @@ export const CustomContentWrapper: FC<IData & IFunc> = (data, onChangeTab) => {
         }
         onChange={onChangeTab}
         tabBarExtraContent={extra}
-        tabBarStyle={isMobile ? { background: '#FFFFFF' } : {}}
+        tabBarStyle={isMobile ? { background: '#FFFFFF', padding: '0 8px' } : {}}
         items={items}
       />
     </Layout>
