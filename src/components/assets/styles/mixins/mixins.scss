@@ -87,3 +87,14 @@ $desktop: 1152px;
         font: 600 20px/24px 'SF Pro Display', sans-serif;
     }
 }
+@mixin birthdayTitle {
+    @include media($mobile) {
+        font: 600 10px/18px 'SF Pro Display', sans-serif;
+    }
+    @include media($tablet) {
+        font: 600 12px/20px 'SF Pro Display', sans-serif;
+    }
+    @include media($desktop) {
+        font: 400 14px/22px 'SF Pro Display', sans-serif;
+    }
+}

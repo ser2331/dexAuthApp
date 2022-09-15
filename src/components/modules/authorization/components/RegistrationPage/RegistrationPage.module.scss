@@ -1,3 +1,5 @@
+@import "src/components/assets/styles/index";
+
 .RegistrationPage {
     display: flex;
     flex-direction: column;
@@ -8,7 +10,7 @@
     min-height: 100vh;
 
     .pageTitle {
-        font: 400 56px/64px 'SF Pro Display', sans-serif;
+        @include changePasswordTitle;
         color: #000000;
         margin-bottom: 16px;
     }
@@ -21,7 +23,7 @@
 
         .cardTitle {
             text-align: center;
-            font: 600 20px/28px 'SF Pro Display', sans-serif;
+            @include pageHeaderTitle;
             margin-bottom: 24px;
         }
 
@@ -39,7 +41,7 @@
 
             .birthday {
                 .birthdayTitle {
-                    font: 400 14px/22px 'SF Pro Display', sans-serif;
+                    @include birthdayTitle;
                 }
 
                 .topWrapper {
@@ -68,19 +70,15 @@
                 }
             }
 
-            .checkBox {
-                font: 400 14px/22px 'SF Pro Display', sans-serif;
-                color: #595959;
-
-                .linkBtn {
-                    padding: 0 4px;
-                }
+            .linkBtn {
+                padding: 0 4px;
+                color: #1890ff;
             }
         }
 
         .haveAccount {
             text-align: center;
-            font: 400 14px/22px 'SF Pro Display', sans-serif;
+            @include birthdayTitle;
             color: #595959;
             margin-top: 24px;
         }

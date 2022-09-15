@@ -175,8 +175,8 @@ export const RegistrationPage = () => {
             rules={[{ required: true, message: t('terms_agreement') }]}
             className={s.checkBox}
           >
-            <Checkbox>
-              {t('i_agree')}
+            <p>
+              <Checkbox className={s.checkboxLabel}>{t('i_agree')}</Checkbox>
               <Link to={routes.login} className={s.linkBtn}>
                 {t('user_agreement')}
               </Link>
@@ -184,7 +184,7 @@ export const RegistrationPage = () => {
               <Link to={routes.login} className={s.linkBtn}>
                 {t('policy')}
               </Link>
-            </Checkbox>
+            </p>
           </Form.Item>
 
           <Button style={{ width: '100%' }} type='primary' htmlType='submit'>
