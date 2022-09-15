@@ -19,7 +19,7 @@ const data = (title: string, breadcrumb: string[], tabs: string[]) => {
         ),
       },
       {
-        label: tabs[0],
+        label: tabs[1],
         key: 'add_new_challenge',
         children: (
           <div style={{ minHeight: 280 }}>
