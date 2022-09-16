@@ -61,6 +61,7 @@ export const Settings = () => {
   const onShowEditAuth = () => {
     setShowEditAuth(true);
   };
+
   return (
     <div className={s.Settings}>
       <EditUserInformationDrawer

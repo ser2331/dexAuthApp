@@ -20,7 +20,7 @@ i18n
   .use(LanguageDetector)
   .use(Backend)
   .init({
-    fallbackLng: 'en',
+    fallbackLng: ['EN', 'RU'],
     // debug: true,
     detection: {
       order: ['queryString', 'cookie'],

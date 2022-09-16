@@ -5,9 +5,9 @@ import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { authorizationSlice } from '../../../authorization/AuthorizationSlice';
 import { IAuth } from '../../../authorization/interfaces/authorizationInterface';
 import { genderOptions, monthOptions, yearOptions } from '../../../authorization/halpers/halpers';
+import { UploadImage } from '../../../../common/components/UploadImage/UploadImage';
 
 import s from './EditUserInformationDrawer.module.scss';
-import { UploadImage } from '../../../../common/components/UploadImage/UploadImage';
 
 const { Option } = Select;
 

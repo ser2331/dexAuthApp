@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { getDayMonth, renderInfoTable } from '../../halpers/halpers';
@@ -8,7 +9,6 @@ import { PageHeader } from '../../../../common/components/PageHeader/PageHeader'
 import Types from '../../../../types';
 
 import s from './Customers.module.scss';
-import { PlusOutlined } from '@ant-design/icons';
 
 const { appSizesMap } = Types;
 

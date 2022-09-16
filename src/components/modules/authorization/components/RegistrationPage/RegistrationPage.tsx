@@ -2,16 +2,17 @@ import React, { useCallback, useState } from 'react';
 import { Button, Checkbox, Form, Input, InputNumber, Select } from 'antd';
 import { CheckboxChangeEvent } from 'antd/es/checkbox';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../../core/redux';
+import { useAppDispatch, useAppSelector } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { authorizationSlice } from '../../AuthorizationSlice';
 import { IAuth } from '../../interfaces/authorizationInterface';
 import { monthOptions, yearOptions, genderOptions } from '../../halpers/halpers';
-import { routes } from '../../../../types';
+import Types, { routes } from '../../../../types';
 
 import s from './RegistrationPage.module.scss';
 
 const { setNewUser } = authorizationSlice.actions;
+const { appSizesMap } = Types;
 
 export const RegistrationPage = () => {
   const dispatch = useAppDispatch();
@@ -19,6 +20,9 @@ export const RegistrationPage = () => {
   const { t } = useTranslation();
 
   const [isAgree, setIsAgree] = useState(false);
+
+  const { size } = useAppSelector((state) => state.appReducer);
+  const isMobile = size === appSizesMap.get('mobile').key;
 
   const onFinish = useCallback(
     (values: IAuth) => {
@@ -164,7 +168,7 @@ export const RegistrationPage = () => {
                   formatter={(value: number | string | undefined) =>
                     value ? value.toString().slice(0, 8) : ''
                   }
-                  addonBefore='(+373)'
+                  addonBefore={<div style={isMobile ? { fontSize: 8 } : {}}>(+373)</div>}
                   placeholder={t('phone')}
                 />
               </Form.Item>

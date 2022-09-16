@@ -4,8 +4,6 @@ import i18next from 'i18next';
 import { useAppDispatch } from '../../../../core/redux';
 import { useTranslation } from 'react-i18next';
 import { appSlice } from '../../AppSlice';
-import { Link } from 'react-router-dom';
-import { routes } from '../../../../types';
 import { GlobalOutlined, CloseOutlined } from '@ant-design/icons';
 
 import s from './ChangeLang.module.scss';
@@ -27,15 +25,10 @@ export const ChangeLang = () => {
     <div className={s.ChangeLang}>
       <div className={s.content}>
         <span className={s.description}>
-          <GlobalOutlined /> {t('change_language_to')} <Link to={routes.login}>{lang}?</Link>
+          <GlobalOutlined /> {t('change_language_to')} <span className={s.lang}>{lang}?</span>
         </span>
 
-        <Select
-          defaultValue={i18next.language}
-          style={{ width: 120, color: '#1890ff' }}
-          className='change-lang'
-          onChange={handleChange}
-        >
+        <Select defaultValue={i18next.language} className={s.ChangeLangBtn} onChange={handleChange}>
           <Option value='RU'>Русский</Option>
           <Option value='EN'>English</Option>
         </Select>
